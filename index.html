@@ -1,0 +1,2284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Jatin Dhir</title>
+<meta name="description" content="Jatin Dhir designs and builds websites, phone apps and the software businesses run on.">
+<meta name="theme-color" content="#070B1E">
+<link rel="canonical" href="https://jatindhir.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jatindhir.com/">
+<meta property="og:title" content="Jatin Dhir">
+<meta property="og:description" content="Jatin Dhir designs and builds websites, phone apps and the software businesses run on.">
+<meta property="og:image" content="https://jatindhir.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23070B1E%22%2F%3E%3Cellipse%20cx%3D%2232%22%20cy%3D%2233%22%20rx%3D%2227%22%20ry%3D%228%22%20fill%3D%22none%22%20stroke%3D%22%23ECDCBC%22%20stroke-width%3D%223%22%20transform%3D%22rotate(-16%2032%2033)%22%20opacity%3D%22.55%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2215%22%20fill%3D%22%23EFC89B%22%2F%3E%3Cpath%20d%3D%22M18%2028h28M17.4%2034h29.2%22%20stroke%3D%22%23F3E6CF%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M18%2038.5h28%22%20stroke%3D%22%239A1220%22%20stroke-width%3D%222.2%22%2F%3E%3Cpath%20d%3D%22M5.6%2040.6a27%208%20-16%200%200%2052.8-15.2%22%20fill%3D%22none%22%20stroke%3D%22%23ECDCBC%22%20stroke-width%3D%223%22%2F%3E%3Ccircle%20cx%3D%2251%22%20cy%3D%2248%22%20r%3D%225%22%20fill%3D%22%238FB4FF%22%2F%3E%3C%2Fsvg%3E">
+<script async id="three-js" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&localStorage.getItem('jd-pause')!=='1')document.documentElement.classList.add('motion')}catch(e){document.documentElement.classList.add('motion')}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Sans:wdth,wght@75..100,400..700&family=JetBrains+Mono:wght@500&family=Newsreader:opsz,wght@6..72,400&display=swap">
+<style>[hidden]{display:none!important}</style>
+<style>
+/* Jatin's own landing, grown out of the reference Jatin chose (abhayrohit.com): deep space instead of red,
+   the work riding an orbit band instead of a film, Jatin's own things under the lens.
+   A field of stars; the name split above and below the orbit band, bent into a concave arc (WebGL), carrying the work;
+   the voice line top right; the intro bottom left; a mono base line; a small planet that is the motion switch and,
+   over the hero, the cursor. Scroll throws the letters off, sweeps the night away, flattens the band and pushes into
+   the first project. */
+:root{
+  --field:#070B1E;     /* deep space */
+  --on-field:#F3EFE4;  /* name and text on the field */
+  --paper:#F3EFE4;     /* chapters, film cards */
+  --ink:#121A42;       /* text on paper */
+  --film:#0B0B0D;
+  --band:#0E1430;      /* the orbit band the work rides on */
+  --accent:#8FB4FF;    /* starlight: links, the lens rim, small signals on the dark */
+  --soft:rgba(243,239,228,.8);
+  --f-name:"Anton",Impact,"Arial Narrow",sans-serif;
+  --f-voice:"Times New Roman",Times,"Newsreader",Georgia,serif;
+  --f-text:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --gut:2.6vw;
+  color-scheme:light;
+}
+
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-text);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.u{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0;padding:0}
+
+/* ---------- hero ---------- */
+.hero{position:relative;z-index:2;height:100svh;min-height:600px;overflow:hidden;background:var(--paper)}
+@media (min-width:900px){.motion #ch1{margin-top:-100svh;z-index:3;opacity:0;pointer-events:none}.motion #ch1.on{opacity:1;pointer-events:auto;transition:opacity .35s ease-out}}
+.field{position:absolute;inset:0;background:var(--field);overflow:hidden}
+.stars{position:absolute;left:0;top:0;width:calc(100% + 24px);height:calc(100% + 24px);transform:translate3d(-12px,-12px,0);transition:transform 1.2s cubic-bezier(.22,.61,.36,1);pointer-events:none}
+.bar{position:absolute;inset:0 0 auto 0;z-index:6;display:flex;justify-content:space-between;align-items:center;padding:calc(26px + env(safe-area-inset-top,0px)) max(var(--gut),env(safe-area-inset-right,0px)) 0 max(var(--gut),env(safe-area-inset-left,0px));color:var(--on-field)}
+.bar .me{font-weight:500;font-size:20px;line-height:44px;letter-spacing:-.045em;text-decoration:none}
+.menu{display:flex;align-items:center;gap:14px;background:none;border:0;padding:0;cursor:pointer;color:var(--on-field);font-size:14px;font-weight:500}
+.menu b{position:relative;font-weight:500}
+.menu b::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:100% 50%;transition:transform .85s cubic-bezier(.76,0,.24,1)}
+.menu i{position:relative;width:44px;height:44px;border-radius:50%;border:1px solid currentColor}
+.menu i::before{content:"";position:absolute;inset:-1px;border-radius:50%;background:currentColor;opacity:0;transform:scale(.7);transition:transform .85s cubic-bezier(.76,0,.24,1),opacity .65s}
+.menu s{position:absolute;left:12px;top:19px;width:18px;height:1px;background:currentColor;transition:transform .85s cubic-bezier(.76,0,.24,1),background-color .65s}
+.menu s + s{top:25px}
+/* hover: the circle fills from within, the two lines slide apart, the label underlines from the left */
+.menu:is(:hover,:focus-visible) b::after{transform:scaleX(1);transform-origin:0 50%}
+.menu:is(:hover,:focus-visible) i::before{opacity:1;transform:scale(1)}
+.menu:is(:hover,:focus-visible) s{background:var(--field);transform:translateX(2px)}
+.menu:is(:hover,:focus-visible) s + s{transform:translateX(-2px)}
+.word{position:absolute;margin:0;font-family:var(--f-name);font-weight:400;color:var(--on-field);font-size:23.5vw;line-height:.74;white-space:nowrap;user-select:none;-webkit-user-select:none;pointer-events:none}
+.word .ch{position:relative;display:inline-block;will-change:transform}
+/* each letter enters inside its own mask; once the name has landed the masks open so letters can fly on scroll */
+.word .mk{display:inline-block;overflow:hidden;padding:.12em .03em .05em;margin:-.12em -.03em -.05em}
+.settled .word .mk{overflow:visible}
+.w1{left:calc(var(--gut) - .025em);top:12.2svh;z-index:1}
+.w2{right:calc(3vw + 60px);top:calc(50svh + 6vw);z-index:3}
+.voice{position:absolute;left:57vw;top:17svh;z-index:3;margin:0;font-family:var(--f-voice);font-weight:400;font-size:3vw;line-height:1.02;letter-spacing:-.025em;color:var(--on-field)}
+.voice .ln{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+.voice .ln span{display:block}
+/* the film: WebGL draws it; the DOM strip below is the fallback and the hit area for dragging */
+#gl{position:absolute;left:0;top:0;width:100%;height:100%;z-index:2;pointer-events:none;display:none}
+.gl #gl{display:block}
+.strip{position:absolute;left:-4vw;right:-4vw;top:calc(50svh - 9.25vw);height:18.5vw;z-index:2;background:var(--film);overflow:hidden;pointer-events:none}
+.strip::before,.strip::after{content:"";position:absolute;left:0;right:0;height:.7vw;z-index:2;background:repeating-linear-gradient(90deg,var(--field) 0 1vw,transparent 1vw 1.7vw)}
+.strip::before{top:.6vw}.strip::after{bottom:.6vw}
+.track{position:absolute;top:2vw;bottom:2vw;left:0;display:flex;gap:1vw}
+.fr{flex:0 0 auto;width:15.6vw;height:100%;overflow:hidden;background:var(--paper);padding:.8vw}
+.fr img{width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
+.gl .strip{top:calc(50svh - 15vw);height:30vw;background:none;overflow:visible}
+.gl .strip::before,.gl .strip::after,.gl .track{visibility:hidden}
+.zoomcover{position:absolute;left:0;top:0;width:100%;height:100%;z-index:5;opacity:0;pointer-events:none;overflow:hidden}
+.zoomcover img{width:100%;height:100%;object-fit:cover}
+.intro{position:absolute;left:var(--gut);bottom:calc(38px + 2.4vw);z-index:7;width:clamp(300px,15vw + 160px,440px);color:var(--on-field)}
+.intro .role{font-size:calc(.5vw + 14px);font-weight:500;letter-spacing:-.03em;margin:0 0 10px}
+.intro .sum{font-size:14px;line-height:1.5;margin:0 0 4px;font-weight:500}
+.intro .acts{display:flex;gap:24px;font-size:14px;font-weight:500}
+/* links: the underline rests at 56% and draws to full; the words roll up and a copy rises in */
+.lk{display:inline-flex;align-items:center;gap:5px;background:none;border:0;padding:12px 0;cursor:pointer;color:inherit;font:inherit;text-decoration:none}
+.lk-l{position:relative;display:block;overflow:hidden;padding-block:.17em}
+.lk-a,.lk-b{display:block;transition:transform .54s cubic-bezier(.19,1,.22,1)}
+.lk-b{position:absolute;inset:.17em 0 auto;transform:translateY(120%)}
+.lk-l::after{content:"";position:absolute;inset:auto 0 0;height:1px;background:currentColor;opacity:.55;transform-origin:0 50%;transform:scaleX(.56);transition:transform .54s cubic-bezier(.19,1,.22,1),opacity .28s linear}
+@media (hover:hover) and (pointer:fine){.lk:hover .lk-l::after{opacity:1;transform:scaleX(1)}.lk:hover .lk-a{transition-delay:35ms;transform:translateY(-120%)}.lk:hover .lk-b{transition-delay:35ms;transform:none}}
+.lk:focus-visible .lk-l::after{opacity:1;transform:scaleX(1)}
+.lk .ext{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.2;flex:none}
+.base{position:absolute;left:var(--gut);right:100px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:4;display:flex;justify-content:space-between;gap:16px;font-family:var(--f-mono);font-weight:500;font-size:12px;letter-spacing:.08em;color:var(--on-field)}
+
+/* the motion switch: a small ringed planet, the same one that floats in the lens. It sits in the corner, and over the hero it
+   grows into the cursor, so it is built at its large size and shown at 47%. While motion runs its storm turns across it;
+   its moon carries the pause and play mark. The ring passes behind the planet and in front of it */
+.reel{position:fixed;right:calc(-18px + env(safe-area-inset-right,0px));bottom:calc(-18px + env(safe-area-inset-bottom,0px));z-index:60;width:136px;height:136px;border:0;padding:0;border-radius:50%;background:none;cursor:pointer;transform:scale(.47);filter:drop-shadow(0 6px 12px rgba(0,0,0,.35))}
+.reel::before,.reel::after{content:"";position:absolute;left:-4%;right:-4%;top:40%;height:20%;border-radius:50%;border:5px solid #ecdcbc;transform:rotate(-16deg);pointer-events:none}
+.reel::before{z-index:0;opacity:.5}
+.reel::after{z-index:3;clip-path:inset(50% 0 0 0)}
+.reel .disc,.reel .gloss{position:absolute;inset:21%;border-radius:50%}
+.reel .disc{z-index:1;background-image:radial-gradient(closest-side,#c4553c 64%,transparent 72%),linear-gradient(180deg,#f3e6cf 0 14%,#efc89b 14% 27%,#f6eedf 27% 38%,#e9a46a 38% 50%,#f3e6cf 50% 57%,#9a1220 57% 61%,#f0d2a8 61% 74%,#f2c46d 74% 86%,#efc89b 86%);background-size:30% 18%,100% 100%;background-repeat:no-repeat;background-position:24% 66%,0 0}
+.reel .gloss{z-index:2;background:radial-gradient(circle at 34% 28%,rgba(255,255,255,.45),transparent 40%),radial-gradient(circle at 74% 80%,rgba(7,11,30,.62),transparent 62%)}
+.motion .reel.spin .disc{animation:storm 6s linear infinite}
+@keyframes storm{from{background-position:-45% 66%,0 0}to{background-position:145% 66%,0 0}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.reel.att{pointer-events:none}
+.reel span{position:absolute;right:3%;bottom:5%;z-index:4;width:32%;height:32%;border-radius:50%;background:radial-gradient(circle at 34% 30%,#eef3ff,#8fb4ff 72%);display:grid;place-items:center;color:var(--ink);font-size:15px;font-weight:700;line-height:1;box-shadow:0 0 0 3px rgba(7,11,30,.6)}
+
+/* ---------- the lens: a look under the page. The drawing is only seen through the circle ---------- */
+#lens-gl{position:absolute;left:0;top:0;width:100%;height:100%;z-index:5;pointer-events:none}
+.lens{position:absolute;left:0;top:0;z-index:6;width:0;height:0}
+.lens-ring{position:absolute;left:0;top:0;width:0;height:0;border-radius:50%;pointer-events:none;touch-action:none}
+.lens-cap{position:absolute;left:0;top:0;transform:translateX(-50%);margin:0;padding:9px 13px;border-radius:999px;background:var(--ink);color:var(--paper);font:500 11px/1.25 var(--f-mono);letter-spacing:.02em;white-space:nowrap;max-width:min(78vw,520px);overflow:hidden;text-overflow:ellipsis;pointer-events:none;opacity:0}
+.lens-grip{display:none}
+.lens-key:focus-visible{position:absolute;left:var(--gut);top:84px;width:auto;height:auto;clip:auto;z-index:8;background:var(--ink);color:var(--paper);padding:10px 14px;border-radius:999px;font:500 12px/1.3 var(--f-mono);border:0}
+
+/* ---------- the cursor (fine pointers): a dot, two trailing rings, a disc that labels what you can click ---------- */
+.cur{--cp:243 239 228;--ci:18 26 66;--ca:154 18 32;--ce:cubic-bezier(.2,.8,.2,1);--fill:rgb(var(--cp)/.96);--text:rgb(var(--ci));--line:rgb(var(--cp)/.9);--edge:rgb(var(--ci)/.48);
+  position:fixed;left:0;top:0;z-index:200;pointer-events:none;opacity:0;transition:opacity .2s;display:none}
+.cur-on .cur{display:block}
+.cur[data-visible="true"]{opacity:1}
+.cur[data-surface="light"]{--fill:rgb(var(--ci)/.96);--text:rgb(var(--cp));--line:rgb(var(--ci)/.88);--edge:rgb(var(--cp)/.65)}
+.cur-dot,.cur-shell,.cur-ring{position:absolute;left:0;top:0;will-change:transform}
+.cur-dot::after{content:"";position:absolute;left:-2.5px;top:-2.5px;width:5px;height:5px;border-radius:50%;background:var(--line);box-shadow:0 0 0 1px rgb(var(--ci)),0 0 0 1.6px rgb(var(--cp)/.8);transition:background-color .28s,box-shadow .28s,opacity .2s}
+.cur-ring{opacity:0;transition:opacity .16s linear}
+.cur-ring::after{content:"";position:absolute;border:1px solid var(--line);box-shadow:0 0 0 .5px var(--edge);border-radius:50%;transition:border-color .28s,box-shadow .28s}
+.cur-ring.r1::after{width:34px;height:34px;left:-17px;top:-17px;opacity:.6}
+.cur-ring.r2::after{width:44px;height:44px;left:-22px;top:-22px;opacity:.28}
+.cur[data-action="default"] .cur-ring{opacity:1}
+.cur-disc{position:absolute;left:-42px;top:-42px;width:84px;height:84px;border-radius:50%;border:3.5px solid var(--line);box-shadow:0 0 0 1.5px var(--edge);scale:.2857;transition:scale .38s var(--ce),border-width .38s var(--ce),background-color .28s,border-color .28s,opacity .2s}
+.cur[data-clickable="true"] .cur-disc{border-width:2px;scale:.5}
+.cur[data-clickable="true"] .cur-dot::after{opacity:0}
+.cur[data-pressed="true"] .cur-disc{scale:.42;background:rgb(var(--ca)/.2);transition-duration:90ms}
+.cur-pill{position:absolute;left:0;top:24px;display:flex;align-items:center;gap:5px;height:24px;padding:0 8px;border-radius:12px;border:1px solid var(--edge);background:var(--fill);color:var(--text);box-shadow:0 2px 6px rgba(13,17,15,.12);font:500 11px/1 var(--f-text);white-space:nowrap;opacity:0;transform:translate(-50%,4px) scale(.9);transition:opacity .18s,transform .3s var(--ce)}
+.cur[data-clickable="true"] .cur-pill{opacity:1;transform:translate(-50%,0)}
+.cur[data-pressed="true"] .cur-pill{transform:translate(-50%,2px) scale(.96);transition-duration:90ms}
+.cur-pill svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}
+.cur-pill .g-drag{display:none}
+.cur[data-glyph="drag"] .cur-pill .g-drag{display:inline}
+.cur[data-glyph="drag"] .cur-pill .g-arrow{display:none}
+/* over the hero the reel is the cursor */
+.cur[data-hide="true"]{opacity:0}
+html.cur-on,html.cur-on *{cursor:none!important}
+
+/* ---------- after the hero: three project chapters, software, more work, why it moves, what I make, contact ----------
+   Surfaces alternate so each section reads as its own chapter: cream, deep space, cream, deep space,
+   cream, deep space, cream, and the contact in starlight. */
+.kick{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;margin:0 0 22px;opacity:.75;text-transform:uppercase}
+.sec-title{font-weight:700;font-size:clamp(40px,4.3vw,76px);line-height:.98;letter-spacing:-.035em;margin:0;font-variation-settings:"wdth" 92}
+img[data-ph]:not([src]){visibility:hidden}
+
+/* ---------- chapters ---------- */
+.chap{position:relative;z-index:1;background:var(--paper);color:var(--ink)}
+.chap.dark{background:var(--field);color:var(--paper)}
+.pin{position:relative;height:100svh;overflow:hidden}
+.ch-text{position:absolute;left:var(--gut);top:13svh;width:31vw;z-index:3}
+.ch-kick{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;margin:0 0 22px;opacity:.75}
+.ch-title{font-weight:700;font-size:clamp(34px,3.2vw,58px);line-height:.98;letter-spacing:-.035em;margin:0 0 20px;font-variation-settings:"wdth" 92}
+.ch-role{font-weight:600;font-size:17px;margin:0}
+.ch-when{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;margin:4px 0 18px;opacity:.7}
+.ch-desc{font-size:16px;line-height:1.6;max-width:44ch;margin:0;opacity:.88}
+.ch-go{margin:18px 0 0;font-weight:600;font-size:15px}
+/* the case at a glance: who it was for, what was done, with what, where it lives; then what it does for them */
+.ch-facts{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:16px;margin:20px 0 0;border-top:1px solid color-mix(in srgb,currentColor 18%,transparent);font-size:14px;line-height:1.4}
+.ch-facts dt,.ch-facts dd{margin:0;padding:8px 0;border-bottom:1px solid color-mix(in srgb,currentColor 18%,transparent)}
+.ch-facts dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.6;padding-top:10px}
+.ch-wins-h{margin:20px 0 8px;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.6}
+.ch-wins{list-style:none;margin:0;padding:0;display:grid;gap:7px;font-size:15px;line-height:1.45}
+.ch-wins li{position:relative;padding-left:18px}
+.ch-wins li::before{content:'';position:absolute;left:0;top:.72em;width:8px;height:1px;background:currentColor}
+.stage{position:absolute;left:0;top:0;width:100%;height:100%;z-index:2;overflow:hidden;background:var(--film)}
+.stage .scr{position:absolute;inset:0;opacity:0}
+.stage .scr:first-child{opacity:1}
+.stage .scr img{width:100%;height:100%;object-fit:cover}
+.stage .scr.contain{background:color-mix(in srgb,var(--ink) 92%,var(--paper))}
+.stage .scr.contain img{object-fit:contain;padding:4% 0}
+.chap.dark .stage .scr.contain{background:#070b1f}
+.stage .scr figcaption{display:none;margin-top:14px}
+.stage .scr figcaption i{display:block;font:500 11px/1.3 var(--f-mono);font-style:normal;letter-spacing:.06em;text-transform:uppercase;opacity:.65;margin-bottom:6px}
+.stage .scr figcaption b{display:block;font-size:22px;line-height:1.1;letter-spacing:-.02em;margin-bottom:8px}
+.stage .scr figcaption span{display:block;font-size:15px;line-height:1.55;opacity:.86}
+.stage .scr figcaption ul{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid color-mix(in srgb,currentColor 18%,transparent)}
+.stage .scr figcaption li{position:relative;font-size:14px;line-height:1.45;padding:8px 0 8px 18px;border-bottom:1px solid color-mix(in srgb,currentColor 18%,transparent)}
+.stage .scr figcaption li::before{content:'';position:absolute;left:0;top:17px;width:8px;height:1px;background:currentColor;opacity:.6}
+.ch-cap{position:absolute;left:40vw;right:4vw;bottom:calc(10.5svh + env(safe-area-inset-bottom,0px));z-index:3;display:flex;gap:18px;align-items:baseline;flex-wrap:wrap}
+.ch-cap b{font-weight:700;font-size:19px;letter-spacing:-.01em}
+.ch-cap span{font-size:15px;opacity:.78}
+.tabs{position:absolute;left:var(--gut);right:var(--gut);bottom:calc(3svh + env(safe-area-inset-bottom,0px));z-index:3;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:20px;border-top:1px solid color-mix(in srgb,currentColor 22%,transparent)}
+.tab{position:relative;background:none;border:0;padding:14px 0 6px;text-align:left;font-size:14px;cursor:pointer;opacity:.6;font-variation-settings:"wdth" 90}
+.tab::before{content:"";position:absolute;left:0;top:-1px;height:2px;width:var(--p,0%);background:currentColor}
+.chap.dark .tab::before{background:var(--accent)}
+.tab[aria-current="true"]{opacity:1}
+.rail{position:absolute;right:max(20px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:4;display:grid;gap:8px;font-family:var(--f-mono);font-size:11px}
+.rail a{text-decoration:none;opacity:.45;padding:2px 6px;border-radius:999px}
+.rail a[aria-current="true"]{opacity:1;background:var(--ink);color:var(--paper)}
+.chap.dark .rail a[aria-current="true"]{background:var(--accent);color:var(--ink)}
+.chap :focus-visible,.more :focus-visible,.services :focus-visible,.contact :focus-visible{outline-color:var(--ink)}
+
+/* ---------- software ---------- */
+.soft{position:relative;background:var(--field);color:var(--on-field);padding:clamp(90px,10vw,160px) var(--gut) clamp(80px,8vw,130px)}
+.soft-head{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:24px 4vw;align-items:end;margin-bottom:clamp(40px,5vw,72px)}
+.soft-head .kick{grid-column:1/-1;margin:0}
+.lede{margin:0;font-size:clamp(17px,1.35vw,21px);line-height:1.5;opacity:.82;max-width:40ch}
+.soft-main{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:4vw;align-items:start;padding-top:clamp(28px,3vw,44px);border-top:1px solid rgba(243,239,228,.16)}
+.soft-shot{margin:0;border-radius:10px;overflow:hidden;background:#12162c;box-shadow:0 0 0 1px rgba(243,239,228,.1),0 40px 80px -40px rgba(0,0,0,.8)}
+.soft-shot img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover}
+/* four more of its screens beneath, and the phone app leaning on the edge */
+.soft-shots{position:relative;display:grid;gap:14px}
+.soft-strip{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.soft-strip img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:0 0;border-radius:6px;box-shadow:0 0 0 1px rgba(243,239,228,.1)}
+.soft-strip span{display:block;margin-top:8px;font:500 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;opacity:.65}
+.soft-phone{position:absolute;right:-2.4vw;top:9%;width:15%;margin:0;border-radius:14px;overflow:hidden;box-shadow:0 0 0 4px #0b0f24,0 0 0 5px rgba(243,239,228,.18),0 30px 60px -20px rgba(0,0,0,.7)}
+.soft-phone img{display:block;width:100%;height:auto}
+.soft-copy h3,.soft-mini h3{font-weight:700;font-size:clamp(34px,3.4vw,58px);line-height:1;letter-spacing:-.035em;margin:0 0 18px;font-variation-settings:"wdth" 92}
+.soft-line{font-size:17px;line-height:1.55;margin:0 0 28px;opacity:.9;max-width:42ch}
+.facts{margin:0;display:grid;border-top:1px solid rgba(243,239,228,.16)}
+.facts div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px solid rgba(243,239,228,.16)}
+.facts dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.6;padding-top:3px}
+.facts dd{margin:0;font-size:15px;line-height:1.5}
+.soft-mini{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:4vw;align-items:baseline;margin-top:clamp(56px,6vw,96px);padding-top:clamp(24px,2.4vw,36px);border-top:1px solid rgba(243,239,228,.16)}
+.soft-mini h3{margin:0;font-size:clamp(28px,2.6vw,44px)}
+.soft-mini p{margin:0;font-size:16px;opacity:.8}
+
+/* ---------- more work ---------- */
+.more{background:var(--paper);color:var(--ink);padding:clamp(80px,9vw,140px) var(--gut)}
+.more h2,.contact h2{font-family:var(--f-name);font-weight:400;font-size:clamp(72px,11vw,190px);line-height:.85;margin:0 0 36px;letter-spacing:-.005em}
+/* an editorial index, not a grid of cards: number, picture, what it does, the facts. Every row reads without hovering */
+.mw{list-style:none;margin:0;padding:0;border-top:1px solid rgba(18,26,66,.18);counter-reset:mw}
+.mw > li{display:grid;grid-template-columns:44px minmax(0,4fr) minmax(0,5fr) minmax(0,3fr);gap:0 3vw;align-items:start;padding:clamp(24px,2.4vw,36px) 0;border-bottom:1px solid rgba(18,26,66,.18)}
+.mw-n{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;opacity:.55;padding-top:6px}
+.mw-media{position:relative;margin:0;aspect-ratio:16/10;border-radius:6px;overflow:hidden;background:var(--tint,#e6e0d4);display:grid;place-items:center}
+.mw-media img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+.mw-media.web img{width:100%;height:100%;object-fit:cover;object-position:50% 0}
+.mw-media.app img{height:88%;width:auto;border-radius:14px;box-shadow:0 0 0 4px #121a42,0 18px 30px -18px rgba(0,0,0,.6)}
+.mw-media.app.pair{grid-auto-flow:column;gap:6%;justify-content:center}
+.mw > li:is(:hover,:focus-within) .mw-media img{transform:scale(1.02)}
+.mw-name{margin:0 0 10px;font-weight:700;font-size:clamp(24px,2.1vw,34px);line-height:1.05;letter-spacing:-.03em;font-variation-settings:'wdth' 92}
+.mw-what{margin:0 0 14px;font-size:16px;line-height:1.55;max-width:46ch}
+.mw-feats{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:14px;line-height:1.45;opacity:.85}
+.mw-feats li{position:relative;padding-left:18px}
+.mw-feats li::before{content:'';position:absolute;left:0;top:.72em;width:8px;height:1px;background:currentColor}
+.mw-meta{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:14px;font-size:14px;line-height:1.4;border-top:1px solid rgba(18,26,66,.14)}
+.mw-meta dt,.mw-meta dd{margin:0;padding:8px 0;border-bottom:1px solid rgba(18,26,66,.14)}
+.mw-meta dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.6;padding-top:10px}
+
+/* ---------- why it moves ---------- */
+.why{position:relative;background:radial-gradient(ellipse 70% 60% at 85% 20%,rgba(74,102,200,.18),transparent 70%),var(--field);color:var(--on-field);padding:clamp(100px,11vw,180px) var(--gut)}
+.why-big{font-family:var(--f-voice);font-weight:400;font-size:clamp(38px,4.8vw,88px);line-height:1.02;letter-spacing:-.025em;margin:0;max-width:20ch}
+.why-list{list-style:none;margin:clamp(56px,6vw,96px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4vw;border-top:1px solid rgba(243,239,228,.16)}
+.why-list li{padding-top:22px;font-size:clamp(16px,1.2vw,19px);line-height:1.5;max-width:30ch}
+.why-list span{display:block;font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+
+/* ---------- what I make: the services, set large ---------- */
+.services{background:var(--paper);color:var(--ink);padding:clamp(80px,9vw,140px) var(--gut) clamp(70px,7vw,110px)}
+.svc{list-style:none;margin:0;padding:0;border-top:1px solid rgba(18,26,66,.18)}
+.svc a{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,30ch);gap:24px 4vw;align-items:end;padding:clamp(14px,1.4vw,22px) 0;border-bottom:1px solid rgba(18,26,66,.18);text-decoration:none}
+.svc-w{font-family:var(--f-name);font-size:clamp(64px,10.5vw,196px);line-height:.86;text-transform:uppercase;transition:transform .5s cubic-bezier(.22,.61,.36,1),color .3s}
+.svc-d{font-size:15px;line-height:1.5;opacity:.75;padding-bottom:.6em}
+.svc a:is(:hover,:focus-visible) .svc-w{transform:translateX(1.4vw);color:#2b45b8}
+
+/* ---------- contact, in starlight ---------- */
+.contact{background:var(--accent);color:var(--ink);padding:clamp(90px,10vw,160px) var(--gut) clamp(120px,12vw,200px)}
+.contact p{font-size:clamp(18px,1.5vw,24px);max-width:44ch;margin:0 0 28px}
+.contact .acts{display:flex;flex-wrap:wrap;gap:16px 28px;font-size:18px;font-weight:600}
+.contact .note{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;margin-top:30px;opacity:.75}
+footer{background:var(--field);color:var(--paper);padding:26px var(--gut) calc(26px + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;gap:16px;font-family:var(--f-mono);font-size:12px;letter-spacing:.06em}
+
+/* the band's DOM fallback (no WebGL): each frame a placeholder in the project's colours */
+.fr.ph{display:grid;align-content:end;gap:4px;padding:16px;background:linear-gradient(135deg,var(--c1),var(--c2));color:var(--fg);border-radius:6px}
+.fr.ph b{font-size:22px;letter-spacing:-.02em}
+.fr.ph span{font:500 11px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;opacity:.8}
+
+/* ---------- menu: a cream panel over the darkened page, after the reference's layout ---------- */
+.overlay{position:fixed;inset:0;z-index:90}
+.ov-scrim{position:absolute;inset:0;background:rgba(10,10,14,.5)}
+.ov-panel{--line:color-mix(in srgb,var(--ink) 14%,transparent);position:absolute;inset:0;background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto minmax(0,1fr) auto auto auto;padding:0 max(var(--gut),env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(var(--gut),env(safe-area-inset-left,0px));overflow:auto}
+.ov-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;min-height:64px;padding-top:env(safe-area-inset-top,0px);border-bottom:1px solid var(--line);font-size:12px}
+.ov-top p{margin:0}
+.ov-top p:last-child{justify-self:end;font-family:var(--f-mono);font-size:11px}
+.ov-close{justify-self:start;display:flex;align-items:center;gap:10px;background:none;border:0;padding:10px 0;cursor:pointer;color:inherit;font-size:12px}
+.ov-close span{display:inline-block;font-size:21px;font-weight:300;line-height:1;transition:rotate .9s var(--ease)}
+.ov-close:hover span{rotate:90deg}
+.ov-grid{display:grid;grid-template-columns:minmax(0,22fr) minmax(0,20fr) minmax(0,58fr);border-bottom:1px solid var(--line);min-height:300px}
+.ov-index{display:flex;flex-direction:column;padding:26px 0}
+.ov-index a{position:relative;display:flex;align-items:center;width:fit-content;min-height:44px;padding-left:18px;font-size:clamp(37px,4.38vw,88px);font-weight:400;line-height:1.13;letter-spacing:-.065em;text-decoration:none;transition:color .35s}
+.ov-index .dot{position:absolute;left:0;top:50%;width:7px;height:7px;border-radius:50%;background:var(--field);opacity:0;transform:translate(-12px,-50%) scale(.4);transition:transform 1s var(--ease),opacity .3s}
+.ov-index a:is(:hover,:focus-visible,[aria-current="true"]) .dot{opacity:1;transform:translate(0,-50%) scale(1)}
+/* index links: every letter rolls up to a copy of itself, one after another */
+.roll{display:inline-flex;overflow:hidden;padding-block:.06em}
+.roll span{position:relative;display:block;transition:transform .7s var(--ease);transition-delay:var(--d)}
+.roll span::after{content:attr(data-c);position:absolute;left:0;top:100%}
+@media (hover:hover) and (pointer:fine){.ov-index a:hover .roll span{transform:translateY(-100%)}}
+.ov-projects{padding:26px 24px;border-left:1px solid var(--line);border-right:1px solid var(--line)}
+.ov-lab{margin:0 0 14px;font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;opacity:.6}
+.ov-proj{position:relative;display:block;padding:12px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.ov-proj b{display:inline-block;font-weight:500;font-size:15px;transition:transform .8s var(--ease),color .65s}
+.ov-proj span{display:block;margin-top:3px;font-size:11px;opacity:.6}
+.ov-proj::after{content:"";position:absolute;left:0;bottom:-1px;width:100%;height:1px;background:var(--field);transform:scaleX(0);transform-origin:100% 50%;transition:transform 1s var(--ease)}
+.ov-proj:is(:hover,:focus-visible,[aria-current="true"])::after{transform:scaleX(1);transform-origin:0 50%}
+.ov-proj:is(:hover,:focus-visible) b{color:var(--field);transform:translateY(-2px)}
+.ov-all{display:inline-flex;gap:8px;margin-top:18px;font-size:11px;text-decoration:none;opacity:.7;transition:opacity .3s}
+.ov-all span{display:inline-block;transition:transform .85s var(--ease)}
+.ov-all:hover{opacity:1}
+.ov-all:hover span{transform:translateX(3px)}
+.ov-preview{display:grid;grid-template-rows:minmax(0,1fr) auto;padding:26px 0 18px 24px;text-decoration:none}
+.ov-img{position:relative;overflow:hidden;min-height:200px;background:color-mix(in srgb,var(--ink) 8%,var(--paper))}
+.ov-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.018);transition:opacity .95s ease,transform 1.5s var(--ease)}
+.ov-img img.on{opacity:1;transform:none}
+.ov-cap{display:flex;justify-content:space-between;gap:16px;margin-top:10px;font-size:11px}
+.ov-cap > span:last-child > span{display:inline-block;transition:transform .8s var(--ease)}
+.ov-preview:hover .ov-cap > span:last-child > span{transform:translate(3px,-3px)}
+.ov-name{margin:0;padding:22px 0 8px;font-weight:500;font-size:21vw;line-height:.8;letter-spacing:-.065em;white-space:nowrap;overflow:hidden}
+.ov-panel .ov-foot{background:none;color:inherit;font-family:var(--f-text);letter-spacing:0;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:14px 0;border-top:1px solid var(--line);font-size:12px}
+.ov-foot p{margin:0}
+.ov-foot p span{opacity:.6}
+.ov-foot .dot,.ov-index .dot{font-style:normal}
+.ov-foot .dot{display:inline-block;width:6px;height:6px;margin-right:8px;border-radius:50%;background:var(--field);vertical-align:1px}
+.ov-esc{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin:0;padding:10px 0 16px;border-top:1px solid var(--line);font-size:11px}
+.ov-esc kbd{font-family:var(--f-mono);font-size:10px;padding:1px 6px;border:1px solid var(--line);border-radius:4px}
+/* a small print of the project follows the cursor over the project list */
+.ov-follow{position:fixed;left:0;top:0;z-index:4;width:clamp(130px,10vw,180px);height:clamp(108px,8.5vw,150px);pointer-events:none;opacity:0;overflow:hidden;background:var(--paper);box-shadow:0 12px 30px rgba(7,9,13,.14);transform:rotate(-2deg)}
+.ov-follow img{width:100%;height:100%;object-fit:cover}
+/* ---------- chapters as a board of rooms (desktop; the script adds .rooms) ---------- */
+@media (min-width:900px){
+  .chap.rooms .pin{background-color:var(--paper);background-image:linear-gradient(90deg,rgba(18,26,66,.085) 1px,transparent 1px),linear-gradient(rgba(18,26,66,.085) 1px,transparent 1px),linear-gradient(90deg,rgba(18,26,66,.045) 1px,transparent 1px),linear-gradient(rgba(18,26,66,.045) 1px,transparent 1px);background-size:120px 120px,120px 120px,24px 24px,24px 24px}
+  .chap.dark.rooms .pin{background-color:var(--field);background-image:linear-gradient(90deg,rgba(243,239,228,.08) 1px,transparent 1px),linear-gradient(rgba(243,239,228,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(243,239,228,.04) 1px,transparent 1px),linear-gradient(rgba(243,239,228,.04) 1px,transparent 1px)}
+  .chap.rooms .stage{left:0;top:0;width:100%;height:100%;background:none;border-radius:0;overflow:hidden;z-index:2}
+  .chap.rooms .board{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+  .chap.rooms .stage .scr{position:absolute;inset:auto;opacity:1;background:#1b1b1f;box-shadow:0 24px 40px -10px rgba(7,9,13,.28);outline:1px solid rgba(18,26,66,.22)}
+  .chap.dark.rooms .stage .scr{outline-color:rgba(243,239,228,.25)}
+  .chap.rooms .stage .scr img{width:100%;height:100%;object-fit:cover}
+  .chap.rooms .stage .scr.contain{background:#0d1230}
+  .chap.rooms .stage .scr.contain img{object-fit:contain;padding:0}
+  .chap.rooms .rm-label{position:absolute;left:0;bottom:100%;margin-bottom:12px;font:500 22px/1 var(--f-mono);color:rgba(18,26,66,.7);white-space:nowrap;text-transform:uppercase}
+  .chap.dark.rooms .rm-label{color:rgba(243,239,228,.7)}
+  .chap.rooms .ch-text{z-index:1}
+  /* the note for the screen the camera is on: a column on the left, beside it */
+  .chap.rooms .ch-cap{left:var(--gut);right:auto;top:15svh;bottom:auto;z-index:4;display:grid;gap:14px;align-content:start;width:min(31vw,470px);padding:22px 24px 24px;background:var(--paper);color:var(--ink);box-shadow:0 0 0 1px rgba(18,26,66,.1),0 18px 40px -24px rgba(7,9,13,.35);opacity:0}
+  .chap.dark.rooms .ch-cap{background:var(--band);color:var(--paper);box-shadow:0 0 0 1px rgba(243,239,228,.12),0 18px 40px -24px rgba(0,0,0,.6)}
+  .chap.rooms .ch-cap i{font:500 11px/1.3 var(--f-mono);letter-spacing:.06em;font-style:normal;opacity:.7;text-transform:uppercase}
+  .chap.rooms .ch-cap b{font-size:clamp(26px,2.3vw,38px);font-weight:650;letter-spacing:-.03em;line-height:1.04;font-variation-settings:'wdth' 92}
+  .chap.rooms .ch-cap span{font-size:16px;line-height:1.55;opacity:.86}
+  .chap.rooms .ch-cap ul{list-style:none;margin:4px 0 0;padding:0;border-top:1px solid color-mix(in srgb,currentColor 18%,transparent)}
+  .chap.rooms .ch-cap li{position:relative;font-size:14px;line-height:1.45;padding:9px 0 9px 18px;border-bottom:1px solid color-mix(in srgb,currentColor 18%,transparent)}
+  .chap.rooms .ch-cap li::before{content:'';position:absolute;left:0;top:18px;width:8px;height:1px;background:currentColor;opacity:.6}
+  .chap.rooms .tabs,.chap.rooms .rail{z-index:5}
+  /* the tabs sit on a strip of their own, so the screens passing under them never meet the labels */
+  .chap.rooms .tabs{bottom:0;padding-bottom:calc(2.4svh + env(safe-area-inset-bottom,0px));background:var(--paper);box-shadow:0 -1px 0 color-mix(in srgb,currentColor 12%,transparent)}
+  .chap.dark.rooms .tabs{background:var(--field)}
+  /* shorter laptop screens: the opening column tightens so it clears the tabs */
+  @media (max-height:820px){.ch-text{top:11svh}.ch-title{font-size:clamp(30px,2.8vw,48px);margin-bottom:14px}.ch-desc{font-size:15px;line-height:1.5}.ch-facts dt,.ch-facts dd{padding:6px 0}.ch-wins{font-size:14px;gap:5px}.ch-wins-h{margin-top:14px}}
+}
+/* the cream wave that sweeps the deep space off the hero */
+.wipe{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.wipe path{fill:var(--paper)}
+.zoomcover canvas{display:block;width:100%;height:100%;object-fit:cover}
+/* speed lines trail each running letter */
+.word .mk{position:relative}
+.sl{position:absolute;left:93%;top:var(--so);width:var(--sw);height:.1em;opacity:var(--sp,0);transform:rotate(-7deg);pointer-events:none}
+.sl b{position:absolute;left:0;top:0;width:100%;height:2px;background:currentColor}
+.sl b:nth-child(2){width:72%;top:36%;left:16%}
+.sl b:nth-child(3){width:38%;top:84%;left:35%}
+/* the menu stays on screen through the page and takes the colour of what is under it */
+.menu{position:fixed;top:calc(26px + env(safe-area-inset-top,0px));right:max(var(--gut),env(safe-area-inset-right,0px));z-index:80;transition:color .35s}
+.menu.on-light{color:var(--ink)}
+.menu.on-light:is(:hover,:focus-visible) s{background:var(--paper)}
+@media (max-width:899px){.menu{top:calc(16px + env(safe-area-inset-top,0px))}}
+
+/* ---------- phone ---------- */
+@media (max-width:899px){
+  /* one screen, like the reference: u is a design unit (1/100 of a 390-wide phone), capped by height so short and wide screens still fit */
+  .hero{--u:min(1vw,.53svh,6px);--ox:calc((100vw - 100 * var(--u)) / 2);height:auto;min-height:max(100svh,calc(208 * var(--u)))}
+  .bar{padding-top:calc(16px + env(safe-area-inset-top,0px))}
+  .menu b{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .w1{left:calc(var(--ox) + 5.1 * var(--u) - .025em);top:calc(29 * var(--u));font-size:calc(31 * var(--u))}
+  .voice{left:calc(var(--ox) + 5.1 * var(--u));top:calc(62 * var(--u));font-size:calc(7 * var(--u))}
+  .strip{top:calc(74 * var(--u));height:calc(54 * var(--u));left:-6vw;right:-6vw}
+  .strip::before,.strip::after{height:calc(1.6 * var(--u))}
+  .track{top:calc(5 * var(--u));bottom:calc(5 * var(--u));gap:calc(2.6 * var(--u))}
+  .fr{width:calc(46 * var(--u));padding:calc(1.6 * var(--u))}
+  .gl .strip{top:calc(74 * var(--u));height:calc(54 * var(--u))}
+  /* the lens sits over the film like a window, with its grip */
+  .lens-grip{position:absolute;left:0;top:0;display:flex;align-items:center;gap:8px;transform:translateX(-50%);padding:0 14px;height:40px;border-radius:999px;background:var(--ink);color:var(--paper);font:500 11px/1 var(--f-mono);letter-spacing:.015em;white-space:nowrap;border:1px solid color-mix(in srgb,var(--paper) 45%,transparent);pointer-events:none}
+  .lens-cap{display:none}
+  .lens-ring{pointer-events:auto}
+  .lower{z-index:4}
+  /* menu: one column */
+  .ov-top{grid-template-columns:auto 1fr;gap:12px}
+  .ov-top p:nth-child(2){display:none}
+  .ov-grid{grid-template-columns:1fr;min-height:0}
+  .ov-projects{border:0;border-top:1px solid var(--line);padding:18px 0}
+  .ov-preview{display:none}
+  .ov-name{font-size:15vw;padding-top:18px}
+  .w2{right:calc(var(--ox) + 5.1 * var(--u));top:calc(126 * var(--u));font-size:calc(31 * var(--u))}
+  /* the intro and the base line flow below the strip, so long copy pushes the page down instead of colliding */
+  .lower{position:relative;z-index:4;padding:calc(156 * var(--u)) calc(var(--ox) + 5.1 * var(--u)) calc(16 * var(--u))}
+  .intro,.base{position:static;width:auto}
+  .intro .role{font-size:calc(4.1 * var(--u));margin-bottom:8px}
+  .intro .sum{font-size:max(13px,calc(3.45 * var(--u)));margin-bottom:0}
+  .intro .acts{font-size:max(13px,calc(3.45 * var(--u)))}
+  .base{display:grid;gap:4px;margin:12px 72px 0 0;font-size:10px}
+  .reel{transform:scale(.41);right:calc(-22px + env(safe-area-inset-right,0px));bottom:calc(-22px + env(safe-area-inset-bottom,0px))}
+  /* chapters stack: the text, then each screen with its caption */
+  .pin{display:flex;flex-direction:column;height:auto;overflow:visible;padding:80px 0 40px}
+  .ch-text{order:-1;position:static;width:auto;padding:0 20px}
+  .ch-facts{font-size:14px}
+  .ch-title{font-size:clamp(34px,9vw,48px)}
+  .stage{position:relative;inset:auto;background:none;display:grid;gap:24px;padding:28px 20px 0}
+  .stage .scr{position:relative;inset:auto;opacity:1}
+  .stage .scr img{height:auto;border-radius:10px}
+  .stage .scr.contain{background:none}
+  .stage .scr.contain img{max-width:260px;margin:0 auto;padding:0}
+  .stage{gap:44px}
+  .stage .scr figcaption{display:block}
+  .ch-cap,.tabs,.rail{display:none}
+  /* software, why and what I make: one column */
+  .soft{padding:84px 20px 72px}
+  .soft-head,.soft-main,.soft-mini{grid-template-columns:1fr}
+  .soft-head{gap:14px}
+  .facts div{grid-template-columns:92px minmax(0,1fr)}
+  .soft-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .soft-phone{right:3%;top:3%;width:24%}
+  .stage .scr.tall img{max-width:300px;margin:0 auto}
+  .more,.services{padding:72px 20px}
+  .mw > li{grid-template-columns:1fr;gap:16px}
+  .mw-n{padding-top:0}
+  .why{padding:88px 20px}
+  .why-list{grid-template-columns:1fr;gap:0}
+  .why-list li{padding:18px 0;border-bottom:1px solid rgba(243,239,228,.16)}
+  .svc a{grid-template-columns:1fr;gap:8px;padding:16px 0}
+  .svc-w{font-size:clamp(52px,17vw,96px)}
+  .svc-d{padding-bottom:4px}
+  .contact{padding:84px 20px 110px}
+  footer{padding-left:20px;padding-right:20px}
+}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01ms!important}}
+/* initial states only while motion runs; without JS or with motion off the page is complete */
+.motion .word .ch{opacity:0}
+.motion .intro,.motion .base,.motion .bar,.motion .menu,.motion .reel,.motion .lens{opacity:0}
+.motion .strip{opacity:0}
+</style>
+</head>
+<body>
+<main>
+  <section class="hero" id="hero" aria-label="Introduction" data-surface="dark">
+    <div class="field" id="field"></div>
+    <svg class="wipe" id="wipe" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d=""/></svg>
+    <div class="bar"><a class="me" href="#hero">Jatin Dhir</a><button class="menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="overlay" id="menu-btn" data-cursor-label="Menu"><b>Menu</b><i><s></s><s></s></i></button></div>
+    <h1 style="margin:0"><span class="word w1" id="w1" aria-hidden="true"><span class="mk"><span class="ch">J</span></span><span class="mk"><span class="ch">A</span></span><span class="mk"><span class="ch">T</span></span><span class="mk"><span class="ch">I</span></span><span class="mk"><span class="ch">N</span></span></span><span class="word w2" id="w2" aria-hidden="true"><span class="mk"><span class="ch">D</span></span><span class="mk"><span class="ch">H</span></span><span class="mk"><span class="ch">I</span></span><span class="mk"><span class="ch">R</span></span></span><span class="sr">Jatin Dhir</span></h1>
+    <p class="voice"><span class="ln"><span>Websites, apps and software.</span></span><span class="ln"><span>I design them. I build them.</span></span></p>
+    <canvas id="gl" aria-hidden="true"></canvas>
+    <div class="strip" id="strip"><div class="track" id="track" aria-hidden="true"></div></div>
+    <ul class="sr" id="work-list" aria-label="Selected work"></ul>
+    <!-- the lens: a look under the page. The drawing beneath is only seen through it -->
+    <canvas id="lens-gl" aria-hidden="true"></canvas>
+    <div class="lens" id="lens"><div class="lens-ring" id="lens-ring" data-cursor-label="Drag" data-cursor-glyph="drag"></div><p class="lens-cap" id="lens-cap" aria-live="polite"></p><span class="lens-grip" aria-hidden="true"><b>‖</b> Drag or tap</span></div>
+    <button class="lens-key sr" type="button" id="lens-key">Look under the page. Arrow keys move the lens, Home resets it, Escape closes it.</button>
+    <div class="zoomcover" id="zoomcover" aria-hidden="true"><canvas id="ov-cv"></canvas></div>
+    <div class="lower">
+      <div class="intro">
+        <p class="role">Designer and developer</p>
+        <p class="sum">I design and build websites, phone apps and business software: an artist's home online, a developer's homes in Bathinda, the tool a marketing agency runs on.</p>
+        <div class="acts"><a class="lk" href="#contact" data-cursor-label="Email">Email Jatin<svg class="ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M5 2H2v8h8V7M7 1.5h3.5V5M10.5 1.5 5.5 6.5"/></svg></a><button class="lk" type="button" id="pause-link" data-cursor-label="Motion">Pause motion</button></div>
+      </div>
+      <div class="base"><span>Taking on new projects</span><span>Based in Punjab, India · Working worldwide</span></div>
+    </div>
+  </section>
+  <!-- chapter 1: Sage Violet. Facts from the project's own docs and code (SITE_PLAN.md, content.json, functions/) -->
+  <section class="chap" id="ch1" aria-labelledby="ch1-t" data-chap="1">
+    <div class="pin">
+      <div class="stage" data-stage>
+        <figure class="scr" data-title="Landing" data-cap="Her songs are the first thing you see." data-body="The landing is a stack of her four releases, drawn in WebGL. Tap a cover and the song plays right there, with a progress line sweeping round it." data-points="Plays through YouTube's player or her own audio files|A signature loader signs her name in 2.6 seconds, 1.3 on a return visit|The ink smoke is a real fluid simulation, baked into 72 frames" style="margin:0"><img src="img/sv-home.webp" alt="Violet &amp; Co.'s landing: a stack of song covers glowing violet, the EP everything b4 in front" width="1280" height="800"></figure>
+        <figure class="scr" data-title="Podcast" data-cap="Her show has a home before episode one." data-body="Creator's Corner gets its own page while she records the first episode. Her guest spot on the OfSoundMind podcast plays there now." data-points="A sign-up for episode one, by email for now|Her 16-minute guest episode plays on the page|&quot;Want a podcast like this?&quot; leads to her services" style="margin:0"><img src="img/sv-podcast.webp" alt="The podcast page, Creator's Corner, with a featured episode and Sage Violet at a microphone" loading="lazy" width="1280" height="800"></figure>
+        <figure class="scr" data-title="From Within" data-cap="Her first film gets a premiere page." data-body="From Within is still in progress. Its page opens out of ink smoke, then gives the synopsis, the details and a 2.39:1 frame where the trailer will premiere." data-points="The ink is decoded off the main thread, so scrolling stays smooth|The film's grant is credited on the page|A trailer sign-up, by email for now" style="margin:0"><img src="img/sv-film.webp" alt="The film page: from within, set large in italic, ink smoke at the edges" loading="lazy" width="1280" height="800"></figure>
+        <figure class="scr" data-title="Services" data-cap="Her work, priced and ready to book." data-body="Video editing and podcast production, three tiers each, with the price, the turnaround and what's included. Every tier has its own Book link." data-points="Editing from $150 for a reel to $900 for a film|Podcasts from $120 for an edit to $400 for a full show|She changes the prices herself from the admin" style="margin:0"><img src="img/sv-services.webp" alt="The services page: video editing tiers with prices, turnaround and book links" loading="lazy" width="1280" height="800"></figure>
+        <figure class="scr contain" data-title="On a phone" data-cap="The whole site, not a cut-down one." data-body="The cover stack, the player and every page work the same on a phone. Pictures are decoded off the main thread and sized down for small screens." data-points="No layout shift as it loads|Motion calms down when a visitor asks for less|A skip link and a labelled player for screen readers" style="margin:0"><img src="img/sv-phone.webp" alt="Violet &amp; Co. on a phone" loading="lazy" width="585" height="1266"></figure>
+      </div>
+      <div class="ch-text">
+        <p class="ch-kick">Sage Violet / 01</p>
+        <h2 class="ch-title" id="ch1-t">A home online for an artist's music, podcast and film.</h2>
+        <p class="ch-desc">Maryam Muhammad makes music as Sage Violet and runs Violet &amp; Co., a video and podcast studio in Denver. She needed one place to play her songs, sell her editing and podcast work, and build an audience for her first film.</p>
+        <dl class="ch-facts">
+          <dt>Client</dt><dd>Maryam Muhammad, Violet &amp; Co., Denver</dd>
+          <dt>Role</dt><dd>Design, development, motion and the admin</dd>
+          <dt>Built with</dt><dd>Next.js, GSAP, Lenis, WebGL, Cloudflare</dd>
+          <dt>Built</dt><dd>September to October 2026</dd>
+          <dt>Live</dt><dd><a class="lk" href="https://sagevioletwashere.org" target="_blank" rel="noopener" data-cursor-label="Visit">sagevioletwashere.org<svg class="ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M5 2H2v8h8V7M7 1.5h3.5V5M10.5 1.5 5.5 6.5"/></svg></a></dd>
+        </dl>
+        <p class="ch-wins-h">What it does for her</p>
+        <ul class="ch-wins">
+          <li>Plays her four releases on the first screen.</li>
+          <li>Sells two services in six priced tiers, each with a Book link.</li>
+          <li>Gives her podcast and her film their own pages.</li>
+          <li>Lets her change every page, price and song herself, from a password-protected admin.</li>
+        </ul>
+      </div>
+      <div class="ch-cap" aria-live="polite"></div>
+      <nav class="tabs" aria-label="Sage Violet screens"></nav>
+      <nav class="rail" aria-label="Chapters"><a href="#ch1" aria-current="true">01</a><a href="#ch2" aria-current="false">02</a><a href="#ch3" aria-current="false">03</a><a href="#software" aria-current="false">04</a></nav>
+    </div>
+  </section>
+
+  <!-- chapter 2: ADRO (write-up and screens to come) -->
+  <section class="chap dark" id="ch2" aria-labelledby="ch2-t" data-chap="2" data-surface="dark">
+    <div class="pin">
+      <div class="stage" data-stage>
+        <figure class="scr" data-title="Home" data-cap="Screens on their way." style="margin:0"><img data-ph="adro" alt="Placeholder for ADRO's home page" width="1280" height="800"><figcaption><b>Home</b>Screens on their way.</figcaption></figure>
+        <figure class="scr" data-title="Inside" data-cap="Screens on their way." style="margin:0"><img data-ph="adro" alt="Placeholder for an inside page" loading="lazy" width="1280" height="800"><figcaption><b>Inside</b>Screens on their way.</figcaption></figure>
+        <figure class="scr" data-title="Detail" data-cap="Screens on their way." style="margin:0"><img data-ph="adro" alt="Placeholder for a detail page" loading="lazy" width="1280" height="800"><figcaption><b>Detail</b>Screens on their way.</figcaption></figure>
+        <figure class="scr" data-title="Contact" data-cap="Screens on their way." style="margin:0"><img data-ph="adro" alt="Placeholder for the contact page" loading="lazy" width="1280" height="800"><figcaption><b>Contact</b>Screens on their way.</figcaption></figure>
+        <figure class="scr contain" data-title="On a phone" data-cap="Screens on their way." style="margin:0"><img data-ph="adro" data-shape="phone" alt="Placeholder for ADRO on a phone" loading="lazy" width="585" height="1266"><figcaption><b>On a phone</b>Screens on their way.</figcaption></figure>
+      </div>
+      <div class="ch-text">
+        <p class="ch-kick">ADRO / 02</p>
+        <h2 class="ch-title" id="ch2-t">The write-up for this one is on its way.</h2>
+        <p class="ch-desc">The story, the screens and the link for ADRO are being prepared.</p>
+        <dl class="ch-facts">
+          <dt>Type</dt><dd>Website</dd>
+          <dt>Details</dt><dd>Coming soon</dd>
+        </dl>
+      </div>
+      <div class="ch-cap" aria-live="polite"></div>
+      <nav class="tabs" aria-label="ADRO screens"></nav>
+      <nav class="rail" aria-label="Chapters"><a href="#ch1" aria-current="false">01</a><a href="#ch2" aria-current="true">02</a><a href="#ch3" aria-current="false">03</a><a href="#software" aria-current="false">04</a></nav>
+    </div>
+  </section>
+
+  <!-- chapter 3: Amoha. Facts from the site's own copy and code (amoha-site) -->
+  <section class="chap" id="ch3" aria-labelledby="ch3-t" data-chap="3">
+    <div class="pin">
+      <div class="stage" data-stage>
+        <figure class="scr" data-title="Home" data-cap="It opens on the land, at dawn or at dusk." data-body="The home page plays a dawn or dusk film behind &quot;Where every address becomes a legacy&quot;, then the group's record: 5 landmark projects, 170+ acres, 1000+ families." data-points="A doorway loader, then about ten scroll-driven scenes|Bougainvillea and falling petals, drawn live|The hero picture is fetched first, so the page lands fast" style="margin:0"><img src="img/am-dusk.webp" alt="Amoha's clubhouse at dusk, its curved glass floors lit, a car passing in front" width="1600" height="1000"></figure>
+        <figure class="scr" data-title="Gardens" data-cap="Gardens: 36 acres on NH-7, the group's first." data-body="Plots from 166 to 320 sq yds, 6 parks, a 500 m jogging track and a 70 ft entry road, each set out on the page with the distances that matter." data-points="4 km from Bathinda Lakes, 5 km from Rose Garden|15 SCOs and 4 booths|The location drawn as a path on the map" style="margin:0"><img src="img/am-gardens.webp" alt="The entrance gate of Amoha Gardens after rain" loading="lazy" width="1600" height="1000"></figure>
+        <figure class="scr" data-title="Leaf" data-cap="Leaf: 115 acres on Ring Road, planned in Germany." data-body="Plots from 150 to 700 sq yds and 10 acres of commercial space, planned by Studio Symbiosis. The page leads with the arch, then the parks and the walks." data-points="A 1 km jogging track, and parks of 2, 1.5 and 1 acre|100% CCTV coverage|A 100 ft commercial entry" style="margin:0"><img src="img/am-leaf.webp" alt="Leaf from the air: a sweeping arch over the entrance road, homes and the clubhouse beyond" loading="lazy" width="1600" height="1000"></figure>
+        <figure class="scr" data-title="Roots" data-cap="Roots: 22 acres, right opposite Leaf." data-body="Plots of 100 and 150 sq yds on Ring Road, with 40 ft roads throughout, 13 minutes from Rose Garden." data-points="Every project page ends in &quot;Book a site visit&quot;|The phone number is one tap away|Each project links on to the others" style="margin:0"><img src="img/am-roots.webp" alt="Roots from the air at sunrise: villas along wide, tree-lined roads" loading="lazy" width="1600" height="1000"></figure>
+        <figure class="scr tall" data-title="Blooming soon" data-cap="Next: 55 acres, still being planned." data-body="A residential and commercial project opposite Bathinda Textile Market. Its page holds the place until the plans are public." data-points="AVIF pictures from 400 to 1920 px wide, with narrower cuts for phones|A lighter hero film on phones|No build step: it runs on GitHub Pages or plain cPanel" style="margin:0"><img src="img/am-next.webp" alt="A garden of water and trees from the next Amoha project" loading="lazy" width="640" height="1385"></figure>
+      </div>
+      <div class="ch-text">
+        <p class="ch-kick">Amoha / 03</p>
+        <h2 class="ch-title" id="ch3-t">A developer's townships, each with a page of its own.</h2>
+        <p class="ch-desc">Amoha Group builds townships and plots along Bathinda's Ring Road. The site had to make each project easy to picture, easy to compare and easy to visit.</p>
+        <dl class="ch-facts">
+          <dt>Client</dt><dd>Amoha Group, Bathinda, Punjab</dd>
+          <dt>Role</dt><dd>Design, development and motion</dd>
+          <dt>Built with</dt><dd>HTML, CSS, GSAP and Lenis, no build step</dd>
+          <dt>Built</dt><dd>October 2026</dd>
+          <dt>Live</dt><dd>Not public yet</dd>
+        </dl>
+        <p class="ch-wins-h">What it does for them</p>
+        <ul class="ch-wins">
+          <li>Gives each project its highlights, its specs and its location on a map.</li>
+          <li>Ends every project in "Book a site visit", with the phone one tap away.</li>
+          <li>Shows each place at dawn or at dusk.</li>
+          <li>Loads light on phones: smaller pictures and a lighter film.</li>
+        </ul>
+      </div>
+      <div class="ch-cap" aria-live="polite"></div>
+      <nav class="tabs" aria-label="Amoha screens"></nav>
+      <nav class="rail" aria-label="Chapters"><a href="#ch1" aria-current="false">01</a><a href="#ch2" aria-current="false">02</a><a href="#ch3" aria-current="true">03</a><a href="#software" aria-current="false">04</a></nav>
+    </div>
+  </section>
+
+  <!-- software: the tools, not the sites -->
+  <section class="soft" id="software" aria-labelledby="soft-t" data-surface="dark">
+    <div class="soft-head">
+      <p class="kick">Software / 04</p>
+      <h2 class="sec-title" id="soft-t">Software a business runs on.</h2>
+      <p class="lede">Not every job is a website. Some are the tools a team opens every morning.</p>
+    </div>
+    <article class="soft-main" aria-labelledby="studio-t">
+      <div class="soft-shots">
+        <figure class="soft-shot"><img src="img/st-home.webp" alt="Studio's home screen: what is waiting on you, today's checks, the team's load and recent work" loading="lazy" width="1280" height="800"></figure>
+        <ul class="soft-strip" aria-label="More of Studio">
+          <li><img src="img/st-board.webp" alt="The task board, by stage" loading="lazy" width="1280" height="800"><span>Board</span></li>
+          <li><img src="img/st-chat.webp" alt="Chat, by client and channel" loading="lazy" width="1280" height="800"><span>Chat</span></li>
+          <li><img src="img/st-calendar.webp" alt="The month's calendar of posts and shoots" loading="lazy" width="1280" height="800"><span>Calendar</span></li>
+          <li><img src="img/st-reports.webp" alt="Reports: what was posted, on time and waiting" loading="lazy" width="1280" height="800"><span>Reports</span></li>
+        </ul>
+        <figure class="soft-phone"><img src="img/st-phone.webp" alt="Studio on a phone" loading="lazy" width="390" height="844"></figure>
+      </div>
+      <div class="soft-copy">
+        <h3 id="studio-t">Studio</h3>
+        <p class="soft-line">The work tool Dev's Marketing Mind runs on. It began as a ClickUp-style build and grew into its own product.</p>
+        <dl class="facts">
+          <div><dt>Inside</dt><dd>Clients, tasks, approvals with links clients can open, chat, calendar, reports and files</dd></div>
+          <div><dt>Runs on</dt><dd>The web, Windows and Android</dd></div>
+          <div><dt>Built with</dt><dd>Next.js, tRPC, Prisma and Electron</dd></div>
+        </dl>
+      </div>
+    </article>
+    <article class="soft-mini" aria-labelledby="vastu-t">
+      <h3 id="vastu-t">Vastu Ji</h3>
+      <p>A desktop app for Vastu consultants. Private for now.</p>
+    </article>
+  </section>
+
+  <!-- more work: an editorial index. Facts from each project's own README, docs and code; years from their git history -->
+  <section class="more" id="work" aria-labelledby="work-t">
+    <h2 id="work-t">More work</h2>
+    <ol class="mw">
+      <li>
+        <span class="mw-n">01</span>
+        <figure class="mw-media app pair" style="--tint:#1d1a3a"><img src="img/mw-jyotisha-a.webp" alt="Niyati AI answering a question about a birth chart" loading="lazy" width="480" height="949"><img src="img/mw-jyotisha-b.webp" alt="A North Indian birth chart with its planets" loading="lazy" width="480" height="949"></figure>
+        <div class="mw-main">
+          <h3 class="mw-name">Jyotisha</h3>
+          <p class="mw-what">A Vedic astrology app for Acharya Nitin Dhir: birth charts in four systems, and an AI that answers questions about them.</p>
+          <ul class="mw-feats"><li>North Indian charts and dasha periods, in Parashari, KP, BNN and BCP</li><li>Niyati AI answers questions about a chart in chat</li><li>Panchang, muhurta, Kundli Milan and PDF reports</li></ul>
+        </div>
+        <dl class="mw-meta"><dt>Type</dt><dd>Phone app</dd><dt>Year</dt><dd>2026, 435 commits</dd><dt>Built with</dt><dd>Flutter, FastAPI, Swiss Ephemeris, Supabase</dd><dt>Status</dt><dd>Android build out, store listings pending</dd></dl>
+      </li>
+      <li>
+        <span class="mw-n">02</span>
+        <figure class="mw-media app pair" style="--tint:#141a2e"><img src="img/mw-consulto-a.webp" alt="Consulto's welcome: join with a consultant's code, or run a practice" loading="lazy" width="480" height="1038"><img src="img/mw-consulto-b.webp" alt="Booking a 30-minute session from a week of open slots" loading="lazy" width="480" height="1067"></figure>
+        <div class="mw-main">
+          <h3 class="mw-name">Consulto</h3>
+          <p class="mw-what">A consultation app any practice can run as its own: clients book, chat and call, and pay from a wallet. It began as Pundit Ji Online, for one astrologer.</p>
+          <ul class="mw-feats"><li>Video and voice calls with a live charge meter that ends the call when the balance runs out</li><li>Bookings with a slot picker and a waiting list</li><li>Care reminders, and chat with file sharing</li></ul>
+        </div>
+        <dl class="mw-meta"><dt>Type</dt><dd>Phone app</dd><dt>Year</dt><dd>2026</dd><dt>Built with</dt><dd>React Native (Expo), Supabase, WebRTC, Firebase</dd><dt>Live</dt><dd><a class="lk" href="https://consulto.expo.app" target="_blank" rel="noopener" data-cursor-label="Visit">consulto.expo.app<svg class="ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M5 2H2v8h8V7M7 1.5h3.5V5M10.5 1.5 5.5 6.5"/></svg></a></dd></dl>
+      </li>
+      <li>
+        <span class="mw-n">03</span>
+        <figure class="mw-media web"><img src="img/mw-sachin.webp" alt="Sachin &amp; Rai's home page: The science of light, beside a wheel of the sky with tonight's Moon" loading="lazy" width="1280" height="800"></figure>
+        <div class="mw-main">
+          <h3 class="mw-name">Sachin &amp; Rai</h3>
+          <p class="mw-what">The site for a family practice of Jyotish in Ludhiana, reading charts since 1975.</p>
+          <ul class="mw-feats"><li>Tonight's tithi and the Moon's nakshatra, worked out live, with the Moon drawn at its real phase</li><li>A 3D model of the planets on the rāshi page</li><li>Book a sitting on WhatsApp with a birth-details checklist; the family write the journal themselves</li></ul>
+        </div>
+        <dl class="mw-meta"><dt>Type</dt><dd>Website</dd><dt>Year</dt><dd>2026</dd><dt>Built with</dt><dd>HTML, GSAP, three.js, PHP</dd><dt>Live</dt><dd><a class="lk" href="https://sachinlakshya.com" target="_blank" rel="noopener" data-cursor-label="Visit">sachinlakshya.com<svg class="ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M5 2H2v8h8V7M7 1.5h3.5V5M10.5 1.5 5.5 6.5"/></svg></a></dd></dl>
+      </li>
+      <li>
+        <span class="mw-n">04</span>
+        <figure class="mw-media web"><img src="img/mw-dmm.webp" alt="Dev Marketing Mind's new home page: Marketing you can count in inquiries, over a curved wall of their work" loading="lazy" width="1280" height="800"></figure>
+        <div class="mw-main">
+          <h3 class="mw-name">Dev Marketing Mind</h3>
+          <p class="mw-what">A new site for a 360° marketing agency in Ludhiana, built to lead with its work.</p>
+          <ul class="mw-feats"><li>Seven services, each set against the one number it is meant to move</li><li>A free strategy session, one tap from every page</li><li>A curved wall of client work in WebGL on the home page</li></ul>
+        </div>
+        <dl class="mw-meta"><dt>Type</dt><dd>Website</dd><dt>Year</dt><dd>2026</dd><dt>Built with</dt><dd>Next.js, GSAP, Three.js</dd><dt>Status</dt><dd>In review with the agency</dd></dl>
+      </li>
+      <li>
+        <span class="mw-n">05</span>
+        <figure class="mw-media app pair" style="--tint:#dfe5ee"><img src="img/mw-taily-a.webp" alt="Taily's home: spent today, this week's bars, today's expenses" loading="lazy" width="480" height="1039"><img src="img/mw-taily-b.webp" alt="Taily's insights: where the month's money went, by category" loading="lazy" width="480" height="1039"></figure>
+        <div class="mw-main">
+          <h3 class="mw-name">Taily</h3>
+          <p class="mw-what">An expense tracker that lives on the phone: no account, no server, and it works offline.</p>
+          <ul class="mw-feats"><li>Three-second logging: the amount first, then one tap for the category</li><li>Budgets with pace warnings, and a six-month trend</li><li>Lent and borrowed, bank-statement import, voice add and a PIN lock</li></ul>
+        </div>
+        <dl class="mw-meta"><dt>Type</dt><dd>Phone app, my own</dd><dt>Year</dt><dd>2026</dd><dt>Built with</dt><dd>React, Vite, Dexie, Capacitor</dd><dt>Live</dt><dd><a class="lk" href="https://github.com/Jatin-Dhir/snowy/releases" target="_blank" rel="noopener" data-cursor-label="Visit">Android download<svg class="ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M5 2H2v8h8V7M7 1.5h3.5V5M10.5 1.5 5.5 6.5"/></svg></a></dd></dl>
+      </li>
+    </ol>
+  </section>
+
+  <!-- why: what all the moving parts are for -->
+  <section class="why" id="why" aria-labelledby="why-t" data-surface="dark">
+    <p class="kick">Why it moves</p>
+    <h2 class="why-big" id="why-t">People decide in seconds. Motion with a job holds them long enough to see what you do.</h2>
+    <ol class="why-list">
+      <li><span>01</span>The band carries the work, so the work is the first thing you see.</li>
+      <li><span>02</span>The lens opens onto the things I keep around me.</li>
+      <li><span>03</span>Everything else holds still, so you can read.</li>
+    </ol>
+  </section>
+
+  <!-- what I make: the services, large, as the hand-over to contact -->
+  <section class="services" id="services" aria-labelledby="svc-t" data-surface="light">
+    <p class="kick" id="svc-t">What I make</p>
+    <ul class="svc">
+      <li><a href="#ch1"><span class="svc-w">Websites</span><span class="svc-d">Sites that move with intent and load fast. Sage Violet, Amoha, Sachin &amp; Rai.</span></a></li>
+      <li><a href="#work"><span class="svc-w">Apps</span><span class="svc-d">Phone apps in Flutter, React Native and Capacitor. Jyotisha, Consulto, Taily.</span></a></li>
+      <li><a href="#software"><span class="svc-w">Software</span><span class="svc-d">The tools a business runs on. Studio, Vastu Ji.</span></a></li>
+      <li><a href="#hero"><span class="svc-w">Motion &amp; 3D</span><span class="svc-d">GSAP, WebGL and Three.js, like this page.</span></a></li>
+    </ul>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-t" data-surface="light">
+    <h2 id="contact-t">Let's build yours.</h2>
+    <p>Tell me what you're making, who it's for and when it needs to launch.</p>
+    <div class="acts"><a class="lk" href="#contact">Email Jatin ↗</a><a class="lk" href="#contact">WhatsApp ↗</a></div>
+    <p class="note">Contact details to confirm before launch.</p>
+  </section>
+</main>
+<footer data-surface="dark"><span>Jatin Dhir</span><span>Punjab, India</span></footer>
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Menu" hidden data-surface="light">
+  <div class="ov-scrim"></div>
+  <div class="ov-panel">
+    <header class="ov-top"><button class="ov-close" type="button" id="ov-close" data-cursor-label="Close"><span aria-hidden="true">×</span> Close</button><p>Websites, apps and software.</p><p>Punjab, India · IST / UTC+5:30</p></header>
+    <div class="ov-grid">
+      <nav class="ov-index" aria-label="Sections"><a href="#ch1" data-roll aria-current="true"><i class="dot"></i>Work</a><a href="#software" data-roll><i class="dot"></i>Software</a><a href="#why" data-roll><i class="dot"></i>Why</a><a href="#contact" data-roll><i class="dot"></i>Contact</a></nav>
+      <div class="ov-projects">
+        <p class="ov-lab">Selected projects</p>
+        <a class="ov-proj" href="#ch1" data-n="01" aria-current="true"><b>Sage Violet</b><span>Website · Denver</span></a>
+        <a class="ov-proj" href="#ch2" data-n="02"><b>ADRO</b><span>Website</span></a>
+        <a class="ov-proj" href="#ch3" data-n="03"><b>Amoha</b><span>Website · Bathinda</span></a>
+        <a class="ov-all" href="#work">More work <span aria-hidden="true">→</span></a>
+      </div>
+      <a class="ov-preview" href="#ch1" id="ov-preview" data-cursor-label="View"><span class="ov-img"><img src="img/sv-home.webp" alt="" class="on"><img data-ph="adro" alt=""><img src="img/am-dusk.webp" alt=""></span><span class="ov-cap"><span id="ov-cap">01 — Sage Violet</span><span>View case study <span aria-hidden="true">↗</span></span></span></a>
+    </div>
+    <p class="ov-name" aria-hidden="true"><span>JATIN DHIR</span></p>
+    <footer class="ov-foot"><p><i class="dot"></i>Designer and developer<br><span>Taking on new projects</span></p><a class="lk" href="#contact">Email Jatin</a></footer>
+    <p class="ov-esc"><kbd>esc</kbd> Return to the page</p>
+    <div class="ov-follow" aria-hidden="true"><img src="img/sv-home.webp" alt=""></div>
+  </div>
+</div>
+<div class="cur" id="cur" aria-hidden="true" data-action="default" data-surface="dark"><div class="cur-ring r1"></div><div class="cur-ring r2"></div><div class="cur-dot"></div><div class="cur-shell"><div class="cur-disc"></div><div class="cur-pill"><svg viewBox="0 0 17 17"><path class="g-arrow" d="M5 12 12 5M6.5 5H12v5.5"/><path class="g-drag" d="M2.5 8.5h12M5 6 2.5 8.5 5 11M12 6l2.5 2.5L12 11"/></svg><span class="cur-txt">Open</span></div></div></div>
+<button class="reel spin" type="button" id="reel" aria-label="Pause motion" aria-pressed="false"><i class="disc" aria-hidden="true"></i><i class="gloss" aria-hidden="true"></i><span id="reel-ico">II</span></button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(() => {
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const store = { get(k) { try { return localStorage.getItem(k); } catch { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch {} } };
+const root = document.documentElement;
+const css = (n) => getComputedStyle(root).getPropertyValue(n).trim();
+let lenis = null, film = null;
+const reduceEarly = () => matchMedia('(prefers-reduced-motion: reduce)').matches || store.get('jd-pause') === '1';
+
+/* the work on the orbit band, best first (src/work.json). kind decides the frame: a browser for sites, a phone for apps,
+   a window for software. pal is the placeholder's colours, from each project's own brand, until real screens arrive; imgs replace it */
+const WORK = [{"id":"sage","name":"Sage Violet","kind":"web","tag":"Website","domain":"sagevioletwashere.org","go":"#ch1","pal":["#140f26","#8769b7","#bfe5b2"],"imgs":["sv-home","sv-film","sv-podcast","sv-services"],"line":"An artist's home for her music, podcast, film and services."},{"id":"adro","name":"ADRO","kind":"web","tag":"Website","domain":"","go":"#ch2","pal":["#1b2236","#4b5a7c","#f3efe4"],"line":"Write-up and screens on their way."},{"id":"amoha","name":"Amoha","kind":"web","tag":"Website","domain":"Amoha Group · Bathinda","go":"#ch3","pal":["#10201a","#1f4d33","#e1c08a"],"imgs":["am-dusk","am-gardens","am-leaf","am-roots"],"line":"A developer's projects in Bathinda, each with a page of its own."},{"id":"studio","name":"Studio","kind":"soft","tag":"Software","go":"#software","pal":["#1b1a17","#3d3b35","#faf9f6"],"imgs":["st-home","st-board","st-tasks","st-calendar"],"line":"The tool a marketing agency runs on: clients, tasks, approvals."},{"id":"pundit","name":"Consulto","kind":"app","tag":"App","go":"#work","pal":["#141a2e","#2e5bd8","#f3efe4"],"line":"A consultation app any practice can run: book, chat, call, pay.","imgs":["mw-consulto-a","mw-consulto-b"]},{"id":"jyotisha","name":"Jyotisha","kind":"app","tag":"App","go":"#work","pal":["#0d1b3d","#3c4f9a","#f2d590"],"line":"Vedic charts in four systems, and an AI that reads them.","imgs":["mw-jyotisha-a","mw-jyotisha-b"]},{"id":"sachin","name":"Sachin & Rai","kind":"web","tag":"Website","domain":"sachinlakshya.com","go":"#work","pal":["#2a1a12","#7a4a2a","#f4e6cc"],"line":"A family practice of Jyotish, online.","imgs":["mw-sachin"]},{"id":"taily","name":"Taily","kind":"app","tag":"App","go":"#work","pal":["#0f3b33","#2f8f78","#eef7f1"],"line":"An expense tracker that works offline.","imgs":["mw-taily-a","mw-taily-b"]}];
+const N = WORK.length;
+const track = $('#track'), stripEl = $('#strip'), heroEl = $('#hero');
+const one = WORK.map((w) => `<div class="fr ph" style="--c1:${w.pal[0]};--c2:${w.pal[1]};--fg:${w.pal[2]}"><b>${w.name}</b><span>${w.tag}</span></div>`).join('');
+track.innerHTML = one + one;
+$('#work-list').innerHTML = WORK.map((w) => `<li>${w.name}, ${w.tag}</li>`).join('');
+
+/* a designed stand-in for a project's screens: its colours, a faint hint of its layout, its name and what the screen is */
+const fitFont = (c, text, weight, family, max, width) => { let f = max; c.font = `${weight} ${f}px ${family}`; const m = c.measureText(text).width; if (m > width) { f = Math.max(6, f * width / m); c.font = `${weight} ${f}px ${family}`; } return f; };
+const drawPlaceholder = (c, x, y, w, h, wk, screen = '') => {
+  const [c1, c2, fg] = wk.pal;
+  c.save(); c.beginPath(); c.rect(x, y, w, h); c.clip();
+  const g = c.createLinearGradient(x, y, x + w * .8, y + h); g.addColorStop(0, c1); g.addColorStop(1, c2); c.fillStyle = g; c.fillRect(x, y, w, h);
+  c.fillStyle = fg; c.globalAlpha = .12;
+  const r = (a2, b2, cw, ch) => c.fillRect(x + a2 * w, y + b2 * h, cw * w, ch * h);
+  if (wk.kind === 'web') { r(.07, .1, .16, .035); r(.62, .1, .07, .035); r(.72, .1, .07, .035); r(.82, .1, .1, .035); r(.07, .24, .42, .05); r(.07, .32, .3, .05); }
+  else if (wk.kind === 'app') { for (let k = 0; k < 4; k++) r(.1, .14 + k * .1, .8, .065); r(.1, .58, .38, .12); r(.52, .58, .38, .12); }
+  else { r(0, 0, .2, 1); for (let k = 0; k < 5; k++) r(.04, .1 + k * .08, .12, .03); r(.26, .1, .3, .05); for (let k = 0; k < 3; k++) r(.26 + k * .24, .22, .2, .22); }
+  c.globalAlpha = 1;
+  const left = x + w * (wk.kind === 'soft' ? .26 : .08), room = w * (wk.kind === 'soft' ? .68 : .84);
+  /* a room leads with its screen and names the project small; a frame on the band leads with the project */
+  const big = screen || wk.name, small = screen ? wk.name : wk.tag;
+  const fs = fitFont(c, big, 700, '"Instrument Sans", "Helvetica Neue", Arial, sans-serif', Math.min(h * .17, w * .16), room);
+  c.textAlign = 'left'; c.textBaseline = 'alphabetic'; c.fillStyle = fg; c.fillText(big, left, y + h * .8);
+  c.font = `500 ${Math.max(6, fs * .24).toFixed(1)}px "JetBrains Mono", monospace`; c.globalAlpha = .78;
+  c.fillText(small.toUpperCase(), left, y + h * .8 + fs * .5);
+  c.globalAlpha = .55; c.textAlign = 'right'; c.fillText('SCREENS SOON', x + w * .94, y + h * .14);
+  c.restore();
+};
+
+/* the placeholders become images (drawn once the fonts are in): the chapters, the hand-over board and the menu
+   then treat them exactly like the screenshots that will replace them */
+const workBy = Object.fromEntries(WORK.map((w) => [w.id, w]));
+const placeholders = () => Promise.all($$('img[data-ph]').map((im) => new Promise((done) => {
+  const wk = workBy[im.dataset.ph]; if (!wk) { done(); return; }
+  const phone = im.dataset.shape === 'phone', W = phone ? 585 : 1280, H = phone ? 1266 : 800, c = document.createElement('canvas');
+  c.width = W; c.height = H;
+  drawPlaceholder(c.getContext('2d'), 0, 0, W, H, phone ? { ...wk, kind: 'app' } : wk, im.dataset.screen || im.closest('[data-title]')?.dataset.title || '');
+  c.toBlob((b) => { if (b) im.src = URL.createObjectURL(b); done(); }, 'image/webp', .9);
+})));
+const phReady = (document.fonts ? document.fonts.ready : Promise.resolve()).then(placeholders);
+const goTo = (sel) => { const t = $(sel); if (!t) return; if (lenis) lenis.scrollTo(t, { duration: 1.6, force: true }); else t.scrollIntoView({ behavior: 'smooth' }); };
+
+/* the field is deep space: faint stars, a few brighter and bluer, and one soft glow behind the voice line.
+   Drawn once per size from a fixed seed, so the sky is the same on every visit; it shifts a few pixels with the pointer */
+const starsCv = document.createElement('canvas');
+starsCv.className = 'stars'; starsCv.setAttribute('aria-hidden', 'true'); $('#field').append(starsCv);
+const drawStars = () => {
+  const W = heroEl.clientWidth, H = heroEl.clientHeight, dpr = Math.min(devicePixelRatio || 1, 2), c = starsCv.getContext('2d');
+  starsCv.width = Math.round((W + 24) * dpr); starsCv.height = Math.round((H + 24) * dpr); c.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const glow = c.createRadialGradient(W * .74, H * .26, 0, W * .74, H * .26, Math.max(W, H) * .55);
+  glow.addColorStop(0, 'rgba(74,102,200,.17)'); glow.addColorStop(1, 'rgba(74,102,200,0)');
+  c.fillStyle = glow; c.fillRect(0, 0, W + 24, H + 24);
+  let seed = 20261022;
+  const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const n = Math.round((W + 24) * (H + 24) / 2400);
+  for (let i = 0; i < n; i++) {
+    const x = rand() * (W + 24), y = rand() * (H + 24), b = rand(), r = b > .985 ? 1.35 : b > .9 ? .9 : .55, a = b > .985 ? .95 : .14 + .42 * rand();
+    c.fillStyle = `rgba(${b > .93 ? '205,222,255' : '243,239,228'},${a.toFixed(2)})`; c.beginPath(); c.arc(x, y, r, 0, Math.PI * 2); c.fill();
+  }
+};
+drawStars();
+let starT = 0;
+addEventListener('resize', () => { clearTimeout(starT); starT = setTimeout(drawStars, 150); });
+if (!reduceEarly()) heroEl.addEventListener('pointermove', (e) => { const h = heroEl.getBoundingClientRect(); starsCv.style.transform = `translate3d(${(-12 - 10 * ((e.clientX - h.left) / h.width - .5)).toFixed(1)}px,${(-12 - 8 * ((e.clientY - h.top) / h.height - .5)).toFixed(1)}px,0)`; }, { passive: true });
+
+/* every letter gets three speed lines, offset and sized a little differently */
+$$('.word .mk').forEach((m, t) => {
+  m.style.setProperty('--so', `${18 + (19 * t) % 43}%`); m.style.setProperty('--sw', `${(.2 + ((7 * t) % 13) / 100).toFixed(2)}em`);
+  m.insertAdjacentHTML('beforeend', '<i class="sl" aria-hidden="true"><b></b><b></b><b></b></i>');
+});
+document.body.append($('#menu-btn'));
+
+/* chapter tabs, and each screen's note built from its data: a headline (what it does), a body (why it matters), points (how).
+   Phones read the note under the screen; desktops read it beside the screen as the camera arrives */
+const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const noteHtml = (f, i, n) => `<i>${String(i + 1).padStart(2, '0')} / ${String(n).padStart(2, '0')} · ${esc(f.dataset.title)}</i><b>${esc(f.dataset.cap)}</b>${f.dataset.body ? `<span>${esc(f.dataset.body)}</span>` : ''}${f.dataset.points ? `<ul>${f.dataset.points.split('|').map((p) => `<li>${esc(p.trim())}</li>`).join('')}</ul>` : ''}`;
+$$('.chap').forEach((ch) => {
+  const scrs = $$('.scr', ch), tabs = $('.tabs', ch);
+  tabs.innerHTML = scrs.map((s, i) => `<button class="tab" type="button" data-i="${i}" aria-current="${i === 0}">${s.dataset.title}</button>`).join('');
+  scrs.forEach((f, i) => { let fc = f.querySelector('figcaption'); if (!fc) { fc = document.createElement('figcaption'); f.append(fc); } fc.innerHTML = noteHtml(f, i, scrs.length); });
+});
+
+/* motion switch: the reel, and the link in the intro */
+const paused = store.get('jd-pause') === '1';
+const reduce = reduceEarly();
+const reel = $('#reel'), pauseLink = $('#pause-link');
+reel.setAttribute('aria-pressed', String(paused)); reel.setAttribute('aria-label', paused ? 'Play motion' : 'Pause motion');
+$('#reel-ico').textContent = paused ? '▶' : 'II';
+if (paused) reel.classList.remove('spin');
+const toggle = () => { store.set('jd-pause', paused ? '0' : '1'); location.reload(); };
+reel.addEventListener('click', toggle); pauseLink.addEventListener('click', toggle);
+
+/* menu: a cream panel over the darkened page. Index letters roll; projects swap the preview */
+const ov = $('#overlay'), mb = $('#menu-btn'), ovPanel = $('.ov-panel', ov), ovScrim = $('.ov-scrim', ov);
+$$('[data-roll]', ov).forEach((a) => {
+  const dot = a.querySelector('.dot'), t = a.textContent.trim(), r = document.createElement('span');
+  r.className = 'roll'; r.setAttribute('aria-hidden', 'true');
+  [...t].forEach((ch, i) => { const sp = document.createElement('span'); sp.textContent = ch === ' ' ? '\u00a0' : ch; sp.dataset.c = sp.textContent; sp.style.setProperty('--d', `${i * 18}ms`); r.append(sp); });
+  a.textContent = ''; if (dot) a.append(dot); a.append(r); a.setAttribute('aria-label', t);
+});
+const prevImgs = $$('.ov-img img', ov), ovCap = $('#ov-cap'), ovPrev = $('#ov-preview'), follow = $('.ov-follow', ov);
+$$('.ov-proj', ov).forEach((p, i) => p.addEventListener('pointerenter', () => {
+  $$('.ov-proj', ov).forEach((q) => q.setAttribute('aria-current', String(q === p)));
+  prevImgs.forEach((im, k) => im.classList.toggle('on', k === i));
+  ovCap.textContent = `${p.dataset.n} — ${p.querySelector('b').textContent}`; ovPrev.href = p.getAttribute('href'); $('img', follow).src = prevImgs[i].src;
+}));
+/* the big name in the panel is set to run the full width */
+const fitName = () => { const nm = $('.ov-name', ov), t = nm.firstElementChild; nm.style.fontSize = '100px'; const w = t.getBoundingClientRect().width, cw = nm.clientWidth; if (w) nm.style.fontSize = `${Math.floor(100 * cw / w * .99)}px`; };
+let menuOpen = false;
+const openMenu = (o) => {
+  if (o === menuOpen) return;
+  menuOpen = o; mb.setAttribute('aria-expanded', String(o));
+  const anim = window.gsap && !reduce;
+  if (o) {
+    ov.hidden = false; if (lenis) lenis.stop();
+    if (anim) {
+      gsap.fromTo(ovScrim, { opacity: 0 }, { opacity: 1, duration: .3 });
+      gsap.fromTo(ovPanel, { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: .8, ease: 'expo.inOut', delay: .08 });
+      gsap.fromTo($$('.ov-index a, .ov-proj, .ov-all, .ov-preview, .ov-name', ov), { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .9, ease: 'expo.out', stagger: .05, delay: .45 });
+    }
+    fitName(); $('.ov-index a', ov).focus({ preventScroll: true });
+  } else {
+    const done = () => { ov.hidden = true; if (lenis) lenis.start(); mb.focus({ preventScroll: true }); };
+    if (anim) { gsap.to(ovPanel, { clipPath: 'inset(0 0 100% 0)', duration: .55, ease: 'expo.in' }); gsap.to(ovScrim, { opacity: 0, duration: .3, delay: .35, onComplete: done }); } else done();
+  }
+};
+mb.addEventListener('click', () => openMenu(true));
+$('#ov-close').addEventListener('click', () => openMenu(false));
+ov.addEventListener('click', (e) => { if (e.target.closest('a') || e.target === ovScrim) openMenu(false); });
+addEventListener('keydown', (e) => { if (e.key === 'Escape' && menuOpen) openMenu(false); });
+
+/* links: the words roll up and a copy rises in (the markup is built here so the HTML stays plain) */
+const rollLink = (el) => {
+  if (el.querySelector('.lk-l')) return;
+  const icon = el.querySelector('svg'), t = el.textContent.trim();
+  el.textContent = '';
+  const l = document.createElement('span'); l.className = 'lk-l';
+  l.innerHTML = `<span class="lk-a"></span><span class="lk-b" aria-hidden="true"></span>`;
+  l.firstChild.textContent = t; l.lastChild.textContent = t;
+  el.append(l); if (icon) el.append(icon);
+};
+const setLinkText = (el, t) => { const a = el.querySelector('.lk-a'), b = el.querySelector('.lk-b'); if (a) { a.textContent = t; b.textContent = t; } else el.textContent = t; };
+
+$$('.lk').forEach(rollLink);
+setLinkText(pauseLink, paused ? 'Play motion' : 'Pause motion');
+
+/* ---- the film strip state: a steady drift, shared by the WebGL film and the DOM fallback ---- */
+const wavy = matchMedia('(max-width: 899px)');
+let pos = 0, vel = 0, dragging = false, lastX = 0, downX = 0, stripLocked = false, setW = 0;
+const autoplay = !reduce;
+const wrapPos = () => { if (!setW) return; while (pos <= -setW) pos += setW; while (pos > 0) pos -= setW; };
+
+/* ---- the WebGL film: one ribbon mesh bent in the vertex shader. Desktop curves it into a concave arc
+   (the ends come toward you, like a curved cinema screen); phones run it along an S-curve.
+   Every frame is a cream card drawn into one texture strip; the strip loops without an edge. ---- */
+const makeFilm = () => {
+  const cv = $('#gl');
+  const gl = cv.getContext('webgl', { alpha: true, antialias: true, premultipliedAlpha: true });
+  if (!gl) return null;
+  const VS = `
+attribute vec2 aP;
+uniform vec2 uRes, uZc, uZt;
+uniform float uMode, uHalf, uH, uR, uF, uCy, uEye, uTilt, uBend, uK, uScroll, uLoop, uWA, uWK, uWP, uX0;
+uniform float uTime, uLive, uHover, uHoverX, uEntry, uSweep;
+varying vec2 vUv;
+varying float vX, vFace;
+void main() {
+  float x = aP.x * uHalf, y = aP.y * uH;
+  vec2 p;
+  vFace = 1.;
+  if (uMode < .5) {
+    /* the ribbon lives: a wave travels along it in depth with a slight twist, the pointer lifts it toward you,
+       and on entrance a half-turn runs along it as it unrolls */
+    float sN = x / (2. * uHalf) + .5;
+    float snake = sN * 10.7 - uTime * .46;
+    float contact = exp(-pow((x - uHoverX) / (.16 * uRes.x), 4.)) * uHover;
+    float opening = sin(clamp((uEntry - .12) / 1.5, 0., 1.) * 3.14159) * exp(-pow((sN - (uEntry * .85 - .2)) / .23, 2.));
+    float ang = (.10 * sin(snake) * uLive + .16 * contact) * uBend + 2.35 * opening;
+    vFace = cos(ang);
+    float calm = mix(.16, .09, clamp((uEntry - 1.2) / 1.4, 0., 1.));
+    float depth = (y * sin(ang) + uRes.y * (calm * .5 * sin(snake) * uLive + .19 * contact)) * uBend;
+    float re = uR / max(uBend, 1e-4), th = x / re, hs = sin(th * .5);
+    float s = uF / (uF - 2. * re * hs * hs - depth);
+    p = vec2(uX0 + re * sin(th) * s, uEye + (uCy + y * cos(ang) - uEye) * s);
+    p.y += uTilt * uBend * (p.x - uX0);
+    p.x -= uSweep;
+  } else {
+    float sx = uX0 + x, c = uWA * uWK * cos(uWK * sx + uWP);
+    p = vec2(sx, uCy + uWA * sin(uWK * sx + uWP)) + normalize(vec2(-c, 1.)) * y;
+  }
+  p = uZt + (p - uZc) * uK;
+  vec2 q = p / uRes * 2. - 1.;
+  gl_Position = vec4(q.x, -q.y, 0., 1.);
+  vUv = vec2((x + uScroll) / uLoop, aP.y + .5);
+  vX = x;
+}`;
+  const FS = `
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
+uniform sampler2D uTex;
+uniform float uAlpha, uLead;
+varying vec2 vUv;
+varying float vX, vFace;
+void main() {
+  if (vX > uLead) discard;
+  vec4 c = texture2D(uTex, vec2(fract(vUv.x), vFace < 0. ? 1. - vUv.y : vUv.y));
+  if (vFace < 0.) c.rgb *= .16;
+  gl_FragColor = c * uAlpha;
+}`;
+  const shader = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s)); return s; };
+  const prog = gl.createProgram();
+  gl.attachShader(prog, shader(gl.VERTEX_SHADER, VS)); gl.attachShader(prog, shader(gl.FRAGMENT_SHADER, FS)); gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
+  gl.useProgram(prog);
+  const SEG = 180, verts = new Float32Array((SEG + 1) * 4);
+  for (let i = 0; i <= SEG; i++) { const t = i / SEG * 2 - 1; verts.set([t, -.5, t, .5], i * 4); }
+  gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer()); gl.bufferData(gl.ARRAY_BUFFER, verts, gl.STATIC_DRAW);
+  const aP = gl.getAttribLocation(prog, 'aP'); gl.enableVertexAttribArray(aP); gl.vertexAttribPointer(aP, 2, gl.FLOAT, false, 0, 0);
+  const U = {};
+  ['uRes', 'uZc', 'uZt', 'uMode', 'uHalf', 'uH', 'uR', 'uF', 'uCy', 'uEye', 'uTilt', 'uBend', 'uK', 'uScroll', 'uLoop', 'uWA', 'uWK', 'uWP', 'uX0', 'uAlpha', 'uTex', 'uTime', 'uLive', 'uHover', 'uHoverX', 'uEntry', 'uSweep', 'uLead'].forEach((n) => { U[n] = gl.getUniformLocation(prog, n); });
+  const tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
+  gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+  gl.uniform1i(U.uTex, 0);
+  const maxTex = gl.getParameter(gl.MAX_TEXTURE_SIZE);
+
+  /* G: layout in CSS px; S: animated state (bend 1 = curved, 0 = flat; K = camera push) */
+  const G = {}, S = { bend: 1, K: 1, zc: [0, 0], zt: [0, 0], alpha: 1, enter: 0, time: 0, hover: 0, hoverT: 0, hoverX: 0, hoverXT: 0, entry: 10, sweep: 0, live: 1 };
+  const OVR = {};
+  let colW = 0, texH = 0, Ft = 576, phoneTex = null, raf = 0;
+
+  /* one column of the texture = one frame: a stretch of the orbit band (rails and degree ticks, one turn over the whole loop),
+     a cream card, the project in its own frame (browser, phone or window), a caption */
+  const card = () => {
+    const big = Ft === 576, band = big ? 64 : 50, x = 8, w = 496, y = band, h = Ft - 2 * band, iw = w - 40;
+    return { band, x, w, y, h, ix: x + 20, iy: y + (big ? 46 : 20), iw, ih: iw * 9 / 16, cap: y + h - (big ? 40 : 18), fs: big ? 16 : 15 };
+  };
+  const col = document.createElement('canvas'), cx = col.getContext('2d');
+  const IMG = {}, dirty = new Set();
+  const cyc = WORK.map((w, i) => ({ cur: 0, nxt: 0, mix: 0, wait: 2.4 + i * .8 }));
+  const schedule = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; flush(); draw(); }); };
+  const img = (n) => {
+    if (!IMG[n]) {
+      const im = new Image(); im.decoding = 'async';
+      im.onload = () => { WORK.forEach((w, i) => { if (w.imgs && (w.imgs[cyc[i].cur] === n || w.imgs[cyc[i].nxt] === n)) dirty.add(i); }); schedule(); };
+      im.src = `img/${n}.webp`; IMG[n] = im;
+    }
+    return IMG[n];
+  };
+  const SC = {};
+  const scaled = (n) => {
+    const im = img(n); if (!im.naturalWidth) return im;
+    const c = card(), w = Math.max(1, Math.round(c.iw * colW / 512)), h = Math.max(1, Math.round(c.ih * texH / Ft)), key = `${n}@${w}x${h}`;
+    if (!SC[key]) {
+      const sc = document.createElement('canvas'); sc.width = w; sc.height = h;
+      const k = Math.max(w / im.naturalWidth, h / im.naturalHeight), sw = w / k, sh = h / k;
+      sc.getContext('2d').drawImage(im, (im.naturalWidth - sw) / 2, (im.naturalHeight - sh) / 2, sw, sh, 0, 0, w, h);
+      SC[key] = sc;
+    }
+    return SC[key];
+  };
+  const box = (x, y, w, h, r) => { cx.beginPath(); if (cx.roundRect) cx.roundRect(x, y, w, h, r); else cx.rect(x, y, w, h); cx.fill(); };
+  const cover = (im, x, y, w, h, a) => {
+    const nw = im.naturalWidth || im.width || 0, nh = im.naturalHeight || im.height || 0;
+    if (!nw || !nh) return;
+    const s = Math.max(w / nw, h / nh), sw = w / s, sh = h / s;
+    cx.globalAlpha = a; cx.drawImage(im, (nw - sw) / 2, (nh - sh) / 2, sw, sh, x, y, w, h); cx.globalAlpha = 1;
+  };
+  const paint = (i) => {
+    const c = card(), w = WORK[i], st = cyc[i];
+    if (col.width !== colW || col.height !== texH) { col.width = colW; col.height = texH; }
+    cx.setTransform(colW / 512, 0, 0, texH / Ft, 0, 0);
+    cx.globalCompositeOperation = 'source-over';
+    cx.clearRect(0, 0, 512, Ft);
+    cx.fillStyle = css('--band') || '#0e1430'; cx.fillRect(0, 0, 512, Ft);
+    const railY = c.band * .62, railB = Ft - c.band * .62, d0 = i * 360 / N, span = 360 / N;
+    cx.fillStyle = 'rgba(143,180,255,.55)'; cx.fillRect(0, railY - .75, 512, 1.5); cx.fillRect(0, railB - .75, 512, 1.5);
+    cx.font = `500 ${(c.fs * .62).toFixed(1)}px "JetBrains Mono", ui-monospace, monospace`; cx.textAlign = 'left'; cx.textBaseline = 'alphabetic';
+    for (let d = Math.ceil(d0 / 2.5) * 2.5; d < d0 + span - 1e-6; d += 2.5) {
+      const x = (d - d0) / span * 512, major = Math.abs(d / 15 - Math.round(d / 15)) < 1e-4, len = major ? 11 : 5;
+      cx.fillStyle = major ? 'rgba(205,222,255,.85)' : 'rgba(143,180,255,.42)';
+      cx.fillRect(x - .6, railY - len - 1, 1.2, len); cx.fillRect(x - .6, railB + 1, 1.2, len);
+      if (major) { cx.fillStyle = 'rgba(205,222,255,.55)'; cx.fillText(`${String(Math.round(d) % 360).padStart(3, '0')}°`, x + 4, railY - 14); }
+    }
+    cx.fillStyle = css('--paper'); box(c.x, c.y, c.w, c.h, 7);
+    /* the frame the work lives in */
+    const fx = c.ix, fy = c.iy, fw = c.iw, fh = c.ih;
+    let px = fx, py = fy, pw = fw, ph = fh;
+    if (OVR[i]) cover(OVR[i], fx, fy, fw, fh, 1);
+    else {
+      if (w.kind === 'web') {
+        const bar = Math.round(fh * .085);
+        cx.fillStyle = '#e2dccf'; box(fx, fy, fw, fh, 6); cx.fillStyle = '#d2cbbd'; cx.fillRect(fx, fy + bar - 1, fw, 1);
+        cx.fillStyle = '#f6f2ea'; box(fx + fw * .25, fy + bar * .2, fw * .5, bar * .6, bar * .3);
+        cx.fillStyle = 'rgba(18,26,66,.6)'; cx.font = `500 ${(bar * .36).toFixed(1)}px "JetBrains Mono", monospace`; cx.textAlign = 'center'; cx.fillText(w.domain || '', fx + fw / 2, fy + bar * .63);
+        px = fx; py = fy + bar; pw = fw; ph = fh - bar;
+      } else if (w.kind === 'app') {
+        cx.fillStyle = '#e6e0d4'; box(fx, fy, fw, fh, 6);
+        const hh = fh * .9, ww = hh * .49, ox = fx + (fw - ww) / 2, oy = fy + (fh - hh) / 2;
+        cx.fillStyle = '#121a42'; box(ox, oy, ww, hh, ww * .16);
+        px = ox + 4; py = oy + 4; pw = ww - 8; ph = hh - 8;
+      } else {
+        const bar = Math.round(fh * .08);
+        cx.fillStyle = '#121a42'; box(fx, fy, fw, fh, 6);
+        cx.fillStyle = 'rgba(243,239,228,.75)'; cx.font = `500 ${(bar * .42).toFixed(1)}px "JetBrains Mono", monospace`; cx.textAlign = 'left'; cx.fillText(w.name.toUpperCase(), fx + 12, fy + bar * .66);
+        px = fx + 3; py = fy + bar; pw = fw - 6; ph = fh - bar - 3;
+      }
+      cx.save(); cx.beginPath(); if (cx.roundRect) cx.roundRect(px, py, pw, ph, w.kind === 'app' ? pw * .13 : [0, 0, 5, 5]); else cx.rect(px, py, pw, ph); cx.clip();
+      if (w.imgs && w.imgs.length) { cover(scaled(w.imgs[st.cur]), px, py, pw, ph, 1); if (st.mix > 0) cover(scaled(w.imgs[st.nxt]), px, py, pw, ph, st.mix); }
+      else drawPlaceholder(cx, px, py, pw, ph, w);
+      cx.restore();
+      if (w.kind === 'app') { cx.fillStyle = '#121a42'; box(px + pw / 2 - pw * .14, py + 5, pw * .28, 7, 3.5); }
+    }
+    if (w.line) {
+      cx.font = '600 19px "Instrument Sans", "Helvetica Neue", Arial, sans-serif'; cx.fillStyle = css('--ink'); cx.textAlign = 'left'; cx.textBaseline = 'alphabetic';
+      const words = w.line.split(' '), lines = ['']; words.forEach((wd) => { const t = lines[lines.length - 1] ? `${lines[lines.length - 1]} ${wd}` : wd; if (cx.measureText(t).width > c.iw && lines[lines.length - 1]) lines.push(wd); else lines[lines.length - 1] = t; });
+      lines.slice(0, 2).forEach((ln, k) => cx.fillText(ln, c.ix, c.iy + c.ih + 38 + k * 24));
+    }
+    cx.font = `500 ${c.fs}px "JetBrains Mono", ui-monospace, monospace`;
+    if ('letterSpacing' in cx) cx.letterSpacing = '.5px';
+    cx.textBaseline = 'alphabetic';
+    cx.textAlign = 'left'; cx.fillStyle = css('--ink'); cx.fillText(`${String(i + 1).padStart(2, '0')} / ${w.name.toUpperCase()}`, c.ix, c.cap);
+    cx.textAlign = 'right'; cx.fillStyle = 'rgba(18,26,66,.62)'; cx.fillText(w.tag.toUpperCase(), c.ix + c.iw, c.cap);
+    if ('letterSpacing' in cx) cx.letterSpacing = '0px';
+    gl.bindTexture(gl.TEXTURE_2D, tex);
+    gl.texSubImage2D(gl.TEXTURE_2D, 0, i * colW, 0, gl.RGBA, gl.UNSIGNED_BYTE, col);
+  };
+  const flush = () => { dirty.forEach(paint); dirty.clear(); };
+  /* note: paint() asks scaled() for a picture already sized to the card, so a crossfade frame costs two small draws */
+  const paintAll = () => { for (let i = 0; i < N; i++) paint(i); };
+
+  const layout = () => {
+    const W = heroEl.clientWidth, H = heroEl.clientHeight, phone = wavy.matches;
+    Object.assign(G, { W, H, phone, X0: W / 2 });
+    if (!phone) {
+      const u = Math.min(W, 1.6 * H);
+      /* a concave arc, rolled slightly so its left end clears the hook of the J and its right end rises toward the voice line */
+      Object.assign(G, { h0: .185 * u, ratio: 512 / 576, cy: .5 * H, eye: .52 * H, tilt: -.08, R: .55 * W, F: .7 * W, half: .6 * W });
+    } else {
+      const u = stripEl.offsetHeight / 54;
+      Object.assign(G, { h0: 34 * u, ratio: 512 / 576, cy: stripEl.offsetTop + stripEl.offsetHeight / 2, A: 5 * u, k: 2 * Math.PI / (230 * u), half: W / 2 + 40 });
+      G.ph = -G.k * W / 2;
+    }
+    G.p0 = G.h0 * G.ratio; G.loop = N * G.p0; setW = G.loop;
+    const dpr = Math.min(devicePixelRatio || 1, 1.5);
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    /* texture resolution: about the largest the film is ever drawn at rest */
+    const ft = 576;
+    const k = Math.min(1, Math.max(.4, G.h0 * (phone ? 1.1 : 1.45) * dpr / ft), maxTex / (N * 512));
+    const cw = Math.floor(512 * k), th = Math.round(ft * k);
+    if (cw !== colW || th !== texH || phone !== phoneTex) {
+      colW = cw; texH = th; Ft = ft; phoneTex = phone;
+      gl.bindTexture(gl.TEXTURE_2D, tex); gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, colW * N, texH, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+      paintAll();
+    }
+  };
+
+  const draw = () => {
+    gl.viewport(0, 0, cv.width, cv.height); gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.uniform2f(U.uRes, G.W, G.H); gl.uniform1f(U.uMode, G.phone ? 1 : 0); gl.uniform1f(U.uHalf, G.half); gl.uniform1f(U.uH, G.h0);
+    gl.uniform1f(U.uR, G.R || 1); gl.uniform1f(U.uF, G.F || 1); gl.uniform1f(U.uCy, G.cy); gl.uniform1f(U.uEye, G.eye || 0); gl.uniform1f(U.uTilt, G.tilt || 0);
+    gl.uniform1f(U.uBend, S.bend); gl.uniform1f(U.uK, S.K); gl.uniform2f(U.uZc, S.zc[0], S.zc[1]); gl.uniform2f(U.uZt, S.zt[0], S.zt[1]);
+    gl.uniform1f(U.uScroll, ((-(pos + S.enter) % G.loop) + G.loop) % G.loop); gl.uniform1f(U.uLoop, G.loop);
+    gl.uniform1f(U.uWA, G.A || 0); gl.uniform1f(U.uWK, G.k || 0); gl.uniform1f(U.uWP, G.ph || 0); gl.uniform1f(U.uX0, G.X0);
+    gl.uniform1f(U.uAlpha, S.alpha);
+    gl.uniform1f(U.uTime, S.time); gl.uniform1f(U.uLive, reduce ? 0 : S.live); gl.uniform1f(U.uHover, S.hover); gl.uniform1f(U.uHoverX, S.hoverX);
+    gl.uniform1f(U.uEntry, S.entry); gl.uniform1f(U.uSweep, S.sweep);
+    const le = Math.min(1, S.entry / 1.65), lead = S.entry >= 1.65 ? 1e6 : -G.half + (2 * G.half + 80) * le * le * (3 - 2 * le);
+    gl.uniform1f(U.uLead, lead);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, (SEG + 1) * 2);
+  };
+
+  /* frames with several screens cross-fade to the next one every few seconds */
+  let held = -1;
+  const cycle = (dt) => {
+    WORK.forEach((w, i) => {
+      const st = cyc[i];
+      if (!w.imgs || w.imgs.length < 2) return;
+      if (st.mix > 0) { st.mix = Math.min(1, st.mix + dt / 700); if (st.mix >= 1) { st.cur = st.nxt; st.mix = 0; st.wait = 3.4; } dirty.add(i); }
+      else if (i !== held && (st.wait -= dt / 1000) <= 0) { st.nxt = (st.cur + 1) % w.imgs.length; if (img(w.imgs[st.nxt]).naturalWidth) st.mix = .001; else st.wait = .5; }
+    });
+  };
+  let visible = true;
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(heroEl);
+  let blank = false;
+  const frame = (dt) => {
+    if (!visible) return;
+    if (S.alpha <= 0) { if (!blank) { gl.viewport(0, 0, cv.width, cv.height); gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT); blank = true; } return; }
+    blank = false;
+    if (!reduce) { cycle(dt); S.time += dt / 1000; }
+    const k1 = 1 - Math.exp(-dt / 220), k2 = 1 - Math.exp(-dt / 320);
+    S.hover += (S.hoverT - S.hover) * k1; S.hoverX += (S.hoverXT - S.hoverX) * k2;
+    flush(); draw();
+  };
+  /* the pointer lifts the ribbon where it crosses it */
+  const pointer = (x, y) => {
+    if (G.phone || S.bend < .5) { S.hoverT = 0; return; }
+    const ax = invX(x), top = proj(ax, -G.h0 / 2)[1] - 40, bot = proj(ax, G.h0 / 2)[1] + 40;
+    S.hoverT = y > top && y < bot ? 1 : 0; S.hoverXT = ax;
+  };
+  const setOverride = (i, cvs) => { OVR[i] = cvs; dirty.add(i); schedule(); };
+
+  /* screen position of a point on the film (x along it from the centre, y across it), before the camera push */
+  const proj = (x, y) => {
+    if (!G.phone) { const re = G.R / Math.max(S.bend, 1e-4), th = x / re, hs = Math.sin(th / 2), s = G.F / (G.F - 2 * re * hs * hs), X = G.X0 + re * Math.sin(th) * s; return [X, G.eye + (G.cy + y - G.eye) * s + G.tilt * S.bend * (X - G.X0)]; }
+    const sx = G.X0 + x, c = G.A * G.k * Math.cos(G.k * sx + G.ph), l = Math.hypot(c, 1);
+    return [sx - c / l * y, G.cy + G.A * Math.sin(G.k * sx + G.ph) + y / l];
+  };
+  const invX = (X) => { let a = -G.half, b = G.half; for (let n = 0; n < 30; n++) { const m = (a + b) / 2; if (proj(m, 0)[0] < X) a = m; else b = m; } return (a + b) / 2; };
+  const indexAt = (x) => { const f = ((x - pos - S.enter) / G.loop) % 1; return Math.floor(((f + 1) % 1) * N) % N; };
+  const hit = (cX, cY) => {
+    const hr = heroEl.getBoundingClientRect(), X = cX - hr.left, Y = cY - hr.top, x = invX(X);
+    return Y >= proj(x, -G.h0 / 2)[1] && Y <= proj(x, G.h0 / 2)[1] ? indexAt(x) : -1;
+  };
+  /* scroll: how far the strip must move to centre the first frame, and the push that fills the screen with its picture */
+  const lockOffset = () => { let x = (.5 / N) * G.loop + pos + S.enter; x = ((x % G.loop) + G.loop) % G.loop; if (x > G.loop / 2) x -= G.loop; return -x; };
+  const zoomGeo = () => {
+    const c = card(), iw = c.iw / 512 * G.p0, ih = c.ih / Ft * G.h0, dy = (c.iy + c.ih / 2 - Ft / 2) / Ft * G.h0;
+    const K = Math.max(G.W / iw, G.H / ih) * 1.02;
+    return { K, zc: [G.X0, G.cy + dy], w: iw * K, h: ih * K };
+  };
+  const setZoom = (z, t) => {
+    if (!z || t <= 0) { S.K = 1; S.zc = [0, 0]; S.zt = [0, 0]; return; }
+    S.K = 1 + (z.K - 1) * t; S.zc = z.zc; S.zt = [z.zc[0] + (G.W / 2 - z.zc[0]) * t, z.zc[1] + (G.H / 2 - z.zc[1]) * t];
+  };
+  /* where a frame's picture is on screen right now: its four corners, top-left first, clockwise */
+  const frameQuad = (i) => {
+    const c = card();
+    let xc = (((i + .5) / N) * G.loop + pos + S.enter) % G.loop; if (xc < 0) xc += G.loop; if (xc > G.loop / 2) xc -= G.loop;
+    const fx = (u) => xc + (u / 512 - .5) * G.p0, fy = (v) => (v / Ft - .5) * G.h0;
+    return [[c.ix, c.iy], [c.ix + c.iw, c.iy], [c.ix + c.iw, c.iy + c.ih], [c.ix, c.iy + c.ih]].map(([u, v]) => {
+      const p = proj(fx(u), fy(v)), X = p[0] - S.sweep;
+      return [S.zt[0] + (X - S.zc[0]) * S.K, S.zt[1] + (p[1] - S.zc[1]) * S.K];
+    });
+  };
+  const pictureAspect = () => { const c = card(); return c.iw / c.ih; };
+  /* the frame the camera pushes into shows its first screen, so it matches the cover that takes over */
+  const hold = (i) => { held = i; const st = cyc[i]; if (st.cur !== 0 && !(st.mix > 0 && st.nxt === 0)) { st.nxt = 0; st.mix = st.mix > 0 ? st.mix : .001; } };
+  const release = () => { held = -1; };
+  const ready = () => Promise.all(WORK.slice(0, 5).filter((w) => w.imgs && w.imgs.length).map((w) => new Promise((r) => { const im = img(w.imgs[0]); if (im.complete) r(); else { im.addEventListener('load', r, { once: true }); im.addEventListener('error', r, { once: true }); } })));
+
+  layout();
+  return { G, S, layout, frame, draw, schedule, hit, proj, pointer, setOverride, invX, indexAt, lockOffset, zoomGeo, setZoom, frameQuad, pictureAspect, ready, hold, release, repaint: () => { paintAll(); draw(); }, canvas: cv };
+};
+try { film = makeFilm(); } catch (e) { film = null; }
+if (film) {
+  heroEl.classList.add('gl');
+  film.layout();
+  film.canvas.addEventListener('webglcontextlost', (e) => { e.preventDefault(); film = null; heroEl.classList.remove('gl'); setW = track.scrollWidth / 2; $('#strip').style.opacity = 1; });
+  if (document.fonts) Promise.all([document.fonts.load('500 16px "JetBrains Mono"'), document.fonts.load('700 40px "Instrument Sans"')]).then(() => film && film.repaint()).catch(() => {});
+}
+const measure = () => { if (film) film.layout(); else setW = track.scrollWidth / 2; };
+measure();
+let rz = 0;
+addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { measure(); film && film.draw(); }, 120); });
+wavy.addEventListener('change', () => { measure(); film && film.draw(); });
+
+/* ---- the lens: a look under the page, drawn by a shader so it can stretch, wobble and gather.
+   Desktop: a click on the hero opens it at the reel, and from then on it follows the pointer on a spring (no dragging);
+   over the intro links it gathers into an ink pill around the link; a second click, a scroll or leaving the hero closes it.
+   Phones: it sits over the film like a window; drag it to explore and it returns when you let go; tap for the next detail. ---- */
+const xcv = document.createElement('canvas'), xcx = xcv.getContext('2d');
+const lensEl = $('#lens'), ring = $('#lens-ring'), grip = $('.lens-grip'), lcap = $('#lens-cap');
+let heroRect = null;
+const heroBox = () => heroRect || (heroRect = heroEl.getBoundingClientRect());
+const dropHeroRect = () => { heroRect = null; };
+addEventListener('scroll', dropHeroRect, { passive: true }); addEventListener('resize', dropHeroRect);
+const boxOf = (el) => { const h = heroBox(), r = el.getBoundingClientRect(); return { x: r.left - h.left, y: r.top - h.top, w: r.width, h: r.height }; };
+const centreOf = (els) => { const bs = els.map(boxOf), l = Math.min(...bs.map((b) => b.x)), r = Math.max(...bs.map((b) => b.x + b.w)), t = Math.min(...bs.map((b) => b.y)), b = Math.max(...bs.map((b) => b.y + b.h)); return [(l + r) / 2, (t + b) / 2]; };
+const DETAILS = [
+  { at: () => centreOf($$('#w1 .ch').slice(1, 3)), cap: 'Type. Anton at 23.5vw; every letter is its own piece, so it can fly.' },
+  { at: () => (film ? [film.G.W / 2, film.G.cy] : centreOf([stripEl])), cap: 'Film. One WebGL ribbon, bent on a cylinder in the shader.' },
+  { at: () => centreOf([$('.voice')]), cap: 'Voice. Times New Roman at 3vw. Two lines, nothing else.' },
+  { at: () => centreOf($$('#w2 .ch').slice(1, 3)), cap: 'Scroll. The name flies apart, the colour drains, the camera pushes in.' }
+];
+const unitU = () => stripEl.offsetHeight / 54;
+const windowSpot = () => { const u = unitU(), ox = (heroEl.clientWidth - 100 * u) / 2; return [ox + 22 * u, 100 * u]; };
+const lensR = () => (wavy.matches ? Math.min(82, Math.max(56, .19 * heroEl.clientWidth), .18 * innerHeight) : Math.min(240, .18 * heroEl.clientWidth));
+
+/* motion: an exact critically damped spring (the standard closed form), and the two easing curves */
+const settle = (s, target, dt, w = 20) => {
+  const n = s.v - target, i = s.vel + w * n, o = Math.exp(-w * dt);
+  s.v = target + (n + i * dt) * o; s.vel = (s.vel - w * i * dt) * o;
+  if (Math.abs(s.v - target) + Math.abs(s.vel) < 1e-5) { s.v = target; s.vel = 0; }
+  return s.v;
+};
+const spring = (v = 0) => ({ v, vel: 0 });
+const smooth = (t) => t * t * (3 - 2 * t), smoother = (t) => t * t * t * (t * (6 * t - 15) + 10);
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+const L = {
+  cx: spring(), cy: spring(), rx: spring(), ry: spring(), dock: spring(), peelX: spring(), peelY: spring(),
+  flow: [0, 0], angle: 0, shift: [0, 0], time: 0, open: 0, o0: 0, o1: 0, oT: 0, oDur: 1, fresh: true,
+  intent: false, inside: false, keys: false, px: 0, py: 0, dockEl: null,
+  detail: -1, glide: null, drag: null
+};
+
+/* the lens itself: a soft-edged, stretchable oval with a rim, drawn over whatever is under the page */
+const LENS_FS = `#extension GL_OES_standard_derivatives : enable
+precision highp float;
+uniform sampler2D uTex;
+uniform vec2 uSize, uCentre, uRadius, uFlow, uPeel, uShift;
+uniform float uAngle, uOpen, uTime, uDpr, uDock, uAmbient;
+uniform vec3 uBone, uInk, uCarmine;
+varying vec2 vUv;
+float wob(float t, float seed) {
+  float c = floor(t), b = fract(t);
+  b = b * b * b * (b * (b * 6. - 15.) + 10.);
+  return mix(fract(sin(c * 127.1 + seed * 311.7) * 43758.5453), fract(sin((c + 1.) * 127.1 + seed * 311.7) * 43758.5453), b) * 2. - 1.;
+}
+float ang(vec2 p) { p = dot(p, p) > 1e-8 ? p : vec2(1., 0.); return atan(p.y, p.x); }
+void main() {
+  vec2 raw = vUv * uSize - uCentre;
+  float speed = clamp(length(uFlow), 0., 1.);
+  vec2 dir = uFlow / max(length(uFlow), 1e-4);
+  /* stretch along the motion and narrow across it, keeping the area */
+  float st = 1. + .24 * speed * (1. - uDock);
+  vec2 along = dir * dot(raw, dir);
+  vec2 d = along / st + (raw - along) * st;
+  float ca = cos(uAngle * (1. - uDock)), sa = sin(uAngle * (1. - uDock));
+  vec2 rad = max(vec2(.3), uRadius * pow(uOpen, .86));
+  vec2 q = mat2(ca, -sa, sa, ca) * d / rad;
+  float a = ang(q), t = uTime * mix(.55, .11, uAmbient);
+  /* a slow, living edge, and a bulge toward the gesture */
+  float lobe = 1. + .016 * wob(t, 1.) * sin(3. * a) + .014 * wob(t, 5.) * cos(3. * a) + .012 * wob(t * .83, 9.) * sin(2. * a) + .012 * wob(t * .83, 14.) * cos(2. * a);
+  lobe = mix(lobe, 1. + .028 * sin(3. * a + .4) + .023 * cos(2. * a - .6) + .009 * sin(t + 2. * a), uAmbient);
+  lobe += .035 * speed * sin(3. * (a - ang(dir))) * (1. - uDock);
+  float oval = (length(q) / lobe - 1.) * min(rad.x, rad.y);
+  /* docked: the same edge gathers into a rounded box around the link, reaching toward the pointer */
+  vec2 skin = raw - uPeel * .32;
+  float corner = min(18., rad.y);
+  vec2 bx = abs(skin) - rad + corner;
+  float shell = length(max(bx, 0.)) + min(max(bx.x, bx.y), 0.) - corner;
+  vec2 pull = uPeel / max(.001, length(uPeel));
+  shell -= pow(max(0., dot(raw / max(.001, length(raw)), pull)), 6.) * length(uPeel) * 1.6;
+  float field = mix(oval, shell, uDock);
+  float g = max(length(vec2(dFdx(field), dFdy(field))), 1e-5);
+  float inset = -field / g / uDpr;
+  float aa = .75 / uDpr;
+  float cov = smoothstep(-aa, aa, inset);
+  if (cov < .001 || uOpen < .001) discard;
+  vec3 col = texture2D(uTex, clamp((vUv * uSize + uShift) / uSize, 0., 1.)).rgb;
+  float seal = smoothstep(.06, .64, uDock);
+  col = mix(col, uInk, seal);
+  /* the rim: an ink gutter, a carmine line and a cream line just inside the edge */
+  col = mix(uInk, col, smoothstep(mix(6., 3., uAmbient) - aa, mix(6., 3., uAmbient) + aa, inset));
+  float cream = 1. - smoothstep(.55 - aa, .55 + aa, abs(inset - 1.15));
+  float carmine = 1. - smoothstep(.45 - aa, .45 + aa, abs(inset - mix(4.1, 2.6, uAmbient)));
+  col = mix(col, mix(uBone, uBone * .68, seal), cream);
+  col = mix(col, uCarmine, carmine * (1. - seal * .85));
+  float alpha = cov * smoothstep(0., .08, uOpen);
+  gl_FragColor = vec4(col * alpha, alpha);
+}`;
+/* the renderer: one full-hero quad; the shader draws the drawing inside a soft-edged, stretchable oval */
+const makeLensGL = () => {
+  const cv = $('#lens-gl');
+  const gl = cv.getContext('webgl', { alpha: true, premultipliedAlpha: true, antialias: false });
+  if (!gl || !gl.getExtension('OES_standard_derivatives')) return null;
+  const VS = 'attribute vec2 aP; varying vec2 vUv; void main(){ vUv = vec2(aP.x * .5 + .5, .5 - aP.y * .5); gl_Position = vec4(aP, 0., 1.); }';
+  const FS = LENS_FS;
+  const sh = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s)); return s; };
+  const prog = gl.createProgram();
+  gl.attachShader(prog, sh(gl.VERTEX_SHADER, VS)); gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, FS)); gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
+  gl.useProgram(prog);
+  gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer()); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+  const aP = gl.getAttribLocation(prog, 'aP'); gl.enableVertexAttribArray(aP); gl.vertexAttribPointer(aP, 2, gl.FLOAT, false, 0, 0);
+  const U = {};
+  ['uTex', 'uSize', 'uCentre', 'uRadius', 'uFlow', 'uPeel', 'uShift', 'uAngle', 'uOpen', 'uTime', 'uDpr', 'uDock', 'uAmbient', 'uBone', 'uInk', 'uCarmine'].forEach((n) => { U[n] = gl.getUniformLocation(prog, n); });
+  const tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+  gl.uniform1i(U.uTex, 0);
+  const rgb = (v) => { const h = (v || '#000').replace('#', ''), f = h.length === 3 ? h.split('').map((c) => c + c).join('') : h; return [0, 2, 4].map((i) => parseInt(f.slice(i, i + 2), 16) / 255); };
+  let dpr = 1, cleared = true;
+  const size = () => { dpr = Math.min(devicePixelRatio || 1, 1.5); cv.width = Math.round(heroEl.clientWidth * dpr); cv.height = Math.round(heroEl.clientHeight * dpr); cleared = false; };
+  size();
+  return {
+    size,
+    upload: () => { gl.bindTexture(gl.TEXTURE_2D, tex); gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, xcv); },
+    draw: (phone) => {
+      if (L.open <= .001) { if (!cleared) { gl.viewport(0, 0, cv.width, cv.height); gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT); cleared = true; } return; }
+      cleared = false;
+      gl.viewport(0, 0, cv.width, cv.height); gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.uniform2f(U.uSize, heroEl.clientWidth, heroEl.clientHeight); gl.uniform2f(U.uCentre, L.cx.v, L.cy.v); gl.uniform2f(U.uRadius, L.rx.v, L.ry.v);
+      gl.uniform2f(U.uFlow, L.flow[0], L.flow[1]); gl.uniform2f(U.uPeel, L.peelX.v, L.peelY.v); gl.uniform2f(U.uShift, L.shift[0], L.shift[1]);
+      gl.uniform1f(U.uAngle, L.angle); gl.uniform1f(U.uOpen, L.open); gl.uniform1f(U.uTime, L.time); gl.uniform1f(U.uDpr, dpr);
+      gl.uniform1f(U.uDock, clamp(L.dock.v, 0, 1)); gl.uniform1f(U.uAmbient, phone ? 1 : 0);
+      gl.uniform3fv(U.uBone, rgb(css('--paper'))); gl.uniform3fv(U.uInk, rgb(css('--ink'))); gl.uniform3fv(U.uCarmine, rgb(css('--accent')));
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    }
+  };
+};
+/* ---- the world under the page, seen through the lens: the name in solid letters (cream faces, indigo tops and sides)
+   standing out of a pale starlight wall, with the things Jatin loves around it: a record player (music), a laptop with this page's
+   code on it (tech), a ringed planet and its moon (space), headphones on their stand, and a game controller.
+   The camera looks down from above the page and the front of every letter sits exactly behind the flat
+   one, so the lens reads as a look underneath. Soft light, real shadows; the record spins and the moon goes round. ---- */
+const GLYPHS = {"unitsPerEm":2048,"ascender":2409,"descender":-674,"glyphs":{"J":{"adv":955,"cmds":[["M",468,16],["L",468,16],["Q",349,16,251,-30],["Q",153,-76,95.5,-166.5],["Q",38,-257,38,-389],["L",38,-389],["L",38,-830],["L",386,-830],["L",386,-410],["Q",386,-364,404.5,-336],["Q",423,-308,464,-308],["L",464,-308],["Q",543,-308,543,-405],["L",543,-405],["L",543,-1760],["L",898,-1760],["L",898,-440],["Q",898,-300,843,-197.5],["Q",788,-95,691,-39.5],["Q",594,16,468,16],["Z"]]},"A":{"adv":994,"cmds":[["M",372,0],["L",30,0],["L",200,-1760],["L",797,-1760],["L",964,0],["L",631,0],["L",606,-284],["L",394,-284],["L",372,0],["Z"],["M",486,-1460],["L",419,-565],["L",579,-565],["L",502,-1460],["L",486,-1460],["Z"]]},"T":{"adv":810,"cmds":[["M",581,0],["L",229,0],["L",229,-1422],["L",20,-1422],["L",20,-1760],["L",790,-1760],["L",790,-1422],["L",581,-1422],["L",581,0],["Z"]]},"I":{"adv":464,"cmds":[["M",402,0],["L",62,0],["L",62,-1760],["L",402,-1760],["L",402,0],["Z"]]},"N":{"adv":1020,"cmds":[["M",422,0],["L",78,0],["L",78,-1760],["L",440,-1760],["L",602,-917],["L",602,-1760],["L",942,-1760],["L",942,0],["L",598,0],["L",422,-880],["L",422,0],["Z"]]},"D":{"adv":1010,"cmds":[["M",550,0],["L",78,0],["L",78,-1760],["L",562,-1760],["Q",752,-1760,848,-1654.5],["Q",944,-1549,944,-1346],["L",944,-1346],["L",944,-522],["Q",944,-272,856.5,-136],["Q",769,0,550,0],["L",550,0],["Z"],["M",432,-1452],["L",432,-311],["L",493,-311],["Q",590,-311,590,-405],["L",590,-405],["L",590,-1313],["Q",590,-1401,566.5,-1426.5],["Q",543,-1452,471,-1452],["L",471,-1452],["L",432,-1452],["Z"]]},"H":{"adv":1022,"cmds":[["M",428,0],["L",78,0],["L",78,-1760],["L",428,-1760],["L",428,-1131],["L",594,-1131],["L",594,-1760],["L",944,-1760],["L",944,0],["L",594,0],["L",594,-798],["L",428,-798],["L",428,0],["Z"]]},"R":{"adv":976,"cmds":[["M",434,0],["L",78,0],["L",78,-1760],["L",618,-1760],["Q",753,-1760,822,-1698.5],["Q",891,-1637,914.5,-1526.5],["Q",938,-1416,938,-1267],["L",938,-1267],["Q",938,-1123,901.5,-1037],["Q",865,-951,764,-918],["L",764,-918],["Q",847,-901,880.5,-835.5],["Q",914,-770,914,-666],["L",914,-666],["L",914,0],["L",567,0],["L",567,-689],["Q",567,-766,535.5,-784.5],["Q",504,-803,434,-803],["L",434,-803],["L",434,0],["Z"],["M",436,-1434],["L",436,-1108],["L",521,-1108],["Q",594,-1108,594,-1267],["L",594,-1267],["Q",594,-1370,578,-1402],["Q",562,-1434,518,-1434],["L",518,-1434],["L",436,-1434],["Z"]]}}};
+const makeLens3D = () => {
+  const T = window.THREE;
+  if (!T || !GLYPHS) return null;
+  const cv = $('#lens-gl');
+  let renderer;
+  try { renderer = new T.WebGLRenderer({ canvas: cv, alpha: true, antialias: false, premultipliedAlpha: true }); } catch (e) { return null; }
+  if (!renderer.capabilities.isWebGL2 && !renderer.extensions.get('OES_standard_derivatives')) { renderer.dispose(); return null; }
+  renderer.setClearColor(0x000000, 0);
+  renderer.shadowMap.enabled = true; renderer.shadowMap.type = T.PCFSoftShadowMap; renderer.shadowMap.autoUpdate = false;
+  const C = (h) => new T.Color(h).convertSRGBToLinear();
+  const scene = new T.Scene(), world = new T.Group();
+  scene.add(world);
+  scene.background = new T.Color('#d3def7');
+  const cam = new T.PerspectiveCamera();
+  /* a small photo studio for the reflections: a warm-to-sage dome, a big soft key light above left, a thin rim on the right */
+  try {
+    const studio = new T.Scene(), dome = new T.SphereGeometry(10, 32, 16), p = dome.attributes.position, col = [];
+    const top = C('#fff6e6'), mid = C('#e2e3ea'), low = C('#8a96b8');
+    for (let i = 0; i < p.count; i++) { const y = p.getY(i) / 10, c = y > 0 ? mid.clone().lerp(top, y) : mid.clone().lerp(low, -y); col.push(c.r, c.g, c.b); }
+    dome.setAttribute('color', new T.Float32BufferAttribute(col, 3));
+    studio.add(new T.Mesh(dome, new T.MeshBasicMaterial({ side: T.BackSide, vertexColors: true })));
+    const panel = (w, h, x, y, z, k) => { const m = new T.Mesh(new T.PlaneGeometry(w, h), new T.MeshBasicMaterial({ color: new T.Color(k, k * .96, k * .9), side: T.DoubleSide })); m.position.set(x, y, z); m.lookAt(0, 0, 0); studio.add(m); };
+    panel(9, 5, -4, 7, 5, 3.2); panel(2.5, 9, 9, 1, 1, 1.4);
+    const pm = new T.PMREMGenerator(renderer);
+    scene.environment = pm.fromScene(studio, .04).texture;
+    pm.dispose();
+  } catch (e) {}
+  scene.add(new T.HemisphereLight(C('#fff7ea'), C('#a5b2d6'), scene.environment ? .12 : .5));
+  const sun = new T.DirectionalLight(C('#fff1dc'), .55);
+  sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); sun.shadow.bias = -.0005;
+  scene.add(sun, sun.target);
+  /* a soft fill from where we stand, so the faces turned to us stay light, and a cool rim from the upper right for the edges */
+  const fill = new T.DirectionalLight(C('#fff8ef'), .2); scene.add(fill, fill.target);
+  const rim = new T.DirectionalLight(C('#e4f6ff'), .22); scene.add(rim, rim.target);
+  const mat = (h, o = {}) => new T.MeshStandardMaterial({ color: C(h), roughness: .6, metalness: 0, envMapIntensity: .35, ...o });
+  const M = {
+    face: mat('#fbf6ee', { roughness: .45 }), side: mat('#3a55c8', { roughness: .3, envMapIntensity: .75 }), wall: mat('#d3def7', { roughness: .95 }), shelf: mat('#c1cff0', { roughness: .9 }),
+    cream: mat('#f3ece0'), pad: mat('#e9e4da', { roughness: .85 }), shell: mat('#f1efe9', { roughness: .32, envMapIntensity: .7 }), glow: mat('#8fb4ff', { emissive: C('#8fb4ff'), emissiveIntensity: .8 }), ink: mat('#1f2a52', { roughness: .28, envMapIntensity: .7 }), tyre: mat('#16161a', { roughness: .85 }),
+    steel: mat('#dde1e8', { metalness: .85, roughness: .24, envMapIntensity: 1.1 }), alu: mat('#cdd1d9', { metalness: .6, roughness: .32, envMapIntensity: 1 }),
+    keys: mat('#22252e', { roughness: .55 }), paint: mat('#f2a91f', { metalness: .2, roughness: .22, envMapIntensity: 1 }),
+    keycaps: ['#8fb4ff', '#c8243a', '#f2a91f', '#36a97c'].map((h) => mat(h, { roughness: .25, envMapIntensity: .8 }))
+  };
+  /* painted surfaces, drawn once on canvases (after the fonts have loaded): the record, the planet and its ring, the code */
+  const paint = (w, h, fn) => { const c = document.createElement('canvas'); c.width = w; c.height = h; fn(c.getContext('2d'), w, h); const t = new T.CanvasTexture(c); t.encoding = T.sRGBEncoding; t.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy()); return t; };
+  let skins = null;
+  const skin = () => skins || (skins = {
+    vinyl: mat('#ffffff', { roughness: .32, envMapIntensity: .9, map: paint(512, 512, (c, w) => {
+      const m = w / 2;
+      c.fillStyle = '#0c0c0f'; c.fillRect(0, 0, w, w);
+      for (let r = m * .36; r < m * .97; r += 2.2) { c.strokeStyle = Math.round(r) % 3 ? 'rgba(255,255,255,.035)' : 'rgba(255,255,255,.085)'; c.lineWidth = 1; c.beginPath(); c.arc(m, m, r, 0, Math.PI * 2); c.stroke(); }
+      [.55, .71, .85].forEach((k) => { c.strokeStyle = '#050506'; c.lineWidth = 3; c.beginPath(); c.arc(m, m, m * k, 0, Math.PI * 2); c.stroke(); });
+      c.fillStyle = '#9a1220'; c.beginPath(); c.arc(m, m, m * .33, 0, Math.PI * 2); c.fill();
+      c.strokeStyle = 'rgba(243,239,228,.5)'; c.lineWidth = 2; c.beginPath(); c.arc(m, m, m * .29, 0, Math.PI * 2); c.stroke();
+      c.fillStyle = '#f3efe4'; c.textAlign = 'center'; c.font = `400 ${Math.round(m * .12)}px Anton, Impact, sans-serif`; c.fillText('JATIN DHIR', m, m - m * .09);
+      c.font = `500 ${Math.round(m * .045)}px "JetBrains Mono", monospace`; c.fillText('SIDE A · 33 1/3', m, m + m * .16);
+      c.fillStyle = '#0c0c0f'; c.beginPath(); c.arc(m, m, m * .028, 0, Math.PI * 2); c.fill();
+    }) }),
+    planet: mat('#ffffff', { roughness: .55, envMapIntensity: .5, map: paint(512, 256, (c, w, h) => {
+      const bands = ['#f3e6cf', '#efc89b', '#f6eedf', '#e9a46a', '#f3e6cf', '#9a1220', '#f0d2a8', '#f2c46d', '#f6eedf', '#e9a46a', '#efc89b', '#f3e6cf'];
+      c.fillStyle = bands[0]; c.fillRect(0, 0, w, h);
+      const wts = bands.map((b, i) => (b === '#9a1220' ? .35 : .7 + ((i * 37) % 7) / 7 * .9)), sum = wts.reduce((a, b) => a + b, 0);
+      let y = 0; bands.forEach((b, i) => { const bh = wts[i] / sum * h; c.fillStyle = b; c.fillRect(0, y, w, bh + 1); y += bh; });
+      for (let i = 0; i < 120; i++) { c.fillStyle = `rgba(255,255,255,${(.03 + (i % 5) * .012).toFixed(3)})`; c.fillRect(0, (i * 53) % h, w, 1 + (i % 3)); }
+      c.fillStyle = '#c4553c'; c.beginPath(); c.ellipse(w * .62, h * .64, w * .05, h * .05, 0, 0, Math.PI * 2); c.fill();
+      c.fillStyle = 'rgba(255,240,220,.6)'; c.beginPath(); c.ellipse(w * .615, h * .635, w * .022, h * .02, 0, 0, Math.PI * 2); c.fill();
+    }) }),
+    ring: new T.MeshStandardMaterial({ color: C('#ffffff'), roughness: .6, envMapIntensity: .4, transparent: true, depthWrite: false, side: T.DoubleSide, map: paint(512, 512, (c, w) => {
+      const m = w / 2;
+      for (let r = m * .64; r < m * .995; r += 1) {
+        const k = (r - m * .64) / (m * .36), gap = Math.abs(k - .62) < .035 ? .08 : 1;
+        const a = (.3 + .55 * Math.abs(Math.sin(k * 21)) * Math.sin(k * Math.PI)) * gap;
+        c.strokeStyle = `rgba(${k > .6 ? '242,196,109' : '243,230,207'},${a.toFixed(3)})`; c.lineWidth = 1.2; c.beginPath(); c.arc(m, m, r, 0, Math.PI * 2); c.stroke();
+      }
+    }) }),
+    /* the laptop shows the code for this page, glowing */
+    screen: new T.MeshBasicMaterial({ map: paint(512, 320, (c, w, h) => {
+      c.fillStyle = '#10163a'; c.fillRect(0, 0, w, h);
+      c.fillStyle = '#19214f'; c.fillRect(0, 0, w, 28);
+      c.font = '500 13px "JetBrains Mono", monospace'; c.fillStyle = 'rgba(243,239,228,.7)'; c.fillText('lens.js', 16, 19);
+      c.fillStyle = '#f2a91f'; c.fillRect(16, 25, 52, 3);
+      const col = { k: '#ff7a8a', p: '#9fe3c6', f: '#f2c46d', s: '#f2a91f', n: '#ffb4a2', c: '#f3efe4' };
+      const lines = [
+        [['k', 'const '], ['p', 'lens'], ['c', ' = '], ['f', 'under'], ['c', '('], ['s', "'the page'"], ['c', ');']],
+        [],
+        [['f', 'gsap'], ['c', '.'], ['f', 'to'], ['c', '('], ['s', "'.name'"], ['c', ', {']],
+        [['p', '  y'], ['c', ': '], ['n', '-120'], ['c', ',']],
+        [['p', '  stagger'], ['c', ': '], ['n', '.085'], ['c', ',']],
+        [['p', '  ease'], ['c', ': '], ['s', "'expo.out'"]],
+        [['c', '});']],
+        [],
+        [['k', 'while '], ['c', '('], ['p', 'music'], ['c', '.'], ['p', 'on'], ['c', ') '], ['f', 'build'], ['c', '();']]
+      ];
+      c.font = '500 19px "JetBrains Mono", monospace';
+      let endX = 46;
+      lines.forEach((ln, i) => {
+        const y = 60 + i * 28; let x = 46;
+        c.fillStyle = 'rgba(243,239,228,.28)'; c.fillText(String(i + 1).padStart(2, ' '), 12, y);
+        ln.forEach(([t, s]) => { c.fillStyle = col[t]; c.fillText(s, x, y); x += c.measureText(s).width; });
+        endX = x;
+      });
+      c.fillStyle = '#f2a91f'; c.fillRect(endX + 4, 60 + 8 * 28 - 17, 10, 21);
+    }) })
+  });
+  let W = 1, H = 1, D = 120, dpr = 1, phone = false, key = '', dirty = true, cleared = true, last = '';
+  let spin = null, globe = null, orbit = null;
+  const eye = { x: 0, t: 0 };
+  let parts = [];
+  const geoCache = new Map();
+  const glyphGeo = (ch, fs) => {
+    const id = `${ch}|${fs.toFixed(2)}`;
+    if (geoCache.has(id)) return geoCache.get(id);
+    const g = GLYPHS.glyphs[ch]; if (!g) return null;
+    const k = fs / GLYPHS.unitsPerEm, p = new T.ShapePath();
+    g.cmds.forEach((c) => {
+      if (c[0] === 'M') p.moveTo(c[1] * k, -c[2] * k);
+      else if (c[0] === 'L') p.lineTo(c[1] * k, -c[2] * k);
+      else if (c[0] === 'Q') p.quadraticCurveTo(c[1] * k, -c[2] * k, c[3] * k, -c[4] * k);
+      else if (c[0] === 'C') p.bezierCurveTo(c[1] * k, -c[2] * k, c[3] * k, -c[4] * k, c[5] * k, -c[6] * k);
+    });
+    /* the largest outline is always solid; its winding decides which way round the holes go */
+    const big = p.subPaths.map((s) => s.getPoints()).sort((a, b) => Math.abs(T.ShapeUtils.area(b)) - Math.abs(T.ShapeUtils.area(a)))[0];
+    const bt = fs * .006, geo = new T.ExtrudeGeometry(p.toShapes(!T.ShapeUtils.isClockWise(big)), { depth: D, bevelEnabled: true, bevelSize: fs * .007, bevelThickness: bt, bevelSegments: 3, curveSegments: 8 });
+    geo.translate(0, 0, -D - bt);
+    geoCache.set(id, geo);
+    return geo;
+  };
+  const clear = () => { parts.forEach((m) => { world.remove(m); m.traverse((o) => { if (o.geometry && !o.userData.keep) o.geometry.dispose(); }); }); parts = []; spin = globe = orbit = null; };
+  const add = (o) => { o.traverse((c) => { if (c.isMesh) { c.castShadow = c.userData.noShadow !== true; c.receiveShadow = true; } }); world.add(o); parts.push(o); return o; };
+  /* the letters: same size, same origin, same baseline as the flat ones */
+  const buildLetters = () => {
+    const hr = heroEl.getBoundingClientRect(), mc = document.createElement('canvas').getContext('2d');
+    $$('.word').forEach((word) => {
+      const fs = parseFloat(getComputedStyle(word).fontSize);
+      mc.font = `400 ${fs}px Anton, Impact, sans-serif`;
+      const m = mc.measureText('H'), fa = m.fontBoundingBoxAscent || fs * GLYPHS.ascender / GLYPHS.unitsPerEm, fd = m.fontBoundingBoxDescent || -fs * GLYPHS.descender / GLYPHS.unitsPerEm;
+      $$('.ch', word).forEach((ch) => {
+        const geo = glyphGeo(ch.textContent, fs); if (!geo) return;
+        const r = ch.getBoundingClientRect(), base = r.top - hr.top + (r.height - (fa + fd)) / 2 + fa;
+        const mesh = new T.Mesh(geo, [M.face, M.side]); mesh.userData.keep = true;
+        mesh.position.set(r.left - hr.left, H - base, 0);
+        add(mesh);
+      });
+    });
+  };
+  /* where the things sit: open space around the name on a desktop; on a phone, the record player fills the window */
+  const spots = () => {
+    if (phone) { const u = unitU(), ox = (W - 100 * u) / 2, p = (x, y) => [ox + x * u, y * u]; return { music: windowSpot(), headphones: p(80, 64), controller: p(74, 108), space: p(24, 150), tech: p(62, 178) }; }
+    return { music: [.5 * W, .54 * H], tech: [.665 * W, .21 * H], space: [.875 * W, .4 * H], headphones: [.14 * W, .6 * H], controller: [.37 * W, .8 * H] };
+  };
+  const box = (w, h, d, m) => new T.Mesh(new T.BoxGeometry(w, h, d), m);
+  const cyl = (rt, rb, h, m, seg = 48) => new T.Mesh(new T.CylinderGeometry(rt, rb, h, seg), m);
+  const shadowless = (o) => { o.traverse((c) => { c.userData.noShadow = true; }); return o; };
+  /* each thing stands on a small shelf that comes out of the wall, centred on its spot */
+  const onShelf = (g, [sx, sy], u) => {
+    g.updateMatrixWorld(true);
+    const b = new T.Box3().setFromObject(g), sz = b.getSize(new T.Vector3()), sd = Math.max(sz.z * 1.15, 44 * u), sw = Math.max(sz.x * 1.12, 70 * u), st = 12 * u;
+    const y3 = H - sy, top = y3 - sz.y / 2, zc = -D - 1 + sd / 2;
+    g.position.set(sx - (b.min.x + b.max.x) / 2, top - b.min.y, zc - (b.min.z + b.max.z) / 2 + sd * .08);
+    const s = box(sw, st, sd, M.shelf); s.position.set(sx, top - st / 2, zc);
+    add(g); add(s);
+  };
+  /* or floats in front of the wall, centred on its spot, so its shadow shows how far out it is */
+  const afloat = (g, [sx, sy], z) => {
+    g.updateMatrixWorld(true);
+    const c = new T.Box3().setFromObject(g).getCenter(new T.Vector3());
+    g.position.set(sx - c.x, H - sy - c.y, z - c.z);
+    add(g);
+  };
+  const buildProps = () => {
+    const u = phone ? W / 640 : Math.min(W, 1.6 * H) / 1440, at = spots(), S = skin();
+    /* music: a record player in ink lacquer and steel, the record spinning */
+    { const g = new T.Group(), w = 176 * u, h = 22 * u, d = 132 * u, top = h / 2;
+      g.add(box(w, h, d, M.ink));
+      for (const [fx, fz] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) { const f = cyl(8 * u, 9 * u, 6 * u, M.steel, 24); f.position.set(fx * (w / 2 - 14 * u), -top - 3 * u, fz * (d / 2 - 14 * u)); g.add(f); }
+      const px = -24 * u, pz = 4 * u;
+      const platter = cyl(57 * u, 57 * u, 7 * u, M.steel, 72); platter.position.set(px, top + 3.5 * u, pz); g.add(platter);
+      const rec = new T.Mesh(new T.CylinderGeometry(54 * u, 54 * u, 2 * u, 96), [M.tyre, S.vinyl, S.vinyl]); rec.position.set(px, top + 8 * u, pz); g.add(rec); spin = rec;
+      const pin = cyl(1.8 * u, 1.8 * u, 9 * u, M.steel, 12); pin.position.set(px, top + 10 * u, pz); g.add(pin);
+      /* the tonearm, from its pivot at the back right to the outer groove */
+      const ax = 60 * u, az = -44 * u, tx = px + 40 * u, tz = pz + 30 * u, len = Math.hypot(tx - ax, tz - az);
+      const pivot = cyl(10 * u, 12 * u, 10 * u, M.steel, 32); pivot.position.set(ax, top + 5 * u, az); g.add(pivot);
+      const arm = new T.Group(); arm.position.set(ax, top + 16 * u, az); arm.rotation.y = Math.atan2(-(tz - az), tx - ax);
+      const rod = cyl(1.7 * u, 1.7 * u, len - 6 * u, M.steel, 12); rod.rotation.z = Math.PI / 2; rod.position.x = (len - 6 * u) / 2; arm.add(rod);
+      const shell = box(14 * u, 3 * u, 9 * u, M.steel); shell.position.set(len - 2 * u, -4 * u, 0); arm.add(shell);
+      const weight = cyl(6.5 * u, 6.5 * u, 13 * u, M.steel, 24); weight.rotation.z = Math.PI / 2; weight.position.x = -11 * u; arm.add(weight);
+      g.add(arm);
+      const button = cyl(7 * u, 7 * u, 3 * u, M.paint, 24); button.position.set(62 * u, top + 1.5 * u, 44 * u); g.add(button);
+      const knob = cyl(6 * u, 6 * u, 5 * u, M.cream, 24); knob.position.set(40 * u, top + 2.5 * u, 48 * u); g.add(knob);
+      const slider = box(4 * u, 1.2 * u, 42 * u, M.steel); slider.position.set(74 * u, top + .6 * u, 2 * u); g.add(slider);
+      g.rotation.set(.12, -.25, 0); onShelf(g, at.music, u); }
+    /* tech: an open laptop with this page's code on the screen */
+    { const g = new T.Group(), w = 150 * u, d = 102 * u, t = 7 * u, lh = 96 * u;
+      g.add(box(w, t, d, M.alu));
+      const deck = box(w * .88, 1 * u, d * .46, M.keys); deck.position.set(0, t / 2 + .3 * u, -d * .14); g.add(deck);
+      const pad = box(w * .3, .8 * u, d * .26, M.steel); pad.position.set(0, t / 2 + .2 * u, d * .27); g.add(pad);
+      const lid = new T.Group(); lid.position.set(0, t / 2, -d / 2 + 2 * u); lid.rotation.x = -.26;
+      const back = box(w, lh, 5 * u, M.alu); back.position.set(0, lh / 2, -2.5 * u); lid.add(back);
+      const scr = new T.Mesh(new T.PlaneGeometry(w * .92, lh * .86), S.screen); scr.position.set(0, lh / 2 + 1.5 * u, .15 * u); lid.add(scr);
+      g.add(lid);
+      g.rotation.y = -.38; onShelf(g, at.tech, u); }
+    /* space: a ringed planet in the site's colours, tilted, with a moon going round */
+    { const g = new T.Group(), sys = new T.Group(), r = 58 * u;
+      globe = new T.Mesh(new T.SphereGeometry(r, 48, 32), S.planet); sys.add(globe);
+      const ring = new T.Mesh(new T.RingGeometry(r * 1.4, r * 2.15, 128, 1), S.ring); ring.rotation.x = -Math.PI / 2; sys.add(shadowless(ring));
+      orbit = new T.Group(); const moon = new T.Mesh(new T.SphereGeometry(r * .2, 24, 16), M.cream); moon.position.set(r * 2.7, r * .25, 0); orbit.add(shadowless(moon)); orbit.rotation.z = .22; sys.add(orbit);
+      sys.rotation.set(.38, 0, -.36); g.add(sys);
+      afloat(g, at.space, -D + 136 * u); }
+    /* headphones on their stand: an ink band and cups, cream cushions, steel sliders */
+    { const g = new T.Group(), R = 52 * u;
+      const band = new T.Mesh(new T.TorusGeometry(R, 5 * u, 14, 56, Math.PI), M.ink); g.add(band);
+      const cushionTop = new T.Mesh(new T.TorusGeometry(R - 6 * u, 4 * u, 10, 40, Math.PI * .5), M.pad); cushionTop.rotation.z = Math.PI * .25; g.add(cushionTop);
+      for (const sx of [-1, 1]) {
+        const slide = box(4 * u, 26 * u, 10 * u, M.steel); slide.position.set(sx * R, -12 * u, 0); g.add(slide);
+        const cup = cyl(25 * u, 25 * u, 16 * u, M.ink, 40); cup.rotation.z = Math.PI / 2; cup.position.set(sx * (R + 3 * u), -38 * u, 0); g.add(cup);
+        const cap = cyl(17 * u, 17 * u, 2 * u, M.steel, 32); cap.rotation.z = Math.PI / 2; cap.position.set(sx * (R + 12 * u), -38 * u, 0); g.add(cap);
+        const cushion = new T.Mesh(new T.TorusGeometry(19 * u, 6.5 * u, 12, 36), M.pad); cushion.rotation.y = Math.PI / 2; cushion.position.set(sx * (R - 7 * u), -38 * u, 0); g.add(cushion);
+      }
+      const saddle = cyl(4 * u, 4 * u, 34 * u, M.steel, 16); saddle.rotation.x = Math.PI / 2; saddle.position.y = R - 7 * u; g.add(saddle);
+      const rod = cyl(3 * u, 3 * u, 170 * u, M.steel, 16); rod.position.y = R - 7 * u - 85 * u; g.add(rod);
+      const foot = cyl(30 * u, 34 * u, 7 * u, M.ink, 48); foot.position.y = R - 7 * u - 170 * u; g.add(foot);
+      g.rotation.y = .55; onShelf(g, at.headphones, u); }
+    /* a game controller, white with dark sticks, leaning back so its face looks up at you */
+    { const g = new T.Group(), s2 = (x, y) => [x * u, y * u];
+      const body = new T.Shape();
+      body.moveTo(...s2(-50, 40)); body.lineTo(...s2(50, 40));
+      body.bezierCurveTo(...s2(80, 42), ...s2(92, 20), ...s2(96, -10));
+      body.bezierCurveTo(...s2(102, -50), ...s2(92, -68), ...s2(76, -68));
+      body.bezierCurveTo(...s2(60, -68), ...s2(52, -52), ...s2(40, -32));
+      body.lineTo(...s2(-40, -32));
+      body.bezierCurveTo(...s2(-52, -52), ...s2(-60, -68), ...s2(-76, -68));
+      body.bezierCurveTo(...s2(-92, -68), ...s2(-102, -50), ...s2(-96, -10));
+      body.bezierCurveTo(...s2(-92, 20), ...s2(-80, 42), ...s2(-50, 40));
+      const depth = 18 * u, bev = 8 * u, top = depth + bev;
+      g.add(new T.Mesh(new T.ExtrudeGeometry(body, { depth, bevelEnabled: true, bevelThickness: bev, bevelSize: 7 * u, bevelSegments: 5, curveSegments: 20 }), M.shell));
+      const pad = new T.Group(); pad.position.set(-50 * u, 6 * u, top);
+      pad.add(box(26 * u, 8 * u, 4 * u, M.keys)); pad.add(box(8 * u, 26 * u, 4 * u, M.keys)); g.add(pad);
+      [[0, 1], [1, 0], [0, -1], [-1, 0]].forEach(([dx, dy], i) => { const k = cyl(6 * u, 6 * u, 4 * u, M.keycaps[i], 20); k.rotation.x = Math.PI / 2; k.position.set(50 * u + dx * 13 * u, 6 * u + dy * 13 * u, top + 1 * u); g.add(k); });
+      for (const sx of [-1, 1]) {
+        const well = cyl(13 * u, 13 * u, 3 * u, M.keys, 28); well.rotation.x = Math.PI / 2; well.position.set(sx * 22 * u, -16 * u, top); g.add(well);
+        const stick = cyl(11 * u, 9 * u, 9 * u, M.tyre, 28); stick.rotation.x = Math.PI / 2; stick.position.set(sx * 22 * u, -16 * u, top + 5 * u); g.add(stick);
+      }
+      const light = cyl(5 * u, 5 * u, 3 * u, M.glow, 20); light.rotation.x = Math.PI / 2; light.position.set(0, 20 * u, top + .5 * u); g.add(light);
+      g.rotation.set(-.62, .18, .06); onShelf(g, at.controller, u); }
+  };
+  /* the camera: an eye above the top of the page, looking straight at it; the frustum is cut so the page plane maps 1:1 */
+  const frame = () => {
+    const e = H * 1.75, ex = W / 2 + eye.x, ey = H * 1.5, n = 20;
+    cam.position.set(ex, ey, e); cam.near = n; cam.far = e + D * 6 + 4000;
+    cam.projectionMatrix.makePerspective((0 - ex) * n / e, (W - ex) * n / e, (H - ey) * n / e, (0 - ey) * n / e, n, cam.far);
+    cam.projectionMatrixInverse.copy(cam.projectionMatrix).invert();
+  };
+  const rt = T.WebGLMultisampleRenderTarget && renderer.capabilities.isWebGL2 ? new T.WebGLMultisampleRenderTarget(4, 4) : new T.WebGLRenderTarget(4, 4);
+  rt.texture.encoding = T.sRGBEncoding;
+  const ortho = new T.OrthographicCamera(-1, 1, 1, -1, 0, 1), quadScene = new T.Scene();
+  const uni = {
+    uTex: { value: rt.texture }, uSize: { value: new T.Vector2() }, uCentre: { value: new T.Vector2() }, uRadius: { value: new T.Vector2() }, uFlow: { value: new T.Vector2() },
+    uPeel: { value: new T.Vector2() }, uShift: { value: new T.Vector2() }, uAngle: { value: 0 }, uOpen: { value: 0 }, uTime: { value: 0 }, uDpr: { value: 1 }, uDock: { value: 0 },
+    uAmbient: { value: 0 }, uBone: { value: new T.Color() }, uInk: { value: new T.Color() }, uCarmine: { value: new T.Color() }
+  };
+  const quadMat = new T.ShaderMaterial({
+    uniforms: uni, depthTest: false, depthWrite: false, blending: T.NoBlending,
+    vertexShader: 'varying vec2 vUv; void main(){ vUv = vec2(uv.x, 1. - uv.y); gl_Position = vec4(position.xy, 0., 1.); }',
+    fragmentShader: LENS_FS.replace('#extension GL_OES_standard_derivatives : enable\n', '').replace('vec3 col = texture2D(uTex, clamp((vUv * uSize + uShift) / uSize, 0., 1.)).rgb;', 'vec3 col = texture2D(uTex, vec2(vUv.x, 1. - vUv.y)).rgb;')
+  });
+  quadMat.extensions.derivatives = true;
+  const quad = new T.Mesh(new T.PlaneGeometry(2, 2), quadMat); quad.frustumCulled = false; quadScene.add(quad);
+  let wall = null;
+  const size = () => {
+    W = heroEl.clientWidth; H = heroEl.clientHeight; dpr = Math.min(devicePixelRatio || 1, 1.5); phone = wavy.matches;
+    renderer.setPixelRatio(dpr); renderer.setSize(W, H, false); rt.setSize(Math.round(W * dpr), Math.round(H * dpr));
+    key = ''; dirty = true; cleared = false;
+  };
+  /* rebuild only when the layout moved: the letters are measured from the page */
+  const refresh = () => {
+    const hr = heroEl.getBoundingClientRect();
+    const k = [W, H, ...$$('.word .ch').map((c) => { const r = c.getBoundingClientRect(); return `${Math.round(r.left - hr.left)},${Math.round(r.top - hr.top)},${Math.round(r.height)}`; })].join('|');
+    if (k === key) return;
+    key = k; clear();
+    D = parseFloat(getComputedStyle($('.word')).fontSize) * .58;
+    if (wall) { world.remove(wall); wall.geometry.dispose(); }
+    wall = new T.Mesh(new T.PlaneGeometry(W * 4, H * 4), M.wall); wall.position.set(W / 2, H / 2, -D * 1.012 - 2); wall.receiveShadow = true; world.add(wall);
+    buildLetters(); buildProps();
+    sun.position.set(W * .2, H * 1.3, D + 1300); sun.target.position.set(W / 2, H / 2, -D);
+    fill.position.set(W / 2, H * .9, 3000); fill.target.position.set(W / 2, H / 2, -D);
+    rim.position.set(W * 1.3, H * 1.4, 200); rim.target.position.set(W / 2, H / 2, -D);
+    const sc = sun.shadow.camera, ext = Math.max(W, H) * 1.15; sc.left = -ext; sc.right = ext; sc.top = ext; sc.bottom = -ext; sc.near = 10; sc.far = 5000; sc.updateProjectionMatrix();
+    sun.shadow.radius = 4; renderer.shadowMap.needsUpdate = true; dirty = true;
+  };
+  size();
+  return {
+    three: true, size, refresh, upload: () => {},
+    spots: () => spots(),
+    /* build, compile and cast the shadows ahead of the first open (one hidden pixel), so opening never stalls */
+    warm: () => {
+      refresh(); frame();
+      rt.scissor.set(0, 0, 1, 1); rt.scissorTest = true;
+      renderer.setRenderTarget(rt); renderer.render(scene, cam); renderer.setRenderTarget(null);
+      renderer.compile(quadScene, ortho); dirty = true;
+    },
+    draw: (isPhone) => {
+      if (L.open <= .001) { if (!cleared) { renderer.setRenderTarget(null); renderer.clear(); cleared = true; } return; }
+      cleared = false;
+      if (!key) refresh();
+      /* the eye drifts against the lens, so the letters show the side that faces it */
+      const dt = Math.min(.05, Math.max(0, L.time - eye.t)), gx = clamp((L.cx.v - W / 2) / (W / 2), -1, 1), k = 1 - Math.exp(-5 * dt);
+      eye.t = L.time; eye.x += (-gx * W * (isPhone ? .22 : .16) - eye.x) * k;
+      /* the record turns and the moon goes round while the hero is on screen (their shadows don't change, so the shadow map stays) */
+      if (!reduce && spin && scrollY < H) { spin.rotation.y -= dt * 2.2; globe.rotation.y += dt * .3; orbit.rotation.y += dt * .6; dirty = true; }
+      /* render the world only around the lens, and only when something there changed */
+      const R = Math.max(L.rx.v, L.ry.v) * 1.35 + 16, x0 = clamp(Math.floor((L.cx.v - R) * dpr), 0, rt.width), y0 = clamp(Math.floor((H - L.cy.v - R) * dpr), 0, rt.height);
+      const x1 = clamp(Math.ceil((L.cx.v + R) * dpr), 0, rt.width), y1 = clamp(Math.ceil((H - L.cy.v + R) * dpr), 0, rt.height);
+      const now = `${x0},${y0},${x1},${y1},${eye.x.toFixed(1)}`;
+      if (dirty || now !== last) {
+        frame();
+        rt.scissor.set(x0, y0, Math.max(1, x1 - x0), Math.max(1, y1 - y0)); rt.scissorTest = true;
+        renderer.setRenderTarget(rt); renderer.render(scene, cam);
+        last = now; dirty = false;
+      }
+      renderer.setRenderTarget(null);
+      uni.uSize.value.set(W, H); uni.uCentre.value.set(L.cx.v, L.cy.v); uni.uRadius.value.set(L.rx.v, L.ry.v); uni.uFlow.value.set(L.flow[0], L.flow[1]);
+      uni.uPeel.value.set(L.peelX.v, L.peelY.v); uni.uAngle.value = L.angle; uni.uOpen.value = L.open; uni.uTime.value = L.time; uni.uDpr.value = dpr;
+      uni.uDock.value = clamp(L.dock.v, 0, 1); uni.uAmbient.value = isPhone ? 1 : 0;
+      uni.uBone.value.set(css('--paper')); uni.uInk.value.set(css('--ink')); uni.uCarmine.value.set(css('--accent'));
+      renderer.render(quadScene, ortho);
+    }
+  };
+};
+let lensGL = null, lensStarted = false;
+/* the lens starts once three.js has arrived (it loads alongside the page); without it, the construction drawing */
+const startLens = () => {
+  if (lensStarted) return;
+  lensStarted = true;
+  try { lensGL = makeLens3D(); } catch (e) { lensGL = null; }
+  if (!lensGL) {
+    /* no 3D: a fresh canvas (the failed attempt may hold a context of the wrong kind) and the construction drawing */
+    const old = $('#lens-gl'), fresh = old.cloneNode(false); old.replaceWith(fresh);
+    try { lensGL = makeLensGL(); } catch (e) { lensGL = null; }
+  }
+  if (lensGL && lensGL.three) {
+    const at = (n) => () => lensGL.spots()[n];
+    DETAILS.splice(0, DETAILS.length,
+      { at: () => centreOf($$('#w1 .ch').slice(1, 3)), cap: 'The name in solid letters, each standing right behind its flat one.' },
+      { at: at('music'), cap: 'Music. A record player, the record turning.' },
+      { at: at('tech'), cap: 'Tech. A laptop with the code for this page on it.' },
+      { at: at('space'), cap: 'Space. A ringed planet and its moon.' },
+      { at: at('headphones'), cap: 'Headphones, on their stand.' },
+      { at: at('controller'), cap: 'A game controller.' });
+    /* build and compile the world once the name has settled, before anyone opens the lens */
+    const warm = () => { if (!heroEl.classList.contains('settled')) { setTimeout(warm, 700); return; } try { lensGL.warm(); } catch (e) {} };
+    setTimeout(warm, 1500);
+  }
+  if (wavy.matches && heroEl.classList.contains('settled')) phoneLens();
+};
+let syncCursor = () => {};
+const desktopLens = () => !!lensGL && !wavy.matches && !reduce;
+const refreshDrawing = () => { if (!lensGL) return; if (lensGL.three) { lensGL.refresh(); return; } drawXray(); lensGL.upload(); };
+const setOpen = (to, dur) => { if (L.o1 === to) return; L.o0 = L.open; L.o1 = to; L.oT = performance.now(); L.oDur = dur; };
+const openLens = () => { if (!desktopLens()) return; refreshDrawing(); L.intent = true; L.fresh = true; heroEl.classList.add('lens-open'); syncCursor(); };
+const closeLens = () => { if (wavy.matches || !L.intent) return; L.intent = false; L.keys = false; heroEl.classList.remove('lens-open'); syncCursor(); };
+const DOCKS = '.intro .lk';
+heroEl.addEventListener('pointermove', (e) => {
+  if (e.pointerType === 'touch') return;
+  const h = heroBox(); L.px = e.clientX - h.left; L.py = e.clientY - h.top; L.inside = true; L.keys = false; L.dockEl = e.target.closest(DOCKS);
+  if (film) film.pointer(L.px, L.py);
+});
+heroEl.addEventListener('pointerleave', () => { L.inside = false; L.dockEl = null; if (film) film.pointer(-1e4, -1e4); });
+heroEl.addEventListener('click', (e) => {
+  if (film && !L.intent && scrollY < 40 && !e.target.closest('a, button')) { const i = film.hit(e.clientX, e.clientY); if (i >= 0) { goTo(WORK[i].go); return; } }
+  if (!desktopLens() || scrollY > 40 || e.target.closest('a, button, .proto')) return;
+  const h = heroBox(); L.px = e.clientX - h.left; L.py = e.clientY - h.top; L.inside = true;
+  if (L.intent) closeLens(); else openLens();
+});
+$('#lens-key').addEventListener('click', () => {
+  if (wavy.matches) { phoneNext(); return; }
+  if (L.intent) { closeLens(); return; }
+  [L.px, L.py] = DETAILS[0].at(); L.inside = true; L.keys = true; openLens();
+});
+
+/* phones: drag the window (soft drag, it grows a little while held); letting go sends it home; a tap visits the next detail */
+const phoneSpot = () => (L.detail < 0 ? windowSpot() : DETAILS[L.detail].at());
+const phoneNext = () => {
+  L.detail += 1; if (L.detail >= DETAILS.length) L.detail = -1;
+  lcap.textContent = L.detail < 0 ? 'Under the page.' : DETAILS[L.detail].cap;
+  const [x, y] = phoneSpot(); L.glide = { from: [L.px, L.py], to: [x, y], t0: performance.now() };
+};
+ring.addEventListener('pointerdown', (e) => {
+  if (!wavy.matches) return;
+  e.preventDefault(); ring.setPointerCapture(e.pointerId);
+  L.glide = null; L.drag = { id: e.pointerId, sx: e.clientX, sy: e.clientY, ox: L.px, oy: L.py, dist: 0, moved: false };
+});
+ring.addEventListener('pointermove', (e) => {
+  const d = L.drag; if (!d || d.id !== e.pointerId) return;
+  const W = heroEl.clientWidth, H = heroEl.clientHeight, r = lensR();
+  const nx = clamp(d.ox + e.clientX - d.sx, r * .6, W - r * .6), ny = clamp(d.oy + e.clientY - d.sy, r * .6, H - r * .6);
+  d.dist += Math.hypot(nx - L.px, ny - L.py); L.px = nx; L.py = ny;
+  if (d.dist > 5) d.moved = true;
+});
+const phoneRelease = (e) => {
+  const d = L.drag; if (!d || (e && d.id !== e.pointerId)) return;
+  L.drag = null;
+  if (d.moved) { L.detail = -1; lcap.textContent = 'Under the page.'; const [x, y] = windowSpot(); L.glide = { from: [L.px, L.py], to: [x, y], t0: performance.now() }; }
+  else phoneNext();
+};
+ring.addEventListener('pointerup', phoneRelease); ring.addEventListener('pointercancel', phoneRelease);
+const phoneLens = () => {
+  if (!lensGL || !wavy.matches) return;
+  lensGL.size(); refreshDrawing();
+  const [x, y] = phoneSpot(); L.px = x; L.py = y;
+  if (L.o1 !== 1) { L.fresh = true; setOpen(1, reduce ? 1 : 520); }
+  if (reduce) { lensFrame(1 / 60); }
+};
+
+/* every frame: the open curve, the springs, the flow that stretches the oval, docking, and the drawing's slight parallax */
+const lensFrame = (dt) => {
+  if (!lensGL) return;
+  dt = Math.min(Math.max(dt, 0), .05);
+  const now = performance.now(), phone = wavy.matches, W = heroEl.clientWidth, H = heroEl.clientHeight;
+  if (!phone) {
+    const want = L.intent && (L.inside || L.keys) && scrollY < 40 && !menuOpen;
+    setOpen(want ? 1 : 0, want ? (L.fresh ? 900 : 360) : 780);
+  }
+  const k = clamp((now - L.oT) / L.oDur, 0, 1);
+  L.open = reduce ? L.o1 : L.o0 + (L.o1 - L.o0) * smooth(k);
+  if (L.open <= .001 && L.o1 === 0) { lensGL.draw(phone); return; }
+  let tx = L.px, ty = L.py, trx, tr_y, docking = false;
+  if (phone) {
+    if (L.glide) { const g = L.glide, p = clamp((now - g.t0) / 550, 0, 1), e = smoother(p); tx = g.from[0] + (g.to[0] - g.from[0]) * e; ty = g.from[1] + (g.to[1] - g.from[1]) * e; L.px = tx; L.py = ty; if (p >= 1) L.glide = null; }
+    const r = lensR() * (L.drag && L.drag.moved ? 1.3 : 1); trx = r; tr_y = r * .91;
+  } else {
+    const base = lensR(), gx = clamp((L.px - W / 2) / (W / 2), -1, 1), gy = clamp((L.py - H / 2) / (H / 2), -1, 1);
+    trx = base * (1.05 - .17 * Math.abs(gx)); tr_y = base * (.9 - .13 * Math.abs(gy));
+    L.angle += (gx * gy * .12 - L.angle) * (1 - Math.exp(-12 * dt));
+    L.shift = [-gx * 14, -gy * 9];
+    if (L.dockEl && L.open > .5) { const b = boxOf(L.dockEl); tx = b.x + b.w / 2; ty = b.y + b.h / 2; trx = b.w / 2 + 16; tr_y = b.h / 2 + 9; docking = true; }
+  }
+  if (L.fresh) { L.cx = spring(tx); L.cy = spring(ty); L.rx = spring(trx); L.ry = spring(tr_y); L.flow = [0, 0]; L.fresh = false; }
+  const w = docking ? 26 : 18;
+  settle(L.cx, tx, dt, w); settle(L.cy, ty, dt, w);
+  const dx = tx - L.cx.v, dy = ty - L.cy.v, dd = Math.hypot(dx, dy), c = dd > .001 ? (1 - Math.exp(-dd / 115)) / dd : 0, fk = 1 - Math.exp(-18 * dt);
+  L.flow[0] += (dx * c - L.flow[0]) * fk; L.flow[1] += (dy * c - L.flow[1]) * fk;
+  settle(L.rx, trx, dt, phone ? 18 : docking ? 24 : 15); settle(L.ry, tr_y, dt, phone ? 18 : docking ? 24 : 15);
+  settle(L.dock, docking ? 1 : 0, dt, docking ? 24 : 15);
+  settle(L.peelX, docking ? L.px - tx : 0, dt, 22); settle(L.peelY, docking ? L.py - ty : 0, dt, 22);
+  if (phone) { L.shift = [-(L.cx.v - W / 2) / W * 16, -(L.cy.v - H / 2) / H * 10]; lensEl.style.transform = `translate(${L.cx.v}px,${L.cy.v}px)`; grip.style.top = `${L.ry.v - 20}px`; ring.style.width = `${2 * L.rx.v}px`; ring.style.height = `${2 * L.ry.v}px`; ring.style.left = `${-L.rx.v}px`; ring.style.top = `${-L.ry.v}px`; }
+  L.time += dt;
+  lensGL.draw(phone);
+};
+addEventListener('keydown', (e) => {
+  if (!L.intent || menuOpen) return;
+  if (e.key === 'Escape') { closeLens(); return; }
+  if (document.activeElement !== $('#lens-key')) return;
+  const st = e.shiftKey ? 40 : 16;
+  if (e.key === 'Home') { e.preventDefault(); [L.px, L.py] = DETAILS[0].at(); return; }
+  const d = { ArrowLeft: [-st, 0], ArrowRight: [st, 0], ArrowUp: [0, -st], ArrowDown: [0, st] }[e.key];
+  if (d) { e.preventDefault(); L.keys = true; L.px += d[0]; L.py += d[1]; }
+});
+
+/* the drawing under the page: a construction drawing of this very hero, drawn from its live layout */
+const drawXray = () => {
+  const W = heroEl.clientWidth, H = heroEl.clientHeight, dpr = Math.min(devicePixelRatio || 1, 2);
+  if (xcv.width !== Math.round(W * dpr) || xcv.height !== Math.round(H * dpr)) { xcv.width = Math.round(W * dpr); xcv.height = Math.round(H * dpr); }
+  const c = xcx, ink = css('--ink'), red = css('--field'), paper = css('--paper');
+  c.setTransform(dpr, 0, 0, dpr, 0, 0); c.setLineDash([]);
+  const line = (a, b, x, y) => { c.beginPath(); c.moveTo(a, b); c.lineTo(x, y); c.stroke(); };
+  const dash = (on) => c.setLineDash(on ? [5, 5] : []);
+  const mono = (t, x, y, col = ink, al = 'left', size = 10) => { c.font = `500 ${size}px "JetBrains Mono", ui-monospace, monospace`; c.fillStyle = col; c.textAlign = al; c.fillText(t, x, y); };
+  c.fillStyle = paper; c.fillRect(0, 0, W, H);
+  c.lineWidth = 1;
+  for (let x = 0; x <= W; x += 24) { c.strokeStyle = x % 120 ? 'rgba(18,26,66,.06)' : 'rgba(18,26,66,.12)'; line(x + .5, 0, x + .5, H); }
+  for (let y = 0; y <= H; y += 24) { c.strokeStyle = y % 120 ? 'rgba(18,26,66,.06)' : 'rgba(18,26,66,.12)'; line(0, y + .5, W, y + .5); }
+  c.strokeStyle = 'rgba(154,18,32,.45)'; dash(true); line(W / 2, 0, W / 2, H); line(0, H / 2, W, H / 2); dash(false);
+  mono('50%', W / 2 + 6, H / 2 - 6, red);
+  /* the name, outlined, with its baseline and cap height */
+  $$('.word').forEach((word) => {
+    const fs = parseFloat(getComputedStyle(word).fontSize);
+    c.font = `400 ${fs}px Anton, Impact, sans-serif`;
+    const m = c.measureText('H'), fa = m.fontBoundingBoxAscent || fs * .9, fd = m.fontBoundingBoxDescent || fs * .25, cap = m.actualBoundingBoxAscent || fs * .72;
+    let base = 0, minX = Infinity, maxX = -Infinity;
+    c.lineWidth = 1.3; c.strokeStyle = ink;
+    $$('.ch', word).forEach((ch) => { const b = boxOf(ch); base = b.y + (b.h - (fa + fd)) / 2 + fa; c.strokeText(ch.textContent, b.x, base); minX = Math.min(minX, b.x); maxX = Math.max(maxX, b.x + b.w); });
+    c.lineWidth = 1; c.strokeStyle = 'rgba(154,18,32,.6)'; dash(true); line(minX - 24, base, maxX + 24, base); line(minX - 24, base - cap, maxX + 24, base - cap); dash(false);
+    const right = maxX + 150 < W, lx = right ? maxX + 28 : minX - 28, al = right ? 'left' : 'right';
+    mono('BASELINE', lx, base + 4, red, al); mono('CAP HEIGHT', lx, base - cap + 4, red, al);
+    mono(`ANTON · ${(fs / W * 100).toFixed(1)}VW · ${Math.round(fs)}PX`, minX, base - cap - 12);
+  });
+  /* the film, as a wireframe on its own curve */
+  if (film) {
+    const G = film.G, P = film.proj;
+    const edge = (y) => { c.beginPath(); for (let x = -G.half; x <= G.half; x += 10) { const [px, py] = P(x, y); if (x === -G.half) c.moveTo(px, py); else c.lineTo(px, py); } c.stroke(); };
+    c.lineWidth = 1.2; c.strokeStyle = ink; edge(-G.h0 / 2); edge(G.h0 / 2);
+    c.lineWidth = 1; c.strokeStyle = 'rgba(18,26,66,.4)'; edge(-G.h0 / 2 + G.h0 * 64 / 576); edge(G.h0 / 2 - G.h0 * 64 / 576);
+    const cw = G.p0 * 496 / 512, chh = G.h0 * 448 / 576, iw = G.p0 * 456 / 512, ih = G.h0 * 256.5 / 576, iy = G.h0 * (110 - 288) / 576;
+    const quad = (q, cross) => { c.beginPath(); q.forEach(([a, b], j) => (j ? c.lineTo(a, b) : c.moveTo(a, b))); c.closePath(); if (cross) { c.moveTo(...q[0]); c.lineTo(...q[2]); c.moveTo(...q[1]); c.lineTo(...q[3]); } c.stroke(); };
+    for (let k = -9; k <= 8; k++) {
+      const xc = (k + .5) * G.p0; if (Math.abs(xc) + cw / 2 > G.half) continue;
+      c.strokeStyle = ink; quad([P(xc - cw / 2, -chh / 2), P(xc + cw / 2, -chh / 2), P(xc + cw / 2, chh / 2), P(xc - cw / 2, chh / 2)]);
+      c.strokeStyle = 'rgba(18,26,66,.3)'; quad([P(xc - iw / 2, iy), P(xc + iw / 2, iy), P(xc + iw / 2, iy + ih), P(xc - iw / 2, iy + ih)], true);
+    }
+    const [lx, ly] = P(G.half * .55, -G.h0 / 2);
+    mono(G.phone ? 'WEBGL RIBBON · ON A SINE PATH' : 'WEBGL RIBBON · R 0.55W · F 0.70W · 180 SEGMENTS', Math.min(lx, W - 16), ly - 14, ink, 'right');
+  }
+  /* the voice line, boxed and named */
+  const vEl = $('.voice'), v = boxOf(vEl), vfs = parseFloat(getComputedStyle(vEl).fontSize);
+  c.strokeStyle = ink; dash(true); c.strokeRect(v.x - 8, v.y - 8, v.w + 16, v.h + 16); dash(false);
+  c.font = `400 ${vfs}px "Times New Roman", Times, serif`; c.fillStyle = 'rgba(18,26,66,.5)'; c.textAlign = 'left';
+  $$('.voice .ln span').forEach((sp) => { const b = boxOf(sp); c.fillText(sp.textContent, b.x, b.y + b.h * .78); });
+  mono(`TIMES NEW ROMAN · ${(vfs / W * 100).toFixed(1)}VW / 1.02`, v.x - 8, v.y - 16);
+  /* the intro as a wireframe */
+  const ro = boxOf($('.intro .role')), su = boxOf($('.intro .sum'));
+  c.fillStyle = 'rgba(18,26,66,.7)'; c.fillRect(ro.x, ro.y + ro.h * .3, ro.w * .6, ro.h * .42);
+  const n = Math.max(1, Math.round(su.h / 21)); c.fillStyle = 'rgba(18,26,66,.28)';
+  for (let i = 0; i < n; i++) c.fillRect(su.x, su.y + i * (su.h / n) + 6, su.w * (i === n - 1 ? .55 : .95), 6);
+  $$('.intro .lk').forEach((a) => { const b = boxOf(a); c.fillStyle = 'rgba(18,26,66,.5)'; c.fillRect(b.x, b.y + b.h / 2 - 3, b.w * .78, 6); c.fillStyle = ink; c.fillRect(b.x, b.y + b.h - 13, b.w, 1); });
+  mono('INSTRUMENT SANS · 14 / 21', ro.x, ro.y - 10);
+  /* the menu, the reel, the margin and a title block */
+  const mbx = boxOf($('.menu i')); c.strokeStyle = ink; c.beginPath(); c.arc(mbx.x + mbx.w / 2, mbx.y + mbx.h / 2, mbx.w / 2, 0, Math.PI * 2); c.stroke();
+  mono('MENU · 44PX', mbx.x - 10, mbx.y + mbx.h / 2 + 4, ink, 'right');
+  /* the reel, drawn at its resting corner (it may be under the pointer right now) */
+  const rs = (reel.offsetWidth || 136) * (wavy.matches ? .41 : .47), rcx = innerWidth - 18 - rs / 2, rcy = Math.min(H, innerHeight) - 18 - rs / 2;
+  c.beginPath(); c.arc(rcx, rcy, rs / 2, 0, Math.PI * 2); c.stroke(); mono('MOTION SWITCH', rcx - rs / 2 - 10, rcy + 4, ink, 'right');
+  const gut = parseFloat(getComputedStyle($('.intro')).left) || W * .026, my = H - 46;
+  c.strokeStyle = red; line(0, my, gut, my); line(gut, my - 6, gut, my + 6); mono('2.6VW', gut + 6, my + 4, red);
+  if (G_phone()) { const [wx, wy] = windowSpot(), wr = lensR() * .9; c.strokeStyle = red; c.beginPath(); c.arc(wx, wy, wr * .55, 0, Math.PI * 2); c.stroke(); line(wx - wr * .8, wy, wx + wr * .8, wy); line(wx, wy - wr * .8, wx, wy + wr * .8); mono('UNDER THE PAGE', wx, wy - wr * .62, ink, 'center', 9); mono('TAP FOR A DETAIL', wx, wy + wr * .62 + 8, ink, 'center', 9); }
+  if (!G_phone()) { const tw = 236, tx = W - gut - tw, ty = 92; c.strokeStyle = ink; c.strokeRect(tx, ty, tw, 58); line(tx, ty + 20, tx + tw, ty + 20); mono('JATIN DHIR · LANDING', tx + 10, ty + 14); mono('DRAWING 01 · SCALE 1:1 · REV 3', tx + 10, ty + 36); mono('PUNJAB · 2026', tx + 10, ty + 50); }
+};
+const G_phone = () => wavy.matches;
+const threeTag = $('#three-js');
+if (window.THREE || !threeTag) startLens();
+else { threeTag.addEventListener('load', startLens); threeTag.addEventListener('error', startLens); setTimeout(startLens, 9000); }
+
+const tick = (dt) => {
+  if (!stripLocked) {
+    if (!dragging) { pos += vel; vel *= 0.92; if (autoplay) pos -= 0.04 * dt; }
+    wrapPos();
+  }
+  if (film) film.frame(dt); else track.style.transform = `translate3d(${pos}px,0,0)`;
+  lensFrame(dt / 1000);
+};
+
+const hasLibs = window.gsap && window.ScrollTrigger;
+if (reduce || !hasLibs) {
+  root.classList.remove('motion');
+  if (film) { film.S.alpha = 1; film.schedule(); }
+  heroEl.classList.add('settled');
+  const ready = () => { if (wavy.matches) phoneLens(); };
+  if (document.readyState === 'complete') ready(); else addEventListener('load', ready);
+  if (!reduce) { let t0 = performance.now(); const loop = (t) => { tick(t - t0); t0 = t; requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
+  return;
+}
+
+gsap.registerPlugin(ScrollTrigger);
+lenis = new Lenis({ lerp: 0.2 });
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add((t) => lenis.raf(t * 1000));
+gsap.ticker.lagSmoothing(0);
+gsap.ticker.add((t, dt) => tick(dt));
+const rnd = (a, b) => a + Math.random() * (b - a);
+
+/* ---- no loader for now: the hero assembles as soon as the fonts and the first frames are in, or after a short wait ---- */
+lenis.stop();
+if (film) { film.S.alpha = 0; film.S.entry = 0; }
+gsap.set('.voice .ln span', { opacity: 0, y: 12 });
+const framesIn = Promise.race([
+  Promise.all([film ? film.ready() : 0, document.fonts ? document.fonts.ready : 0]),
+  new Promise((r) => setTimeout(r, 1500))
+]);
+const rise = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
+framesIn.then(() => { rise.play(); lenis.start(); });
+
+/* ---- the hero assembles: letters rise and settle, the voice line reveals, the film sweeps in ---- */
+rise.to(['.bar', '.menu'], { opacity: 1, duration: .6 }, .1)
+  .fromTo('#w1 .ch', { yPercent: 115, rotation: 3, opacity: 1 }, { yPercent: 0, rotation: 0, duration: 1.15, stagger: .085 }, .1)
+  .fromTo('#w2 .ch', { yPercent: -115, rotation: -3, opacity: 1 }, { yPercent: 0, rotation: 0, duration: 1.15, stagger: .085 }, .64)
+  .to('.voice .ln span', { opacity: 1, y: 0, duration: .8, stagger: .5, ease: 'power1.out' }, .8)
+  .add(() => {
+    if (!film) { gsap.to('#strip', { opacity: 1, duration: .8 }); return; }
+    film.S.alpha = 1;
+    gsap.fromTo(film.S, { entry: 0 }, { entry: 2.6, duration: 2.6, ease: 'none' });
+  }, .9)
+  .fromTo(['.intro', '.base'], { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 1, ease: 'power1.out' }, 1.1)
+  .to(['.reel', '.lens'], { opacity: 1, duration: .6 }, 1.3)
+  .add(() => { heroEl.classList.add('settled'); if (wavy.matches) phoneLens(); }, 2.3);
+
+/* a CSS matrix3d that lays the rectangle (x, y, w, h) of an element onto four screen corners (top-left first, clockwise):
+   Heckbert's square-to-quad homography, composed with the rectangle's own scale */
+const quadMatrix = (x, y, w, h, q) => {
+  const [[x0, y0], [x1, y1], [x2, y2], [x3, y3]] = q;
+  const dx1 = x1 - x2, dx2 = x3 - x2, dx3 = x0 - x1 + x2 - x3, dy1 = y1 - y2, dy2 = y3 - y2, dy3 = y0 - y1 + y2 - y3;
+  let g = 0, hh = 0;
+  if (Math.abs(dx3) > 1e-9 || Math.abs(dy3) > 1e-9) { const den = dx1 * dy2 - dx2 * dy1; g = (dx3 * dy2 - dx2 * dy3) / den; hh = (dx1 * dy3 - dx3 * dy1) / den; }
+  const a = x1 - x0 + g * x1, b = x3 - x0 + hh * x3, c = x0, d = y1 - y0 + g * y1, e = y3 - y0 + hh * y3, f = y0;
+  /* (u, v) = ((px - x) / w, (py - y) / h) */
+  const m = [[a / w, b / h, c - a * x / w - b * y / h], [d / w, e / h, f - d * x / w - e * y / h], [g / w, hh / h, 1 - g * x / w - hh * y / h]];
+  return `matrix3d(${[m[0][0], m[1][0], 0, m[2][0], m[0][1], m[1][1], 0, m[2][1], 0, 0, 1, 0, m[0][2], m[1][2], 0, m[2][2]].map((v) => +v.toFixed(8)).join(',')})`;
+};
+const mm = gsap.matchMedia();
+let heroWiped = false, boardDrawn = false, ovOn = false;
+/* scroll-driven scenes follow their scroll progress through a short low-pass (as the reference does, 65ms),
+   so even coarse wheel steps read as one continuous motion */
+const follower = (apply) => {
+  let target = 0, value = 0;
+  const step = (t, dtMs) => {
+    if (Math.abs(target - value) < 1e-5) return;
+    value += (target - value) * (1 - Math.exp(-Math.min(dtMs, 64) / 65));
+    if (Math.abs(target - value) < 1e-5) value = target;
+    apply(value);
+  };
+  gsap.ticker.add(step);
+  return { to: (p) => { target = p; }, jump: (p) => { target = value = p; apply(p); }, kill: () => gsap.ticker.remove(step) };
+};
+mm.add('(min-width: 900px)', () => {
+  /* ---- scroll, after the reference's measured exit (hero progress 0 to 1 over three screens): the letters run off to the left
+     one by one trailing speed lines; the copy wipes away right to left; a cream wave sweeps the red off from the right; the
+     film swings left and back, flattens, and the camera pushes into frame one, which already shows chapter one's board ---- */
+  const ease = (a, b, v) => { const t = clamp((v - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
+  const masks = $$('#w1 .mk, #w2 .mk'), copy = [$('.bar .me'), $('.voice'), $('.intro'), $('.base')], wipe = $('#wipe path'), cover = $('#zoomcover');
+  let zg = null, lockFrom = 0, lockTo = 0, locked = false, last = -1;
+  const exit = (eb) => {
+    if (eb === last) return;
+    last = eb;
+    masks.forEach((m, t) => {
+      const r = t < 5 ? .018 + .024 * t : .225 + (t - 5) * .024, a = ease(r, r + .2, eb), n = Math.sin(a * Math.PI * 2) * (1 - a), si = Math.sin(a * Math.PI);
+      m.style.setProperty('--sp', (.95 * ease(.015, .09, a) * (1 - ease(.82, 1, a))).toFixed(3));
+      m.style.transform = a > 0 ? `translate(${(-135 * a).toFixed(3)}vw,${(-28 * n).toFixed(2)}px) skewX(${(-12 * si).toFixed(2)}deg) rotate(${(-4 * n).toFixed(2)}deg) scale(${(1 + .11 * si).toFixed(4)},${(1 - .055 * si).toFixed(4)})` : '';
+    });
+    copy.forEach((el, t) => {
+      const r = ease(.28 + .007 * t, .41 + .007 * t, eb);
+      el.style.clipPath = r > 0 ? `inset(0 ${(100 * r).toFixed(2)}% 0 0)` : ''; el.style.translate = r > 0 ? `${(-85 * r).toFixed(1)}px 0` : ''; el.inert = r > .5;
+    });
+    const e = 140 - 195 * ease(.3, .69, eb);
+    heroWiped = e < 92;
+    wipe.setAttribute('d', `M ${e} -5 C ${e + 35} 15 ${e - 45} 33 ${e - 17} 54 C ${e + 13} 76 ${e + 30} 83 ${e - 5} 105 L 150 105 L 150 -5 Z`);
+    if (eb > .005) { if (!heroEl.classList.contains('settled')) heroEl.classList.add('settled'); closeLens(); }
+    if (!film) { stripEl.style.opacity = String(1 - ease(.4, .6, eb)); cover.style.opacity = String(ease(.6, .7, eb)); return; }
+    const S = film.S;
+    /* the band holds its shape for the push, so frame one's corners are exactly where the sharp board is pinned */
+    S.live = 1 - ease(.24, .4, eb); if (eb > .02) S.hoverT = 0;
+    /* the swing eases out as the film travels to its flat, registered place, so the push lands on frame one */
+    S.sweep = film.G.W * .24 * Math.sin(ease(.24, .6, eb) * Math.PI) * (1 - ease(.4, .6, eb));
+    /* frame one is carried to the centre while the film flattens */
+    if (eb > .4 && !locked) { locked = true; stripLocked = true; lockFrom = pos; lockTo = pos + film.lockOffset(); }
+    if (eb <= .4 && locked) { locked = false; stripLocked = false; }
+    if (locked) pos = lockFrom + (lockTo - lockFrom) * ease(.4, .6, eb);
+    S.bend = 1 - ease(.4, .66, eb);
+    zg = zg || film.zoomGeo();
+    film.setZoom(zg, ease(.46, .66, eb));
+    S.alpha = eb < .711 ? 1 : 0;
+    /* frame one shows its project at rest, and the chapter's board only once the push begins */
+    const wantOv = boardDrawn && eb > .3;
+    if (wantOv !== ovOn) { ovOn = wantOv; film.setOverride(0, wantOv ? ovCanvas : null); }
+    /* from just before the zoom, the full-resolution board is pinned to frame one's four corners, so the camera always pushes into
+       a sharp picture (the band's own copy of it is small and goes soft when enlarged); then it settles to the full screen */
+    const W = heroEl.clientWidth, H = heroEl.clientHeight;
+    if (!boardDrawn || eb < .44) { if (cover.style.opacity !== '0') cover.style.opacity = '0'; return; }
+    film.draw();
+    if (eb < .67) {
+      const A = film.pictureAspect(), vw = W / H > A ? H * A : W, vh = W / H > A ? H : W / A, vx = (W - vw) / 2, vy = (H - vh) / 2;
+      Object.assign(cover.style, { left: '0px', top: '0px', width: `${W}px`, height: `${H}px`, transformOrigin: '0 0',
+        transform: quadMatrix(vx, vy, vw, vh, film.frameQuad(0)), clipPath: `inset(${vy.toFixed(2)}px ${vx.toFixed(2)}px)`, opacity: '1' });
+      return;
+    }
+    const cs = ease(.67, .8, eb), cw = zg.w + (W - zg.w) * cs, chh = zg.h + (H - zg.h) * cs;
+    Object.assign(cover.style, { left: `${(W - cw) / 2}px`, top: `${(H - chh) / 2}px`, width: `${cw}px`, height: `${chh}px`, transform: '', clipPath: '', opacity: '1' });
+  };
+  let st = null;
+  const heroFollow = follower(exit);
+  st = ScrollTrigger.create({ trigger: '#hero', start: 'top top', end: '+=300%', pin: true, anticipatePin: 1, invalidateOnRefresh: true,
+    onRefresh: (s) => { zg = null; last = -1; heroFollow.jump(s.progress); }, onUpdate: (s) => heroFollow.to(s.progress),
+    onLeaveBack: () => { locked = false; stripLocked = false; } });
+  exit(st.progress);
+  return () => {
+    st.kill(); heroFollow.kill(); stripLocked = false;
+    masks.forEach((m) => { m.style.transform = ''; m.style.removeProperty('--sp'); });
+    copy.forEach((el) => { el.style.clipPath = ''; el.style.translate = ''; el.inert = false; });
+    wipe.setAttribute('d', '');
+    if (film) { film.S.bend = 1; film.S.sweep = 0; film.S.alpha = 1; film.setZoom(null, 0); }
+    Object.assign(cover.style, { opacity: '0', transform: '', clipPath: '' });
+    if (film) film.S.live = 1;
+  };
+});
+
+/* ---- chapters, after the reference's building: each project is a board of rooms (its real screens) and the camera flies
+   room to room as you scroll. Wide shot with the title, in to a room, hold, pull back, on to the next, wide again, out. ---- */
+const ROOM = { w: 640, h: 400, gap: 44, pw: 196, ph: 424 };
+const boardLayout = () => {
+  const { w, h, gap, pw, ph } = ROOM;
+  return {
+    rects: [{ x: 0, y: 0, w, h }, { x: w + gap, y: 0, w, h }, { x: 0, y: h + gap, w, h }, { x: w + gap, y: h + gap, w, h }, { x: 2 * (w + gap), y: (2 * h + gap - ph) / 2, w: pw, h: ph }],
+    bw: 2 * (w + gap) + pw, bh: 2 * h + gap
+  };
+};
+const BOARD = boardLayout();
+/* camera states: a focus point on the board, a scale, and where on screen that point sits */
+const camOv = (W, H) => ({ fx: BOARD.bw / 2, fy: BOARD.bh / 2, s: Math.min(.56 * W / BOARD.bw, .66 * H / BOARD.bh), ax: .67 * W, ay: .5 * H });
+const camRoom = (i, W, H) => { const r = BOARD.rects[i]; return { fx: r.x + r.w / 2, fy: r.y + r.h / 2, s: Math.min(.54 * W / r.w, .72 * H / r.h), ax: .655 * W, ay: .47 * H }; };
+const mixCam = (a, b, t, ls = true) => ({ fx: a.fx + (b.fx - a.fx) * t, fy: a.fy + (b.fy - a.fy) * t, ax: a.ax + (b.ax - a.ax) * t, ay: a.ay + (b.ay - a.ay) * t, s: ls ? Math.exp(Math.log(a.s) + (Math.log(b.s) - Math.log(a.s)) * t) : a.s + (b.s - a.s) * t });
+const camKey = (k, W, H) => {
+  const ov = camOv(W, H);
+  switch (k[1]) {
+    case 'ov': return ov;
+    case 'push': return { ...ov, s: ov.s * 1.06 };
+    case 'room': return camRoom(k[2], W, H);
+    case 'hold': { const r = camRoom(k[2], W, H); return { ...r, s: r.s * 1.025 }; }
+    case 'mid': { const a = k[2] < 0 ? ov : camRoom(k[2], W, H), b = camRoom(k[3], W, H), m = mixCam(a, b, .5); return { ...m, s: Math.sqrt(ov.s * Math.min(a.s, b.s)) * .92 }; }
+    case 'exit': return { ...ov, s: ov.s * .9, ay: .47 * H };
+    default: return ov;
+  }
+};
+/* the reference's pacing, mapped to five rooms */
+const KEYS = [[0, 'ov'], [.055, 'push'], [.095, 'mid', -1, 0], [.14, 'room', 0], [.235, 'hold', 0], [.275, 'mid', 0, 1], [.32, 'room', 1], [.43, 'hold', 1],
+  [.478, 'mid', 1, 2], [.535, 'room', 2], [.625, 'hold', 2], [.675, 'mid', 2, 3], [.72, 'room', 3], [.805, 'hold', 3], [.84, 'mid', 3, 4], [.87, 'room', 4],
+  [.915, 'hold', 4], [.955, 'ov'], [1, 'exit']];
+const CAPS = [[.11, .3], [.3, .51], [.51, .7], [.7, .85], [.85, .94]];
+const TABS = [[.13, .29], [.29, .49], [.49, .68], [.68, .84], [.84, .94]];
+const TAB_AT = [.18, .37, .57, .76, .89];
+const camAt = (p, W, H) => {
+  let i = 0;
+  while (i < KEYS.length - 2 && p > KEYS[i + 1][0]) i++;
+  const a = KEYS[i], b = KEYS[i + 1], t = clamp((p - a[0]) / (b[0] - a[0]), 0, 1);
+  return mixCam(camKey(a, W, H), camKey(b, W, H), smoother(t));
+};
+const camCss = (c) => `translate3d(${(c.ax - c.fx * c.s).toFixed(2)}px,${(c.ay - c.fy * c.s).toFixed(2)}px,0) scale(${c.s.toFixed(5)})`;
+
+/* the board drawn on a canvas, exactly as the chapter opens: it fills frame one of the film and the cover that hands over */
+const ovCanvas = document.createElement('canvas'), ovCv = $('#ov-cv');
+const drawBoard = (ch) => {
+  const W = innerWidth, H = innerHeight, dpr = Math.min(devicePixelRatio || 1, 2), c = ovCanvas.getContext('2d');
+  ovCanvas.width = Math.round(W * dpr); ovCanvas.height = Math.round(H * dpr);
+  c.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const dark = ch.classList.contains('dark'), ink = css('--ink'), paper = css('--paper');
+  c.fillStyle = dark ? css('--field') : paper; c.fillRect(0, 0, W, H);
+  c.lineWidth = 1;
+  for (let x = 0; x <= W; x += 24) { c.strokeStyle = dark ? (x % 120 ? 'rgba(243,239,228,.04)' : 'rgba(243,239,228,.08)') : (x % 120 ? 'rgba(18,26,66,.045)' : 'rgba(18,26,66,.085)'); c.beginPath(); c.moveTo(x + .5, 0); c.lineTo(x + .5, H); c.stroke(); }
+  for (let y = 0; y <= H; y += 24) { c.strokeStyle = dark ? (y % 120 ? 'rgba(243,239,228,.04)' : 'rgba(243,239,228,.08)') : (y % 120 ? 'rgba(18,26,66,.045)' : 'rgba(18,26,66,.085)'); c.beginPath(); c.moveTo(0, y + .5); c.lineTo(W, y + .5); c.stroke(); }
+  const cam = camOv(W, H), s = cam.s;
+  $$('.scr', ch).forEach((fig, i) => {
+    const r = BOARD.rects[i]; if (!r) return;
+    const x = cam.ax + (r.x - cam.fx) * s, y = cam.ay + (r.y - cam.fy) * s, w = r.w * s, h = r.h * s, im = fig.querySelector('img');
+    c.save(); c.shadowColor = 'rgba(7,9,13,.28)'; c.shadowBlur = 40 * s; c.shadowOffsetY = 24 * s; c.fillStyle = '#1b1b1f'; c.fillRect(x, y, w, h); c.restore();
+    if (im && im.naturalWidth) {
+      const contain = fig.classList.contains('contain'), k = contain ? Math.min(w / im.naturalWidth, h / im.naturalHeight) : Math.max(w / im.naturalWidth, h / im.naturalHeight);
+      c.save(); c.beginPath(); c.rect(x, y, w, h); c.clip();
+      if (contain) { c.fillStyle = '#0d1230'; c.fillRect(x, y, w, h); }
+      c.drawImage(im, x + (w - im.naturalWidth * k) / 2, y + (h - im.naturalHeight * k) / 2, im.naturalWidth * k, im.naturalHeight * k); c.restore();
+    }
+    c.strokeStyle = dark ? 'rgba(243,239,228,.25)' : 'rgba(18,26,66,.22)'; c.strokeRect(x + .5, y + .5, w - 1, h - 1);
+    c.font = `500 ${Math.max(9, 22 * s).toFixed(1)}px "JetBrains Mono", monospace`; c.fillStyle = dark ? 'rgba(243,239,228,.7)' : 'rgba(18,26,66,.7)'; c.textAlign = 'left';
+    c.fillText(`${String(i + 1).padStart(2, '0')} · ${(fig.dataset.title || '').toUpperCase()}`, x, y - 12 * s);
+  });
+  if (ovCv) { ovCv.width = ovCanvas.width; ovCv.height = ovCanvas.height; ovCv.getContext('2d').drawImage(ovCanvas, 0, 0); }
+  boardDrawn = true;
+};
+const ch1 = $('#ch1');
+const boardReady = () => {
+  const imgs = $$('.scr img', ch1);
+  imgs.forEach((im) => { im.loading = 'eager'; });
+  return Promise.all(imgs.map((im) => (im.complete && im.naturalWidth ? 0 : new Promise((r) => { im.addEventListener('load', r, { once: true }); im.addEventListener('error', r, { once: true }); }))));
+};
+phReady.then(boardReady).then(() => drawBoard(ch1));
+let bz = 0;
+addEventListener('resize', () => { clearTimeout(bz); bz = setTimeout(() => drawBoard(ch1), 150); });
+
+mm.add('(min-width: 900px)', () => {
+  const undo = [];
+  $$('.chap').forEach((ch) => {
+    const pin = $('.pin', ch), stage = $('[data-stage]', ch), scrs = $$('.scr', ch), tabs = $$('.tab', ch), cap = $('.ch-cap', ch), text = $('.ch-text', ch), rail = $('.rail', ch);
+    const name = $('.ch-kick', ch).textContent.split('/')[0].trim(), tabsEl = $('.tabs', ch);
+    /* build the board: the figures become rooms with a label above each */
+    ch.classList.add('rooms');
+    const board = document.createElement('div'); board.className = 'board'; board.style.width = `${BOARD.bw}px`; board.style.height = `${BOARD.bh}px`;
+    scrs.forEach((fig, i) => {
+      const r = BOARD.rects[i]; if (!r) return;
+      Object.assign(fig.style, { left: `${r.x}px`, top: `${r.y}px`, width: `${r.w}px`, height: `${r.h}px` });
+      const lab = document.createElement('span'); lab.className = 'rm-label'; lab.setAttribute('aria-hidden', 'true'); lab.textContent = `${String(i + 1).padStart(2, '0')} · ${fig.dataset.title}`;
+      fig.prepend(lab); board.append(fig);
+    });
+    stage.append(board);
+    cap.innerHTML = '';
+    const first = ch.id === 'ch1';
+    let capNow = -2;
+    const update = (p) => {
+      const W = innerWidth, H = innerHeight;
+      board.style.transform = camCss(camAt(p, W, H));
+      const put = (el, prop, v) => { if (el && el.__v?.[prop] !== v) { (el.__v ||= {})[prop] = v; el.style.setProperty(prop, v); } };
+      /* the title belongs to the wide shots; a caption names the room the camera is in */
+      put(text, 'opacity', String(1 - clamp((p - .07) / .03, 0, 1)));
+      let ci = -1, co = 0;
+      CAPS.forEach(([a, b], i) => { if (p >= a && p < b) { ci = i; co = clamp((p - a) / .012, 0, 1) * (1 - clamp((p - (b - .012)) / .012, 0, 1)); } });
+      if (ci !== capNow && ci >= 0) { capNow = ci; cap.innerHTML = noteHtml(scrs[ci], ci, scrs.length).replace('<i>', `<i>${esc(name)} · `); }
+      put(cap, 'opacity', co.toFixed(3));
+      tabs.forEach((t, i) => { const [a, b] = TABS[i], cur = String(p >= a && p < b); if (t.getAttribute('aria-current') !== cur) t.setAttribute('aria-current', cur); put(t, '--p', `${(clamp((p - a) / (b - a), 0, 1) * 100).toFixed(1)}%`); });
+      const ui = clamp(p / .04, 0, 1) * (1 - clamp((p - .96) / .03, 0, 1));
+      put(tabsEl, 'opacity', ui.toFixed(3)); put(rail, 'opacity', ui.toFixed(3));
+    };
+    const roomFollow = follower(update);
+    const st = ScrollTrigger.create({ trigger: pin, start: 'top top', end: '+=700%', pin: true, anticipatePin: 1, invalidateOnRefresh: true,
+      onEnter: () => first && ch.classList.add('on'), onLeaveBack: () => first && ch.classList.remove('on'),
+      onUpdate: (s) => roomFollow.to(s.progress), onRefresh: (s) => roomFollow.jump(s.progress) });
+    update(0);
+    const clicks = tabs.map((t, i) => { const h = () => { const y = st.start + (st.end - st.start) * TAB_AT[i]; if (lenis) lenis.scrollTo(y, { duration: 1.4 }); else scrollTo({ top: y, behavior: 'smooth' }); }; t.addEventListener('click', h); return h; });
+    undo.push(() => {
+      st.kill(); roomFollow.kill(); tabs.forEach((t, i) => t.removeEventListener('click', clicks[i]));
+      scrs.forEach((fig) => { fig.querySelector('.rm-label')?.remove(); fig.removeAttribute('style'); stage.append(fig); fig.style.margin = '0'; });
+      board.remove(); ch.classList.remove('rooms', 'on'); text.style.opacity = ''; cap.style.opacity = '';
+    });
+  });
+  return () => undo.forEach((f) => f());
+});
+
+/* the menu stays on screen through the whole page and takes the colour of what is under it */
+const menuBtn = $('#menu-btn');
+const menuTone = () => {
+  const r = menuBtn.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
+  const under = document.elementsFromPoint(x, y).find((el) => !menuBtn.contains(el) && el.closest('[data-surface], .chap, .more'));
+  const surf = under?.closest('[data-surface]')?.dataset.surface || (under?.closest('.chap, .more') ? 'light' : 'dark');
+  const onCream = surf === 'light' || (heroEl.contains(under) && heroWiped);
+  menuBtn.classList.toggle('on-light', !!onCream);
+};
+let toneT = 0, toneLast = 0;
+addEventListener('scroll', () => {
+  const now = performance.now();
+  if (now - toneLast > 140) { toneLast = now; requestAnimationFrame(menuTone); }
+  clearTimeout(toneT); toneT = setTimeout(menuTone, 160);
+}, { passive: true });
+
+
+
+/* desktop: over the hero the reel becomes the cursor, spinning under the pointer; once the lens is open the lens is the cursor.
+   Elsewhere a custom cursor: a dot, a disc and two trailing rings, each on its own spring, each squashing and stretching
+   along its own velocity, and a pill that names what you can click */
+mm.add('(min-width: 900px) and (hover: hover) and (pointer: fine)', () => {
+  root.classList.add('cur-on');
+  const cur = $('#cur'), dot = $('.cur-dot', cur), shell = $('.cur-shell', cur), disc = $('.cur-disc', cur), txt = $('.cur-txt', cur);
+  const P = { x: -200, y: -200 };
+  /* followers: frequency, the furthest they may trail, and the strain spring that stretches them */
+  const layers = [
+    { move: shell, bend: disc, f: 34, lim: 38, m: .75, k: 520, c: 23, cap: .36 },
+    { move: $('.cur-ring.r1', cur), bend: $('.cur-ring.r1', cur), f: 22, lim: 70, m: 1, k: 480, c: 25, cap: .42 },
+    { move: $('.cur-ring.r2', cur), bend: $('.cur-ring.r2', cur), f: 14, lim: 104, m: 1.35, k: 430, c: 27, cap: .46 }
+  ].map((l) => ({ ...l, x: spring(-200), y: spring(-200), s: spring(0), th: 0, pv: [0, 0] }));
+  /* a damped oscillator step (the textbook closed form), for the jelly in the stretch */
+  const osc = (s, target, dt, m, k, c) => {
+    const z = c / (2 * m), w = Math.sqrt(Math.max(1e-6, k / m - z * z)), x = s.v - target, b = (s.vel + z * x) / w;
+    const cs = Math.cos(w * dt), sn = Math.sin(w * dt), e = Math.exp(-z * dt), p = x * cs + b * sn;
+    s.v = target + p * e; s.vel = (w * (-x * sn + b * cs) - z * p) * e;
+  };
+  const R = { x: spring(), y: spring() };
+  let attached = false, lastT = 0, primed = false, lastT0 = null, rested = false;
+  const home = () => [innerWidth - 50, innerHeight - 50];
+  const attach = (on) => {
+    if (on === attached) return;
+    attached = on; reel.classList.toggle('att', on);
+    gsap.to(reel, { scale: on ? 1 : .47, duration: .55, ease: 'power3.out', overwrite: 'auto' });
+  };
+  const ds = (k, v) => { if (cur.dataset[k] !== v) cur.dataset[k] = v; };
+  const labelFor = (el) => el.dataset.cursorLabel || (el.matches('a') ? ((el.getAttribute('href') || '').startsWith('#') ? 'Go' : 'Open') : (el.getAttribute('aria-label') || 'Press').split(' ')[0]);
+  const classify = (t) => {
+    if (!(t instanceof Element)) return;
+    const link = t.closest('a, button, [data-cursor-label]'), inHero = !!t.closest('#hero') && scrollY < 40 && !menuOpen;
+    const lensOn = heroEl.classList.contains('lens-open');
+    /* over a project on the band (lens closed) the cursor says View; a click there opens the project */
+    const band = !link && inHero && !lensOn && !!film && film.hit(P.x, P.y) >= 0, hit = link || band;
+    ds('surface', t.closest('[data-surface]')?.dataset.surface || 'light');
+    ds('clickable', String(!!hit)); ds('action', hit ? 'click' : 'default');
+    if (hit) { const lb = band ? 'View' : labelFor(link); if (txt.textContent !== lb) txt.textContent = lb; ds('glyph', band ? 'arrow' : link.dataset.cursorGlyph || 'arrow'); }
+    attach(inHero && !hit && !lensOn);
+    /* inside the hero the reel or the lens is the cursor; over the intro links the lens gathers into a pill instead */
+    ds('hide', String(attached || (inHero && lensOn)));
+  };
+  syncCursor = () => classify(document.elementFromPoint(P.x, P.y));
+  const move = (e) => {
+    P.x = e.clientX; P.y = e.clientY; ds('visible', 'true'); if (e.target !== lastT0 || (scrollY < 40 && heroEl.contains(e.target))) { lastT0 = e.target; classify(e.target); }
+    if (!primed) { primed = true; layers.forEach((l) => { l.x = spring(P.x); l.y = spring(P.y); }); }
+  };
+  const down = () => ds('pressed', 'true'), up = () => ds('pressed', 'false');
+  const out = (e) => { if (!e.relatedTarget) { cur.dataset.visible = 'false'; attach(false); } };
+  const onScroll = () => { if (scrollY > 40) syncCursor(); };
+  const loop = (t) => {
+    const dt = lastT ? Math.min(t - lastT, .064) : 1 / 60; lastT = t;
+    /* nothing to do while the pointer and every follower are at rest */
+    const still = layers.every((l) => Math.abs(l.x.v - P.x) + Math.abs(l.y.v - P.y) < .05 && Math.abs(l.x.vel) + Math.abs(l.y.vel) < .5 && Math.abs(l.s.v) < 1e-3 && Math.abs(l.s.vel) < 1e-3)
+      && Math.abs(R.x.vel) + Math.abs(R.y.vel) < .5 && Math.abs(R.x.v - (attached ? P.x - home()[0] : 0)) + Math.abs(R.y.v - (attached ? P.y - home()[1] : 0)) < .05;
+    if (still && rested) return;
+    rested = still;
+    dot.style.transform = `translate3d(${P.x}px,${P.y}px,0)`;
+    const steps = Math.max(1, Math.ceil(dt * 120)), h = dt / steps;
+    layers.forEach((l) => {
+      for (let i = 0; i < steps; i++) {
+        settle(l.x, P.x, h, l.f); settle(l.y, P.y, h, l.f);
+        const ox = l.x.v - P.x, oy = l.y.v - P.y, dd = Math.hypot(ox, oy);
+        if (dd > l.lim) { l.x.v = P.x + ox / dd * l.lim; l.y.v = P.y + oy / dd * l.lim; }
+      }
+      const vx = l.x.vel, vy = l.y.vel, sp = Math.hypot(vx, vy);
+      if (sp > .1) l.th = Math.atan2(vy, vx);
+      osc(l.s, Math.min(Math.log1p(l.cap), 2.4e-4 * sp * sp / l.k), dt, l.m, l.k, l.c);
+      const r = Math.max(0, l.s.v), ch = Math.cosh(r), shn = Math.sinh(r), c2 = Math.cos(2 * l.th), s2 = Math.sin(2 * l.th);
+      const a = (ch + shn * c2).toFixed(4), b = (shn * s2).toFixed(4), d = (ch - shn * c2).toFixed(4);
+      if (l.move === l.bend) l.move.style.transform = `translate3d(${l.x.v}px,${l.y.v}px,0) matrix(${a},${b},${b},${d},0,0)`;
+      else { l.move.style.transform = `translate3d(${l.x.v}px,${l.y.v}px,0)`; l.bend.style.transform = `matrix(${a},${b},${b},${d},0,0)`; }
+    });
+    /* the reel rides to the pointer on a spring and leans a little into its motion */
+    const [hx, hy] = home();
+    settle(R.x, attached ? P.x - hx : 0, dt, 16); settle(R.y, attached ? P.y - hy : 0, dt, 16);
+    gsap.set(reel, { x: R.x.v, y: R.y.v, rotation: 6 * Math.tanh(R.x.vel / 900) });
+  };
+  addEventListener('pointermove', move, { passive: true }); addEventListener('pointerdown', down); addEventListener('pointerup', up);
+  document.addEventListener('pointerout', out); addEventListener('scroll', onScroll, { passive: true }); gsap.ticker.add(loop);
+  /* the menu's project list sends a small print after the cursor */
+  const fx = gsap.quickTo(follow, 'x', { duration: .6, ease: 'power3' }), fy = gsap.quickTo(follow, 'y', { duration: .6, ease: 'power3' });
+  const list = $('.ov-projects', ov);
+  const fmove = (e) => { fx(e.clientX + 24); fy(e.clientY + 18); };
+  const fin = (e) => { gsap.set(follow, { x: e.clientX + 24, y: e.clientY + 18 }); gsap.to(follow, { opacity: 1, duration: .5, overwrite: 'auto' }); };
+  const fout = () => gsap.to(follow, { opacity: 0, duration: .4, overwrite: 'auto' });
+  list.addEventListener('pointermove', fmove); list.addEventListener('pointerenter', fin); list.addEventListener('pointerleave', fout);
+  return () => {
+    root.classList.remove('cur-on'); syncCursor = () => {};
+    removeEventListener('pointermove', move); removeEventListener('pointerdown', down); removeEventListener('pointerup', up);
+    document.removeEventListener('pointerout', out); removeEventListener('scroll', onScroll); gsap.ticker.remove(loop);
+    list.removeEventListener('pointermove', fmove); list.removeEventListener('pointerenter', fin); list.removeEventListener('pointerleave', fout);
+    attach(false); gsap.set(reel, { clearProps: 'transform' });
+  };
+});
+
+$$('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => { const t = document.querySelector(a.getAttribute('href')); if (!t || !lenis) return; e.preventDefault(); lenis.scrollTo(t, { duration: 1.4, force: true }); }));
+addEventListener('load', () => { measure(); ScrollTrigger.refresh(); });
+addEventListener('resize', () => { if (!lensGL) return; lensGL.size(); if (wavy.matches) phoneLens(); else if (L.intent) refreshDrawing(); });
+})();
+</script>
+</body>
+</html>
