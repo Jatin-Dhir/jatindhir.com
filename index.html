@@ -45,6 +45,9 @@
   --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
   --ease:cubic-bezier(.16,1,.3,1);
   --gut:2.6vw;
+  /* the hero's unit: a hundredth of the width, but never more than the height allows (1440 x 900 is where they meet),
+     so the name, the voice and the band keep their proportions on wide, short laptop screens */
+  --n:min(1vw,1.6svh);
   color-scheme:light;
 }
 
@@ -77,30 +80,30 @@ button{font:inherit;color:inherit}
 .menu:is(:hover,:focus-visible) i::before{opacity:1;transform:scale(1)}
 .menu:is(:hover,:focus-visible) s{background:var(--field);transform:translateX(2px)}
 .menu:is(:hover,:focus-visible) s + s{transform:translateX(-2px)}
-.word{position:absolute;margin:0;font-family:var(--f-name);font-weight:400;color:var(--on-field);font-size:23.5vw;line-height:.74;white-space:nowrap;user-select:none;-webkit-user-select:none;pointer-events:none}
+.word{position:absolute;margin:0;font-family:var(--f-name);font-weight:400;color:var(--on-field);font-size:calc(23.5 * var(--n));line-height:.74;white-space:nowrap;user-select:none;-webkit-user-select:none;pointer-events:none}
 .word .ch{position:relative;display:inline-block;will-change:transform}
 /* each letter enters inside its own mask; once the name has landed the masks open so letters can fly on scroll */
 .word .mk{display:inline-block;overflow:hidden;padding:.12em .03em .05em;margin:-.12em -.03em -.05em}
 .settled .word .mk{overflow:visible}
-.w1{left:calc(var(--gut) - .025em);top:12.2svh;z-index:1}
-.w2{right:calc(3vw + 60px);top:calc(50svh + 6vw);z-index:3}
-.voice{position:absolute;left:57vw;top:17svh;z-index:3;margin:0;font-family:var(--f-voice);font-weight:400;font-size:3vw;line-height:1.02;letter-spacing:-.025em;color:var(--on-field)}
+.w1{left:calc(var(--gut) - .025em);top:max(12.2svh,88px);z-index:1}
+.w2{right:calc(3vw + 60px);top:calc(50svh + 6 * var(--n));z-index:3}
+.voice{position:absolute;left:57vw;top:17svh;z-index:3;margin:0;font-family:var(--f-voice);font-weight:400;font-size:calc(3 * var(--n));line-height:1.02;letter-spacing:-.025em;color:var(--on-field)}
 .voice .ln{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
 .voice .ln span{display:block}
 /* the film: WebGL draws it; the DOM strip below is the fallback and the hit area for dragging */
 #gl{position:absolute;left:0;top:0;width:100%;height:100%;z-index:2;pointer-events:none;display:none}
 .gl #gl{display:block}
-.strip{position:absolute;left:-4vw;right:-4vw;top:calc(50svh - 9.25vw);height:18.5vw;z-index:2;background:var(--film);overflow:hidden;pointer-events:none}
+.strip{position:absolute;left:-4vw;right:-4vw;top:calc(50svh - 9.25 * var(--n));height:calc(18.5 * var(--n));z-index:2;background:var(--film);overflow:hidden;pointer-events:none}
 .strip::before,.strip::after{content:"";position:absolute;left:0;right:0;height:.7vw;z-index:2;background:repeating-linear-gradient(90deg,var(--field) 0 1vw,transparent 1vw 1.7vw)}
 .strip::before{top:.6vw}.strip::after{bottom:.6vw}
 .track{position:absolute;top:2vw;bottom:2vw;left:0;display:flex;gap:1vw}
 .fr{flex:0 0 auto;width:15.6vw;height:100%;overflow:hidden;background:var(--paper);padding:.8vw}
 .fr img{width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
-.gl .strip{top:calc(50svh - 15vw);height:30vw;background:none;overflow:visible}
+.gl .strip{top:calc(50svh - 15 * var(--n));height:calc(30 * var(--n));background:none;overflow:visible}
 .gl .strip::before,.gl .strip::after,.gl .track{visibility:hidden}
 .zoomcover{position:absolute;left:0;top:0;width:100%;height:100%;z-index:5;opacity:0;pointer-events:none;overflow:hidden}
 .zoomcover img{width:100%;height:100%;object-fit:cover}
-.intro{position:absolute;left:var(--gut);bottom:calc(38px + 2.4vw);z-index:7;width:clamp(300px,15vw + 160px,440px);color:var(--on-field)}
+.intro{position:absolute;left:var(--gut);bottom:calc(38px + min(2.4vw,3.2svh));z-index:7;width:clamp(300px,15vw + 160px,440px);color:var(--on-field)}
 .intro .role{font-size:calc(.5vw + 14px);font-weight:500;letter-spacing:-.03em;margin:0 0 10px}
 .intro .sum{font-size:14px;line-height:1.5;margin:0 0 4px;font-weight:500}
 .intro .acts{display:flex;gap:24px;font-size:14px;font-weight:500}
@@ -1090,6 +1093,19 @@ void main() {
       const u = Math.min(W, 1.6 * H);
       /* a concave arc, rolled slightly so its left end clears the hook of the J and its right end rises toward the voice line */
       Object.assign(G, { h0: .185 * u, ratio: 512 / 576, cy: .5 * H, eye: .52 * H, tilt: -.08, R: .55 * W, F: .7 * W, half: .6 * W });
+      /* on wide, short screens the band's left end sinks into the intro (cream cards behind cream type). The band keeps its top
+         edge, so it still sits on the name exactly as before (the J's hook stays clear), and only its lower edge comes up:
+         a slightly shorter band, recentred, just enough to clear the intro, by at most a quarter of its height */
+      const intro = $('.intro');
+      if (intro && intro.offsetWidth) {
+        const hr = heroEl.getBoundingClientRect(), ir = intro.getBoundingClientRect(), top = ir.top - hr.top - 18;
+        let low = -Infinity, at = 0;
+        for (let j = 0; j <= 8; j++) { const x = invX(ir.left - hr.left + ir.width * j / 8), y = proj(x, G.h0 / 2)[1]; if (y > low) { low = y; at = x; } }
+        if (low > top) {
+          const s = (proj(at, G.h0 / 2)[1] - proj(at, -G.h0 / 2)[1]) / G.h0, dh = -Math.min(.25 * G.h0, (low - top) / s);
+          G.h0 += dh; G.cy += dh / 2;
+        }
+      }
     } else {
       const u = stripEl.offsetHeight / 54;
       Object.assign(G, { h0: 34 * u, ratio: 512 / 576, cy: stripEl.offsetTop + stripEl.offsetHeight / 2, A: 5 * u, k: 2 * Math.PI / (230 * u), half: W / 2 + 40 });
